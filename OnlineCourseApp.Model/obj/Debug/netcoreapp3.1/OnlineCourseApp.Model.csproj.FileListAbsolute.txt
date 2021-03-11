@@ -1,0 +1,9 @@
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.deps.json
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.dll
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.pdb
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.AssemblyInfoInputs.cache
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.AssemblyInfo.cs
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.CoreCompileInputs.cache
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.dll
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.pdb
+C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csprojAssemblyReference.cache
