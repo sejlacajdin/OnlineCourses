@@ -9,6 +9,7 @@ namespace OnlineCourseApp.WebAPI.Database
     {
         public User()
         {
+            Announcements = new HashSet<Announcement>();
             CourseParticipants = new HashSet<CourseParticipant>();
             Courses = new HashSet<Course>();
             DocumentDownloadeds = new HashSet<DocumentDownloaded>();
@@ -29,6 +30,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public string PasswordSalt { get; set; }
         public bool Status { get; set; }
 
+        public virtual ICollection<Announcement> Announcements { get; set; }
         public virtual ICollection<CourseParticipant> CourseParticipants { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<DocumentDownloaded> DocumentDownloadeds { get; set; }

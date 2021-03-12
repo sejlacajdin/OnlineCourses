@@ -9,6 +9,7 @@ namespace OnlineCourseApp.WebAPI.Database
     {
         public CourseSection()
         {
+            AnnouncementFilters = new HashSet<AnnouncementFilter>();
             Courses = new HashSet<Course>();
             InverseCourseParent = new HashSet<CourseSection>();
         }
@@ -21,6 +22,7 @@ namespace OnlineCourseApp.WebAPI.Database
 
         public virtual CourseSection CourseParent { get; set; }
         public virtual CourseType CourseType { get; set; }
+        public virtual ICollection<AnnouncementFilter> AnnouncementFilters { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<CourseSection> InverseCourseParent { get; set; }
     }

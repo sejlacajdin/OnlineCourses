@@ -17,6 +17,9 @@ namespace OnlineCourseApp.WebAPI.Database
         {
         }
 
+        public virtual DbSet<Announcement> Announcements { get; set; }
+        public virtual DbSet<AnnouncementFilter> AnnouncementFilters { get; set; }
+        public virtual DbSet<AnnouncementFilterType> AnnouncementFilterTypes { get; set; }
         public virtual DbSet<Choice> Choices { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<CourseParticipant> CourseParticipants { get; set; }
@@ -39,6 +42,7 @@ namespace OnlineCourseApp.WebAPI.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.; Database=160065; Trusted_Connection=True;");
             }
         }
@@ -46,6 +50,88 @@ namespace OnlineCourseApp.WebAPI.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Bosnian_Latin_100_BIN");
+
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.ToTable("Announcement");
+
+                entity.Property(e => e.AnnouncementId).HasColumnName("AnnouncementID");
+
+                entity.Property(e => e.AnnouncementOwnerId).HasColumnName("AnnouncementOwnerID");
+
+                entity.Property(e => e.FilterTypeId).HasColumnName("FilterTypeID");
+
+                entity.Property(e => e.PostOwner)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.ShortDescription)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.AnnouncementOwner)
+                    .WithMany(p => p.Announcements)
+                    .HasForeignKey(d => d.AnnouncementOwnerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AnnouncementOwner_Announcement");
+
+                entity.HasOne(d => d.FilterType)
+                    .WithMany(p => p.Announcements)
+                    .HasForeignKey(d => d.FilterTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FilterType_Announcement");
+            });
+
+            modelBuilder.Entity<AnnouncementFilter>(entity =>
+            {
+                entity.ToTable("AnnouncementFilter");
+
+                entity.Property(e => e.AnnouncementFilterId).HasColumnName("AnnouncementFilterID");
+
+                entity.Property(e => e.AnnouncementId).HasColumnName("AnnouncementID");
+
+                entity.Property(e => e.CourseId).HasColumnName("CourseID");
+
+                entity.Property(e => e.CourseSectionId).HasColumnName("CourseSectionID");
+
+                entity.Property(e => e.CourseTypeId).HasColumnName("CourseTypeID");
+
+                entity.HasOne(d => d.Announcement)
+                    .WithMany(p => p.AnnouncementFilters)
+                    .HasForeignKey(d => d.AnnouncementId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Announcement_AnnouncementFilter");
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.AnnouncementFilters)
+                    .HasForeignKey(d => d.CourseId)
+                    .HasConstraintName("FK_Course_AnnouncementFilter");
+
+                entity.HasOne(d => d.CourseSection)
+                    .WithMany(p => p.AnnouncementFilters)
+                    .HasForeignKey(d => d.CourseSectionId)
+                    .HasConstraintName("FK_CourseSection_AnnouncementFilter");
+
+                entity.HasOne(d => d.CourseType)
+                    .WithMany(p => p.AnnouncementFilters)
+                    .HasForeignKey(d => d.CourseTypeId)
+                    .HasConstraintName("FK_CourseType_AnnouncementFilter");
+            });
+
+            modelBuilder.Entity<AnnouncementFilterType>(entity =>
+            {
+                entity.ToTable("AnnouncementFilterType");
+
+                entity.Property(e => e.AnnouncementFilterTypeId).HasColumnName("AnnouncementFilterTypeID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
 
             modelBuilder.Entity<Choice>(entity =>
             {

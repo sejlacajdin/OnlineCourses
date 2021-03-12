@@ -9,6 +9,7 @@ namespace OnlineCourseApp.WebAPI.Database
     {
         public CourseType()
         {
+            AnnouncementFilters = new HashSet<AnnouncementFilter>();
             CourseSections = new HashSet<CourseSection>();
         }
 
@@ -16,6 +17,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public string Name { get; set; }
         public DateTime RecordUpdated { get; set; }
 
+        public virtual ICollection<AnnouncementFilter> AnnouncementFilters { get; set; }
         public virtual ICollection<CourseSection> CourseSections { get; set; }
     }
 }
