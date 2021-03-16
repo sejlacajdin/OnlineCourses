@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model;
+using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.WebAPI.Services;
+using OnlineCourseApp.WebAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +11,38 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/courses")]
     [ApiController]
     public class CourseController : ControllerBase
     {
         private readonly ICourseService _courseService;
+
         public CourseController(ICourseService courseService)
         {
             _courseService = courseService;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Course>> Get()
+        public ActionResult<List<Courses>> Get([FromQuery] CoursesSearchRequest request)
         {
-            var list = new List<Course>() { 
-                new Course
-                {
-                    CourseID= 1,
-                    Name= "test"
-                }
-            };
-            return list;
+            return _courseService.Get(request);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Course> GetById(int id)
+        public ActionResult<Courses> GetById(int id)
         {
-            var item = new Course()
-            {
-                CourseID = 1,
-                Name = "test"
-            };
+            return _courseService.GetById(id);
+        }
 
-            return item;
+        [HttpDelete("{id}")]
+        public ActionResult<Courses> Delete(int id)
+        {
+            return _courseService.Delete(id);
+        }
+
+        [HttpPost]
+        public Model.Courses Insert(CoursesInsertRequest request)
+        {
+            return _courseService.Insert(request);
         }
     }
 }

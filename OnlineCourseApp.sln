@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineCourseApp.WebAPI", "OnlineCourseApp.WebAPI\OnlineCourseApp.WebAPI.csproj", "{039BAB35-FD3A-43E9-B2A3-5B59CA3167C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineCourseApp.WebAPI", "OnlineCourseApp.WebAPI\OnlineCourseApp.WebAPI.csproj", "{039BAB35-FD3A-43E9-B2A3-5B59CA3167C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineCourseApp.Model", "OnlineCourseApp.Model\OnlineCourseApp.Model.csproj", "{7ABC6757-5A97-4095-AC02-A242B6C01FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineCourseApp.Model", "OnlineCourseApp.Model\OnlineCourseApp.Model.csproj", "{7ABC6757-5A97-4095-AC02-A242B6C01FE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineCourseApp.WinUI", "OnlineCourseApp.WinUII\OnlineCourseApp.WinUI.csproj", "{D30E7589-4978-4431-95B5-7FE1056C5CC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7ABC6757-5A97-4095-AC02-A242B6C01FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABC6757-5A97-4095-AC02-A242B6C01FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABC6757-5A97-4095-AC02-A242B6C01FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30E7589-4978-4431-95B5-7FE1056C5CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30E7589-4978-4431-95B5-7FE1056C5CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30E7589-4978-4431-95B5-7FE1056C5CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30E7589-4978-4431-95B5-7FE1056C5CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

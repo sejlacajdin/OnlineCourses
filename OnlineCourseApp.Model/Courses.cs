@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineCourseApp.Model
 {
-    public class Course
+    public class Courses
     {
         public int CourseID { get; set; }
         public string Name { get; set; }

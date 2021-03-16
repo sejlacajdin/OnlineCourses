@@ -21,6 +21,8 @@ namespace OnlineCourseApp.WebAPI.Database
         public int ProfessorId { get; set; }
         public bool IsActive { get; set; }
         public int CourseSectionId { get; set; }
+        public byte[] Picture { get; set; }
+        public byte[] PictureThumb { get; set; }
 
         public virtual CourseSection CourseSection { get; set; }
         public virtual User Professor { get; set; }

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WozAIDU9bhkG5AL9wG+CgVuOqNHWvxpCVdV1QbYR/P5fI6jYdqDzkMC8ar+zGl6qzw6+68cvJwCy6Bn9lQaopA==",
+  "dgSpecHash": "NXOWPnIp2N3+d77z1fbACQfxh+c9XxfsD9syLp3ZI6B8YyWQg88G6U6O4ksMYRHR8vZlgglrqS9H9J+OZWPBwA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Šejla\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Šejla\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
