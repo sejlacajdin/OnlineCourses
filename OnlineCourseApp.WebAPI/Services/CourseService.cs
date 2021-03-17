@@ -62,5 +62,15 @@ namespace OnlineCourseApp.WebAPI.Services
             return _mapper.Map<Model.Courses>(entity);
         }
 
+        public Courses Update(int id, CoursesInsertRequest request)
+        {
+            var entity = _context.Courses.Find(id);
+
+            _mapper.Map(request, entity);
+
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Courses>(entity);
+        }
     }
 }

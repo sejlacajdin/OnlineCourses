@@ -8,6 +8,8 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
     public interface IUsersService
     {
         List<Users> Get(UsersSearchRequest request);
+        Users GetById(int id);
         Users Insert(UsersInsertRequest request);
+        Users Update(int id, UsersInsertRequest request);
     }
 }

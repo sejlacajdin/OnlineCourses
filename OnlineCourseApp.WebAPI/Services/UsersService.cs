@@ -36,6 +36,14 @@ namespace OnlineCourseApp.WebAPI.Services
             return _mapper.Map<List<Users>>(list);
         }
 
+        public Users GetById(int id)
+        {
+            var entity = _context.Users.Find(id);
+            if (entity == null)
+                throw new UserException("User does not exist!");
+
+            return _mapper.Map<Users>(entity);
+        }
         public Users Insert(UsersInsertRequest request)
         {
             var entity = _mapper.Map<Database.User>(request);
@@ -46,6 +54,23 @@ namespace OnlineCourseApp.WebAPI.Services
             entity.PasswordSalt = "test";
 
             _context.Users.Add(entity);
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Users>(entity);
+        }
+
+        public Users Update(int id, UsersInsertRequest request)
+        {
+            var entity = _context.Users.Find(id);
+
+            _mapper.Map(request, entity);
+
+            if (!string.IsNullOrWhiteSpace(request.Password))
+            {
+                if (request.Password != request.PasswordConfirmation)
+                    throw new UserException("Passwords are not equal!");
+            }
+
             _context.SaveChanges();
 
             return _mapper.Map<Model.Users>(entity);

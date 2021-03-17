@@ -98,5 +98,10 @@ namespace OnlineCourseApp.WinUI
         {
             openChildForm(new frmCourses());
         }
+
+        private void frmIndex_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

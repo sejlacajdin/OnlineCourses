@@ -10,8 +10,10 @@ namespace OnlineCourseApp.Model.Requests.Courses
         [Required(AllowEmptyStrings = false)]
         public string CourseName { get; set; }
         public string Notes { get; set; }
+        [Required]
         public int ProfessorId { get; set; }
         public bool IsActive { get; set; }
+        [Required]
         public int CourseSectionId { get; set; }
         public byte[] Picture { get; set; }
         public byte[] PictureThumb { get; set; }

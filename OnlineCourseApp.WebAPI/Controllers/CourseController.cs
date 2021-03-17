@@ -44,5 +44,11 @@ namespace OnlineCourseApp.WebAPI.Controllers
         {
             return _courseService.Insert(request);
         }
+
+        [HttpPut("{id}")]
+        public Model.Courses Update(int id, CoursesInsertRequest request)
+        {
+            return _courseService.Update(id, request);
+        }
     }
 }

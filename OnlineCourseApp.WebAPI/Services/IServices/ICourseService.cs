@@ -13,5 +13,6 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
         Courses GetById(int id);
         Courses Delete(int id);
         Courses Insert(CoursesInsertRequest request);
+        Courses Update(int id,CoursesInsertRequest request);
     }
 }

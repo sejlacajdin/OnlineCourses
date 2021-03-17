@@ -13,7 +13,7 @@ namespace OnlineCourseApp.WinUI.Users
 {
     public partial class frmUsers : Form
     {
-        private readonly APIService _apiService = new APIService("Users"); 
+        private readonly APIService _apiService = new APIService("users"); 
         public frmUsers()
         {
             InitializeComponent();
@@ -32,6 +32,11 @@ namespace OnlineCourseApp.WinUI.Users
             var result = await _apiService.Get<List<Model.Users>>(search);
 
             dgvUsers.DataSource = result;
+        }
+
+        private void frmUsers_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

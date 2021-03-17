@@ -87,6 +87,7 @@ namespace OnlineCourseApp.WinUI.Users
             this.Controls.Add(this.btnPrikazi);
             this.Name = "frmUsers";
             this.Text = "Users";
+            this.Load += new System.EventHandler(this.frmUsers_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);

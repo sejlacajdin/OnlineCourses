@@ -29,6 +29,7 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@ namespace OnlineCourseApp.WinUI.Courses
             this.textBoxDescription = new System.Windows.Forms.RichTextBox();
             this.labelDescription = new System.Windows.Forms.Label();
             this.buttonAddCourse = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textTitle
@@ -45,6 +48,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.textTitle.Name = "textTitle";
             this.textTitle.Size = new System.Drawing.Size(286, 23);
             this.textTitle.TabIndex = 0;
+            this.textTitle.Validating += new System.ComponentModel.CancelEventHandler(this.textTitle_Validating);
             // 
             // label1
             // 
@@ -55,7 +59,6 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label1.Size = new System.Drawing.Size(145, 28);
             this.label1.TabIndex = 1;
             this.label1.Text = "Add course";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelTitle
             // 
@@ -74,6 +77,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(286, 23);
             this.comboBoxCategory.TabIndex = 3;
+            this.comboBoxCategory.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxCategory_Validating);
             // 
             // labelCategory
             // 
@@ -112,6 +116,11 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonAddCourse.TabIndex = 8;
             this.buttonAddCourse.Text = "ADD COURSE";
             this.buttonAddCourse.UseVisualStyleBackColor = true;
+            this.buttonAddCourse.Click += new System.EventHandler(this.buttonAddCourse_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmCoursesDetails
             // 
@@ -128,7 +137,10 @@ namespace OnlineCourseApp.WinUI.Courses
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textTitle);
             this.Name = "frmCoursesDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCoursesDetails";
+            this.Load += new System.EventHandler(this.frmCoursesDetails_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +156,6 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.RichTextBox textBoxDescription;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Button buttonAddCourse;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

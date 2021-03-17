@@ -23,15 +23,27 @@ namespace OnlineCourseApp.WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Users>> Get([FromQuery]UsersSearchRequest request)
+        public ActionResult<List<Users>> Get([FromQuery] UsersSearchRequest request)
         {
             return _usersService.Get(request);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Users> GetById(int id)
+        {
+            return _usersService.GetById(id);
         }
 
         [HttpPost]
         public Model.Users Insert(UsersInsertRequest request)
         {
             return _usersService.Insert(request);
+        }
+
+        [HttpPut("{id}")]
+        public Model.Users Update(int id, UsersInsertRequest request)
+        {
+            return _usersService.Update(id, request);
         }
     }
 }

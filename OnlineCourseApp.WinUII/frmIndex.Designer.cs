@@ -159,7 +159,7 @@ namespace OnlineCourseApp.WinUI
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmIndex";
             this.Text = "frmIndex";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmIndex_Load);
             this.panelSideMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
