@@ -1,4 +1,5 @@
-﻿using OnlineCourseApp.WinUI.Controls;
+﻿using OnlineCourseApp.Model.Requests.Courses;
+using OnlineCourseApp.WinUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,12 +7,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OnlineCourseApp.WinUI.Courses
 {
     public partial class frmCourses : Form
     {
+        private readonly APIService _serviceCourses = new APIService("courses");
+        private readonly APIService _serviceCourseSection = new APIService("course-section");
+
         public frmCourses()
         {
             InitializeComponent();
@@ -19,64 +24,54 @@ namespace OnlineCourseApp.WinUI.Courses
 
         private void btnAddCourse_Click(object sender, EventArgs e)
         {
-            frmCoursesDetails frm = new frmCoursesDetails();
+            frmCoursesAdd frm = new frmCoursesAdd();
             frm.ShowDialog();
         }
 
-        private void frmCourses_Load(object sender, EventArgs e)
+        private async void frmCourses_Load(object sender, EventArgs e)
         {
-            cardsPanel1.ViewModel = LoadSomeData();
+            var courses = await _serviceCourses.Get<List<Model.Courses>>(null);
+            cardsPanel1.ViewModel = await LoadSomeData(courses);
             cardsPanel1.DataBind();
         }
 
-        private CardsViewModel LoadSomeData()
+        private async Task<CardsViewModel> LoadSomeData(List<Model.Courses> courses)
         {
             ObservableCollection<CardViewModel> cards = new ObservableCollection<CardViewModel>();
-            cards.Add(new CardViewModel()
+            
+            foreach (var item in courses)
             {
-                Age = 1,
-                Name = "Dan",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 2,
-                Name = "Gill",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 3,
-                Name = "Glyn",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 4,
-                Name = "Lorna",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 5,
-                Name = "Holdly",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 5,
-                Name = "Hoflly",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 5,
-                Name = "Hoslly",
-            });
-            cards.Add(new CardViewModel()
-            {
-                Age = 5,
-                Name = "Holasly",
-            });
+                var section = await _serviceCourseSection.GetById<Model.CourseSections>(item.CourseSectionId);
+                cards.Add(new CardViewModel()
+                {
+                    courseId = item.CourseId,
+                    courseName = item.CourseName,
+                    courseSection = section.Name,
+                    notes = item.Notes
+
+                });
+            }
+        
             CardsViewModel VM = new CardsViewModel()
             {
                 Cards = cards
             };
             return VM;
+        }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            var _txtSearch = txtSearch.Text;
+
+            var search = new CoursesSearchRequest()
+            {
+                CourseName = _txtSearch
+            };
+
+            var result = await _serviceCourses.Get<List<Model.Courses>>(search);
+
+            cardsPanel1.ViewModel = await LoadSomeData(result);
+            cardsPanel1.DataBind();
         }
     }
 }

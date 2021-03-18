@@ -1,9 +1,11 @@
-﻿using System;
+﻿using OnlineCourseApp.WinUI.Courses;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -27,13 +29,27 @@ namespace OnlineCourseApp.WinUI.Controls
         {
             SuspendLayout();
 
-            label1.Text = ViewModel.Age.ToString();
-            label1.Name = ViewModel.Name;
+            courseName.Text = ViewModel.courseName;
+            courseSection.Text = ViewModel.courseSection;
+            notes.Text = ViewModel.notes;
+            courseId.Text = ViewModel.courseId.ToString();
             //pbPicture.Image = ViewModel.Picture;
 
             ResumeLayout();
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+        }
+
+        private void CardControl_Click(object sender, EventArgs e)
+        {
+            frmIndex frm =(frmIndex) Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
+            frmCoursesDetails form = new frmCoursesDetails(int.Parse(courseId.Text));
+            if (frm != null) frm.openChildForm(form);
+            else form.Show();
+        }
     }
 
     public class CardsViewModel
@@ -43,8 +59,10 @@ namespace OnlineCourseApp.WinUI.Controls
 
     public class CardViewModel
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
+        public int courseId { get; set; }
+        public string courseName { get; set; }
+        public string courseSection { get; set; }
+        public string notes { get; set; }
         //public Bitmap Picture { get; set; }
     }
 }

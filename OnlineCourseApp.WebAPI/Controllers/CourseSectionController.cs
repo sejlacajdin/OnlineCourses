@@ -25,5 +25,11 @@ namespace OnlineCourseApp.WebAPI.Controllers
         {
             return _courseSectionService.Get();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<CourseSections> GetById(int id)
+        {
+            return _courseSectionService.GetById(id);
+        }
     }
 }

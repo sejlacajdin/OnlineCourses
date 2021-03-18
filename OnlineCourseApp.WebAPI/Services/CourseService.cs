@@ -22,10 +22,10 @@ namespace OnlineCourseApp.WebAPI.Services
         }
         public List<Courses> Get(CoursesSearchRequest request)
         {
-            var query = _context.Users.AsQueryable();
+            var query = _context.Courses.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(request?.CourseName))
-                query = query.Where(x => x.FirstName.StartsWith(request.CourseName));
+                query = query.Where(x => x.CourseName.StartsWith(request.CourseName));
 
             var list = query.ToList();
 

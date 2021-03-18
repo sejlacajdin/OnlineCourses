@@ -10,5 +10,6 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
     public interface ICourseTypeService
     {
         List<CourseTypes> Get();
+        CourseTypes GetById(int id);
     }
 }

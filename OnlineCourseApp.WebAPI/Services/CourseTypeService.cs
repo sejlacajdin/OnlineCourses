@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.WebAPI.Database;
+using OnlineCourseApp.WebAPI.Exceptions;
 using OnlineCourseApp.WebAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,15 @@ namespace OnlineCourseApp.WebAPI.Services
             List<CourseType> list = _context.CourseTypes.ToList();
 
             return _mapper.Map<List<CourseTypes>>(list);
+        }
+
+        public CourseTypes GetById(int id)
+        {
+           var item = _context.CourseTypes.Find(id);
+           if (item == null)
+               throw new UserException("Section does not exist!");
+
+           return _mapper.Map<CourseTypes>(item);    
         }
     }
 }

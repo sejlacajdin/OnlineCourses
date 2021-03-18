@@ -48,5 +48,12 @@ namespace OnlineCourseApp.WinUI
 
             return await url.PutJsonAsync(request).ReceiveJson<T>();
         }
+
+        public async Task<T> Delete<T>(object id)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+
+            return await url.DeleteAsync().ReceiveJson<T>();
+        }
     }
 }

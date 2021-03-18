@@ -1512,10 +1512,7 @@
         },
         "runtime": {
           "bin/placeholder/OnlineCourseApp.Model.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },

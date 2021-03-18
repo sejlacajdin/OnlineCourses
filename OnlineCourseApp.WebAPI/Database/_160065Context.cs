@@ -189,6 +189,8 @@ namespace OnlineCourseApp.WebAPI.Database
                     .ValueGeneratedNever()
                     .HasColumnName("CourseParticipantID");
 
+                entity.Property(e => e.Comment).HasMaxLength(150);
+
                 entity.Property(e => e.CourseId).HasColumnName("CourseID");
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");

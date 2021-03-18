@@ -27,5 +27,10 @@ namespace OnlineCourseApp.WebAPI.Controllers
             return _courseTypeService.Get();
 
         }
+        [HttpGet("{id}")]
+        public ActionResult<CourseTypes> GetById(int id)
+        {
+            return _courseTypeService.GetById(id);
+        }
     }
 }

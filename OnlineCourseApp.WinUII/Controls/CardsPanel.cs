@@ -12,8 +12,8 @@ namespace OnlineCourseApp.WinUI
 
     public partial class CardsPanel : Panel
     {
-        const int CardWidth = 200;
-        const int CardHeight = 150;
+        const int CardWidth = 190;
+        const int CardHeight = 310;
 
         public CardsViewModel ViewModel { get; set; }
 

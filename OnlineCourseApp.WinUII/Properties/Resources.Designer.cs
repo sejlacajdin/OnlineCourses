@@ -61,6 +61,16 @@ namespace OnlineCourseApp.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Entity_Relationship_Diagram__UML_Notation___1_ {
+            get {
+                object obj = ResourceManager.GetObject("Entity Relationship Diagram (UML Notation) (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field is required..
         /// </summary>
         public static string Validation_RequiredField {

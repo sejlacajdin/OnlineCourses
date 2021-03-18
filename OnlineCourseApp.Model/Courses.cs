@@ -6,7 +6,11 @@ namespace OnlineCourseApp.Model
 {
     public class Courses
     {
-        public int CourseID { get; set; }
-        public string Name { get; set; }
+        public int CourseId { get; set; }
+        public string CourseName { get; set; }
+        public string Notes { get; set; }
+        public int ProfessorId { get; set; }
+        public bool IsActive { get; set; }
+        public int CourseSectionId { get; set; }
     }
 }
