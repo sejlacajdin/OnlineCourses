@@ -12,25 +12,10 @@ using System.Threading.Tasks;
 namespace OnlineCourseApp.WebAPI.Controllers
 {
     [Route("api/course-type")]
-    [ApiController]
-    public class CourseTypeController : ControllerBase
+    public class CourseTypeController : BaseController<CourseTypes, object>
     {
-        private readonly ICourseTypeService _courseTypeService;
-
-        public CourseTypeController(ICourseTypeService courseTypeService)
+        public CourseTypeController(IBaseService<CourseTypes, object> service) :base(service)
         {
-            _courseTypeService = courseTypeService;
-        }
-        [HttpGet]
-        public ActionResult<List<CourseTypes>> Get()
-        {
-            return _courseTypeService.Get();
-
-        }
-        [HttpGet("{id}")]
-        public ActionResult<CourseTypes> GetById(int id)
-        {
-            return _courseTypeService.GetById(id);
         }
     }
 }

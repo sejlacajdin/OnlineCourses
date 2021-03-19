@@ -10,26 +10,11 @@ using System.Threading.Tasks;
 namespace OnlineCourseApp.WebAPI.Controllers
 {
     [Route("api/course-section")]
-    [ApiController]
-    public class CourseSectionController : ControllerBase
+    public class CourseSectionController : BaseController<CourseSections, object>
     {
-        private readonly ICourseSectionService _courseSectionService;
-
-        public CourseSectionController(ICourseSectionService courseSectionService)
+        public CourseSectionController(IBaseService<CourseSections, object> service) : base(service)
         {
-            _courseSectionService = courseSectionService;
-        }
 
-        [HttpGet]
-        public ActionResult<List<CourseSections>> Get()
-        {
-            return _courseSectionService.Get();
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<CourseSections> GetById(int id)
-        {
-            return _courseSectionService.GetById(id);
         }
     }
 }

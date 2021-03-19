@@ -17,6 +17,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using OnlineCourseApp.WebAPI.Filters;
+using OnlineCourseApp.Model;
+using OnlineCourseApp.Model.Requests.Courses;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -46,10 +48,10 @@ namespace OnlineCourseApp.WebAPI
             var connection = @"Server=.; Database=160065; Trusted_Connection=True;";
             services.AddDbContext<_160065Context>(options => options.UseSqlServer(connection));
 
-            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IBaseCRUDService<Model.Courses,CoursesSearchRequest,CoursesInsertRequest,CoursesInsertRequest>, CourseService>();
             services.AddScoped<IUsersService, UsersService>();
-            services.AddScoped<ICourseTypeService, CourseTypeService>();
-            services.AddScoped<ICourseSectionService, CourseSectionService>();
+            services.AddScoped<IBaseService<CourseTypes, object>, BaseService<CourseTypes,object, CourseType>>();
+            services.AddScoped<IBaseService<CourseSections, object>, BaseService<CourseSections, object, CourseSection>>();
             services.AddScoped<IQuestionCategoryService, QuestionCategoryService>();
 
         }

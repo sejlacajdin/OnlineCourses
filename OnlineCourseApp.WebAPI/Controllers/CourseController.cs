@@ -13,42 +13,39 @@ namespace OnlineCourseApp.WebAPI.Controllers
 {
     [Route("api/courses")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CourseController : BaseCRUDController<Model.Courses, CoursesSearchRequest, CoursesInsertRequest, CoursesInsertRequest>
     {
-        private readonly ICourseService _courseService;
+        public CourseController(IBaseCRUDService<Model.Courses, CoursesSearchRequest, CoursesInsertRequest, CoursesInsertRequest> service) : base(service)
+        {
+        }
+        //[HttpGet]
+        //public ActionResult<List<Courses>> Get([FromQuery] CoursesSearchRequest request)
+        //{
+        //    return _courseService.Get(request);
+        //}
 
-        public CourseController(ICourseService courseService)
-        {
-            _courseService = courseService;
-        }
-        [HttpGet]
-        public ActionResult<List<Courses>> Get([FromQuery] CoursesSearchRequest request)
-        {
-            return _courseService.Get(request);
-        }
+        //[HttpGet("{id}")]
+        //public ActionResult<Courses> GetById(int id)
+        //{
+        //    return _courseService.GetById(id);
+        //}
 
-        [HttpGet("{id}")]
-        public ActionResult<Courses> GetById(int id)
-        {
-            return _courseService.GetById(id);
-        }
+        //[HttpDelete("{id}")]
+        //public ActionResult<Courses> Delete(int id)
+        //{
+        //    return _courseService.Delete(id);
+        //}
 
-        [HttpDelete("{id}")]
-        public ActionResult<Courses> Delete(int id)
-        {
-            return _courseService.Delete(id);
-        }
+        //[HttpPost]
+        //public Model.Courses Insert(CoursesInsertRequest request)
+        //{
+        //    return _courseService.Insert(request);
+        //}
 
-        [HttpPost]
-        public Model.Courses Insert(CoursesInsertRequest request)
-        {
-            return _courseService.Insert(request);
-        }
-
-        [HttpPut("{id}")]
-        public Model.Courses Update(int id, CoursesInsertRequest request)
-        {
-            return _courseService.Update(id, request);
-        }
+        //[HttpPut("{id}")]
+        //public Model.Courses Update(int id, CoursesInsertRequest request)
+        //{
+        //    return _courseService.Update(id, request);
+        //}
     }
 }
