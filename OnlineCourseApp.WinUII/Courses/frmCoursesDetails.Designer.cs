@@ -29,27 +29,29 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.textBoxDescription = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.uploadImage = new System.Windows.Forms.Label();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(210, 140);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(34, 22);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(210, 140);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
             // 
             // label1
             // 
@@ -96,17 +98,18 @@ namespace OnlineCourseApp.WinUI.Courses
             this.textBoxDescription.TabIndex = 6;
             this.textBoxDescription.Text = "";
             // 
-            // label4
+            // uploadImage
             // 
-            this.label4.AutoSize = true;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label4.Location = new System.Drawing.Point(85, 176);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 14);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "UPLOAD IMAGE";
+            this.uploadImage.AutoSize = true;
+            this.uploadImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uploadImage.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.uploadImage.ForeColor = System.Drawing.Color.MediumBlue;
+            this.uploadImage.Location = new System.Drawing.Point(85, 176);
+            this.uploadImage.Name = "uploadImage";
+            this.uploadImage.Size = new System.Drawing.Size(103, 14);
+            this.uploadImage.TabIndex = 7;
+            this.uploadImage.Text = "UPLOAD IMAGE";
+            this.uploadImage.Click += new System.EventHandler(this.uploadImage_Click);
             // 
             // comboBoxCategory
             // 
@@ -146,6 +149,10 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // frmCoursesDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -155,17 +162,17 @@ namespace OnlineCourseApp.WinUI.Courses
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.comboBoxCategory);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.uploadImage);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox);
             this.Name = "frmCoursesDetails";
             this.Text = "frmCoursesDetails";
             this.Load += new System.EventHandler(this.frmCoursesDetails_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,15 +180,16 @@ namespace OnlineCourseApp.WinUI.Courses
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.RichTextBox textBoxDescription;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label uploadImage;
         private System.Windows.Forms.ComboBox comboBoxCategory;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

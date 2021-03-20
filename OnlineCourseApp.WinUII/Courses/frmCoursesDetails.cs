@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -32,22 +33,23 @@ namespace OnlineCourseApp.WinUI.Courses
             textBoxTitle.Text = course.CourseName;
             comboBoxCategory.SelectedValue = course.CourseSectionId;
             textBoxDescription.Text = course.Notes;
-
+            if (course.Picture != null && course.Picture.Length > 0)
+                pictureBox.Image =Image.FromStream(new MemoryStream(course.Picture));
 
         }
 
+        CoursesInsertRequest request = new CoursesInsertRequest();
         private async void buttonUpdate_Click(object sender, EventArgs e)
         {
-            CoursesInsertRequest request = new CoursesInsertRequest()
-            {
-                CourseName = textBoxTitle.Text,
-                Notes = textBoxDescription.Text,
-                ProfessorId =1,
-                IsActive = true,
-                CourseSectionId =(int)comboBoxCategory.SelectedValue,
-                Picture = null,
-                PictureThumb = null
-            };
+
+            request.CourseName = textBoxTitle.Text;
+            request.Notes = textBoxDescription.Text;
+            request.ProfessorId = 1;
+            request.IsActive = true;
+            request.CourseSectionId = (int)comboBoxCategory.SelectedValue;
+            request.Picture = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
+            request.PictureThumb = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
+
             await _serviceCourses.Update<Model.Courses>(_courseId, request);
             MessageBox.Show("Successfully updated course.");
         }
@@ -68,6 +70,29 @@ namespace OnlineCourseApp.WinUI.Courses
             }
             else return;
 
+        }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+        private void uploadImage_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog1.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                var file = File.ReadAllBytes(fileName);
+                request.PictureThumb = file;
+                Image image = Image.FromFile(fileName);
+                pictureBox.Image = image;
+            }
+            else if(result == DialogResult.Cancel)
+            {
+                request.PictureThumb = imageToByteArray(pictureBox.Image); 
+            }
         }
     }
 }

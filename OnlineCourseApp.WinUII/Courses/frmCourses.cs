@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,14 +43,17 @@ namespace OnlineCourseApp.WinUI.Courses
             foreach (var item in courses)
             {
                 var section = await _serviceCourseSection.GetById<Model.CourseSections>(item.CourseSectionId);
-                cards.Add(new CardViewModel()
+                CardViewModel course = new CardViewModel()
                 {
                     courseId = item.CourseId,
                     courseName = item.CourseName,
                     courseSection = section.Name,
                     notes = item.Notes
+                };
+                if (item.Picture != null && item.Picture.Length > 0)
+                    course.picture = Image.FromStream(new MemoryStream(item.Picture));
 
-                });
+                cards.Add(course);
             }
         
             CardsViewModel VM = new CardsViewModel()

@@ -33,7 +33,7 @@ namespace OnlineCourseApp.WinUI.Controls
             courseSection.Text = ViewModel.courseSection;
             notes.Text = ViewModel.notes;
             courseId.Text = ViewModel.courseId.ToString();
-            //pbPicture.Image = ViewModel.Picture;
+            pictureBox.Image = ViewModel.picture;
 
             ResumeLayout();
         }
@@ -63,6 +63,6 @@ namespace OnlineCourseApp.WinUI.Controls
         public string courseName { get; set; }
         public string courseSection { get; set; }
         public string notes { get; set; }
-        //public Bitmap Picture { get; set; }
+        public Image picture { get; set; }
     }
 }

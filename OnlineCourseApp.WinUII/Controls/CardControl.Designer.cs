@@ -30,11 +30,11 @@ namespace OnlineCourseApp.WinUI.Controls
         private void InitializeComponent()
         {
             this.courseName = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.courseSection = new System.Windows.Forms.Label();
             this.notes = new System.Windows.Forms.Label();
             this.courseId = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // courseName
@@ -50,16 +50,16 @@ namespace OnlineCourseApp.WinUI.Controls
             this.courseName.Text = "label1";
             this.courseName.UseCompatibleTextRendering = true;
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(-2, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox.Location = new System.Drawing.Point(-2, -1);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(195, 126);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
             // 
             // courseSection
             // 
@@ -98,13 +98,14 @@ namespace OnlineCourseApp.WinUI.Controls
             this.Controls.Add(this.courseId);
             this.Controls.Add(this.notes);
             this.Controls.Add(this.courseSection);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.courseName);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.Name = "CardControl";
             this.Size = new System.Drawing.Size(194, 315);
             this.Click += new System.EventHandler(this.CardControl_Click);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,7 +114,7 @@ namespace OnlineCourseApp.WinUI.Controls
         #endregion
 
         private System.Windows.Forms.Label courseName;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label courseSection;
         private System.Windows.Forms.Label notes;
         private System.Windows.Forms.Label courseId;
