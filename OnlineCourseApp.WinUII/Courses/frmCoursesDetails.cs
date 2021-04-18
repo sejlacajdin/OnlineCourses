@@ -56,7 +56,7 @@ namespace OnlineCourseApp.WinUI.Courses
 
         private async void buttonDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 await _serviceCourses.Delete<Model.Courses>(_courseId);
