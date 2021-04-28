@@ -13,6 +13,7 @@ namespace OnlineCourseApp.WebAPI.Database
             CourseParticipants = new HashSet<CourseParticipant>();
             DocumentShares = new HashSet<DocumentShare>();
             Exams = new HashSet<Exam>();
+            Videos = new HashSet<Video>();
         }
 
         public int CourseId { get; set; }
@@ -23,6 +24,9 @@ namespace OnlineCourseApp.WebAPI.Database
         public int CourseSectionId { get; set; }
         public byte[] Picture { get; set; }
         public byte[] PictureThumb { get; set; }
+        public double? Rating { get; set; }
+        public int? NumOfRatings { get; set; }
+        public double? Price { get; set; }
 
         public virtual CourseSection CourseSection { get; set; }
         public virtual User Professor { get; set; }
@@ -30,5 +34,6 @@ namespace OnlineCourseApp.WebAPI.Database
         public virtual ICollection<CourseParticipant> CourseParticipants { get; set; }
         public virtual ICollection<DocumentShare> DocumentShares { get; set; }
         public virtual ICollection<Exam> Exams { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

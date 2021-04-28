@@ -13,7 +13,6 @@ namespace OnlineCourseApp.WebAPI.Database
             CourseParticipants = new HashSet<CourseParticipant>();
             Courses = new HashSet<Course>();
             DocumentDownloadeds = new HashSet<DocumentDownloaded>();
-            Documents = new HashSet<Document>();
             ExamAnsweredQuestions = new HashSet<ExamAnsweredQuestion>();
             Exams = new HashSet<Exam>();
             UserLogs = new HashSet<UserLog>();
@@ -34,7 +33,6 @@ namespace OnlineCourseApp.WebAPI.Database
         public virtual ICollection<CourseParticipant> CourseParticipants { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<DocumentDownloaded> DocumentDownloadeds { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<ExamAnsweredQuestion> ExamAnsweredQuestions { get; set; }
         public virtual ICollection<Exam> Exams { get; set; }
         public virtual ICollection<UserLog> UserLogs { get; set; }

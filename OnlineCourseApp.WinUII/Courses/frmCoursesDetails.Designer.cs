@@ -29,6 +29,7 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +41,20 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxActive = new System.Windows.Forms.CheckBox();
+            this.textBoxProfessorId = new System.Windows.Forms.TextBox();
+            this.labelDocuments = new System.Windows.Forms.Label();
+            this.dgvDocuments = new System.Windows.Forms.DataGridView();
+            this.DocumentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileOldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -126,7 +140,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUpdate.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonUpdate.ForeColor = System.Drawing.Color.White;
-            this.buttonUpdate.Location = new System.Drawing.Point(547, 263);
+            this.buttonUpdate.Location = new System.Drawing.Point(547, 343);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(88, 27);
             this.buttonUpdate.TabIndex = 9;
@@ -141,7 +155,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(453, 263);
+            this.buttonDelete.Location = new System.Drawing.Point(453, 343);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(88, 27);
             this.buttonDelete.TabIndex = 10;
@@ -153,12 +167,157 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // checkBoxActive
+            // 
+            this.checkBoxActive.AutoSize = true;
+            this.checkBoxActive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxActive.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxActive.Location = new System.Drawing.Point(293, 318);
+            this.checkBoxActive.Name = "checkBoxActive";
+            this.checkBoxActive.Size = new System.Drawing.Size(128, 19);
+            this.checkBoxActive.TabIndex = 11;
+            this.checkBoxActive.Text = "Is course active";
+            this.checkBoxActive.UseVisualStyleBackColor = true;
+            this.checkBoxActive.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBoxProfessorId
+            // 
+            this.textBoxProfessorId.Enabled = false;
+            this.textBoxProfessorId.Location = new System.Drawing.Point(34, 223);
+            this.textBoxProfessorId.Name = "textBoxProfessorId";
+            this.textBoxProfessorId.Size = new System.Drawing.Size(100, 23);
+            this.textBoxProfessorId.TabIndex = 12;
+            this.textBoxProfessorId.Visible = false;
+            // 
+            // labelDocuments
+            // 
+            this.labelDocuments.AutoSize = true;
+            this.labelDocuments.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelDocuments.Location = new System.Drawing.Point(34, 420);
+            this.labelDocuments.Name = "labelDocuments";
+            this.labelDocuments.Size = new System.Drawing.Size(90, 17);
+            this.labelDocuments.TabIndex = 13;
+            this.labelDocuments.Text = "Documents";
+            // 
+            // dgvDocuments
+            // 
+            this.dgvDocuments.AllowUserToAddRows = false;
+            this.dgvDocuments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDocuments.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvDocuments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDocuments.ColumnHeadersVisible = false;
+            this.dgvDocuments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DocumentId,
+            this.FileOldName,
+            this.Delete});
+            this.dgvDocuments.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvDocuments.Location = new System.Drawing.Point(34, 461);
+            this.dgvDocuments.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.dgvDocuments.Name = "dgvDocuments";
+            this.dgvDocuments.ReadOnly = true;
+            this.dgvDocuments.RowTemplate.Height = 25;
+            this.dgvDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDocuments.Size = new System.Drawing.Size(591, 147);
+            this.dgvDocuments.TabIndex = 14;
+            this.dgvDocuments.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDocuments_MouseClick);
+            // 
+            // DocumentId
+            // 
+            this.DocumentId.DataPropertyName = "DocumentId";
+            this.DocumentId.HeaderText = "Id";
+            this.DocumentId.Name = "DocumentId";
+            this.DocumentId.ReadOnly = true;
+            this.DocumentId.Visible = false;
+            // 
+            // FileOldName
+            // 
+            this.FileOldName.DataPropertyName = "FileOldName";
+            this.FileOldName.FillWeight = 140.1015F;
+            this.FileOldName.HeaderText = "Name";
+            this.FileOldName.Name = "FileOldName";
+            this.FileOldName.ReadOnly = true;
+            this.FileOldName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Delete
+            // 
+            this.Delete.DataPropertyName = "Delete";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Delete.FillWeight = 59.89848F;
+            this.Delete.HeaderText = "Action";
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(293, 279);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(138, 23);
+            this.txtPrice.TabIndex = 16;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(293, 259);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Price";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(406, 282);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 15);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "$";
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUpload.ForeColor = System.Drawing.Color.White;
+            this.btnUpload.Location = new System.Drawing.Point(547, 420);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 18;
+            this.btnUpload.Text = "UPLOAD";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // frmCoursesDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1089, 450);
+            this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dgvDocuments);
+            this.Controls.Add(this.labelDocuments);
+            this.Controls.Add(this.textBoxProfessorId);
+            this.Controls.Add(this.checkBoxActive);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.comboBoxCategory);
@@ -170,9 +329,11 @@ namespace OnlineCourseApp.WinUI.Courses
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox);
             this.Name = "frmCoursesDetails";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.Text = "frmCoursesDetails";
             this.Load += new System.EventHandler(this.frmCoursesDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +352,17 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox checkBoxActive;
+        private System.Windows.Forms.TextBox textBoxProfessorId;
+        private System.Windows.Forms.Label labelDocuments;
+        private System.Windows.Forms.DataGridView dgvDocuments;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileOldName;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

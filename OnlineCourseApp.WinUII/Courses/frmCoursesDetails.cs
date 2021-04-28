@@ -1,12 +1,20 @@
-﻿using OnlineCourseApp.Model.Requests.Courses;
+﻿using Flurl.Http;
+using Grpc.Core;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Mvc;
+using OnlineCourseApp.Model.Requests.Courses;
+using OnlineCourseApp.Model.Requests.Documents;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OnlineCourseApp.WinUI.Courses
@@ -16,6 +24,7 @@ namespace OnlineCourseApp.WinUI.Courses
         private int _courseId;
         private readonly APIService _serviceCourses = new APIService("courses");
         private readonly APIService _serviceCourseSection = new APIService("course-section");
+        private readonly APIService _serviceDocuments = new APIService("document");
         public frmCoursesDetails(int courseId)
         {
             InitializeComponent();
@@ -33,8 +42,21 @@ namespace OnlineCourseApp.WinUI.Courses
             textBoxTitle.Text = course.CourseName;
             comboBoxCategory.SelectedValue = course.CourseSectionId;
             textBoxDescription.Text = course.Notes;
+            txtPrice.Text = course.Price.ToString();
+            textBoxProfessorId.Text = course.ProfessorId.ToString();
+            checkBoxActive.CheckState = course.IsActive ? CheckState.Checked : CheckState.Unchecked;
             if (course.Picture != null && course.Picture.Length > 0)
                 pictureBox.Image =Image.FromStream(new MemoryStream(course.Picture));
+
+            var search = new DocumentsSearchRequest()
+            {
+                CourseId = course.CourseId
+            };
+            var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
+            dgvDocuments.AutoGenerateColumns = false;
+
+            if(document != null)
+            dgvDocuments.DataSource = document;
 
         }
 
@@ -44,8 +66,9 @@ namespace OnlineCourseApp.WinUI.Courses
 
             request.CourseName = textBoxTitle.Text;
             request.Notes = textBoxDescription.Text;
-            request.ProfessorId = 1;
-            request.IsActive = true;
+            request.ProfessorId = Int32.Parse(textBoxProfessorId.Text);
+            request.Price = Double.Parse(txtPrice.Text);
+            //request.IsActive = true;
             request.CourseSectionId = (int)comboBoxCategory.SelectedValue;
             request.Picture = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
             request.PictureThumb = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
@@ -81,6 +104,7 @@ namespace OnlineCourseApp.WinUI.Courses
         private void uploadImage_Click(object sender, EventArgs e)
         {
             var result = openFileDialog1.ShowDialog();
+            openFileDialog1.Filter = "Image Files(*.PNG;*.JPG)";
             if(result == DialogResult.OK)
             {
                 var fileName = openFileDialog1.FileName;
@@ -92,6 +116,83 @@ namespace OnlineCourseApp.WinUI.Courses
             else if(result == DialogResult.Cancel)
             {
                 request.PictureThumb = imageToByteArray(pictureBox.Image); 
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxActive.Checked)
+                request.IsActive = true;
+            else
+                request.IsActive = false;
+        }
+
+        private async void dgvDocuments_MouseClick(object sender, MouseEventArgs e)
+        {
+            var id = dgvDocuments.SelectedRows[0].Cells[0].Value;
+            var doc = await _serviceDocuments.GetById<Model.Documents>(int.Parse(id.ToString()));
+            //WebClient webClient = new WebClient();
+            //webClient.DownloadFile("~OnlineCourseApp\\OnlineCourseApp.WebAPI\\Resources/", doc.FileName);
+
+            //var memory = new MemoryStream();
+            //using (var stream = new FileStream(path, FileMode.Open))
+            //{
+            //    await stream.CopyToAsync(memory);
+            //    stream.Close();
+            //}
+            //memory.Position = 0;
+            //return File(memory, "application/octet-stream", doc.FileName);
+
+        }
+
+        private async void btnUpload_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog2.ShowDialog();
+            openFileDialog2.Filter = "Pdf documents (*.pdf)|*.pdf";
+            openFileDialog2.FilterIndex = 1;
+            openFileDialog2.Multiselect = false;
+
+            if (result == DialogResult.OK)
+            {
+                if (openFileDialog2.CheckFileExists)
+                {
+
+                    var fileName = openFileDialog2.FileName;
+                    var filee = Path.GetFileName(fileName);
+                    var url = $"{Properties.Settings.Default.APIUrl}/document/upload/{_courseId}";
+
+
+                    MemoryStream ms = new MemoryStream();
+                    using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                    {
+
+                        fileStream.CopyTo(ms);
+                        ms.Position = 0;
+                     
+                           var formContent = new MultipartContent();
+                        formContent.Headers.ContentType.MediaType = "application/pdf";
+                        formContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "\"file\"", FileName=$"{filee}" };
+
+                        await url.PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
+                    }
+
+                    var search = new DocumentsSearchRequest()
+                    {
+                        CourseId = _courseId
+                    };
+                    var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
+                    dgvDocuments.AutoGenerateColumns = false;
+
+                    if (document != null)
+                        dgvDocuments.DataSource = document;
+
+                }
+                else
+                {
+                    MessageBox.Show("Please upload document.");
+                }
+
+
             }
         }
     }

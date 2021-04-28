@@ -19,6 +19,7 @@ using AutoMapper;
 using OnlineCourseApp.WebAPI.Filters;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Courses;
+using OnlineCourseApp.Model.Requests.Documents;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -53,6 +54,8 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IBaseService<CourseTypes, object>, BaseService<CourseTypes,object, CourseType>>();
             services.AddScoped<IBaseService<CourseSections, object>, BaseService<CourseSections, object, CourseSection>>();
             services.AddScoped<IQuestionCategoryService, QuestionCategoryService>();
+            services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IBaseCRUDService<Model.Documents, DocumentsSearchRequest, DocumentsInsertRequest, DocumentsInsertRequest>, DocumentService>();
 
         }
 

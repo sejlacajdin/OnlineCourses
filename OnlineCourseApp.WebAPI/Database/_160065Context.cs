@@ -37,6 +37,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserLog> UserLogs { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -259,8 +260,6 @@ namespace OnlineCourseApp.WebAPI.Database
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.DocumentOwnerId).HasColumnName("DocumentOwnerID");
-
                 entity.Property(e => e.FileExstension)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -273,13 +272,9 @@ namespace OnlineCourseApp.WebAPI.Database
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.UploadDate).HasColumnType("datetime");
-
-                entity.HasOne(d => d.DocumentOwner)
-                    .WithMany(p => p.Documents)
-                    .HasForeignKey(d => d.DocumentOwnerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DocumentOwner_Document");
+                entity.Property(e => e.Path)
+                    .IsRequired()
+                    .HasMaxLength(500);
             });
 
             modelBuilder.Entity<DocumentDownloaded>(entity =>
@@ -533,6 +528,27 @@ namespace OnlineCourseApp.WebAPI.Database
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User_UserRoles");
+            });
+
+            modelBuilder.Entity<Video>(entity =>
+            {
+                entity.ToTable("Video");
+
+                entity.Property(e => e.VideoId).HasColumnName("VideoID");
+
+                entity.Property(e => e.CourseId).HasColumnName("CourseID");
+
+                entity.Property(e => e.File).IsRequired();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.Videos)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Video_Course");
             });
 
             OnModelCreatingPartial(modelBuilder);

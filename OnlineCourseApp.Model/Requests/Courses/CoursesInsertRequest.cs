@@ -13,6 +13,7 @@ namespace OnlineCourseApp.Model.Requests.Courses
         [Required]
         public int ProfessorId { get; set; }
         public bool IsActive { get; set; }
+        public double? Price { get; set; }
         [Required]
         public int CourseSectionId { get; set; }
         public byte[] Picture { get; set; }

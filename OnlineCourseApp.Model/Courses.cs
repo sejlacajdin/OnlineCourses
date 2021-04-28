@@ -11,6 +11,7 @@ namespace OnlineCourseApp.Model
         public string Notes { get; set; }
         public int ProfessorId { get; set; }
         public bool IsActive { get; set; }
+        public double? Price { get; set; }
         public int CourseSectionId { get; set; }
         public byte[] Picture { get; set; }
     }

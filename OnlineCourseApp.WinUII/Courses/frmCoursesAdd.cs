@@ -32,6 +32,7 @@ namespace OnlineCourseApp.WinUI.Courses
                 IsActive = true,
                 CourseSectionId = (int) comboBoxCategory.SelectedValue,
                 ProfessorId = 1, /*need to be changed*/
+                Price = Double.Parse(txtPrice.Text),
                 Picture = null,
                 PictureThumb = null
             };
@@ -77,6 +78,16 @@ namespace OnlineCourseApp.WinUI.Courses
             }
             else
                 errorProvider.SetError(textTitle, null);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

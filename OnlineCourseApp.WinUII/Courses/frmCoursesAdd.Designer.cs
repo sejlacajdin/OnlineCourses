@@ -39,6 +39,9 @@ namespace OnlineCourseApp.WinUI.Courses
             this.labelDescription = new System.Windows.Forms.Label();
             this.buttonAddCourse = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +76,7 @@ namespace OnlineCourseApp.WinUI.Courses
             // comboBoxCategory
             // 
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(56, 207);
+            this.comboBoxCategory.Location = new System.Drawing.Point(56, 201);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(286, 23);
             this.comboBoxCategory.TabIndex = 3;
@@ -83,7 +86,7 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             this.labelCategory.AutoSize = true;
             this.labelCategory.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelCategory.Location = new System.Drawing.Point(56, 186);
+            this.labelCategory.Location = new System.Drawing.Point(56, 180);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(82, 18);
             this.labelCategory.TabIndex = 4;
@@ -91,7 +94,7 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Location = new System.Drawing.Point(56, 290);
+            this.textBoxDescription.Location = new System.Drawing.Point(56, 341);
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(286, 126);
             this.textBoxDescription.TabIndex = 6;
@@ -101,7 +104,7 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelDescription.Location = new System.Drawing.Point(56, 269);
+            this.labelDescription.Location = new System.Drawing.Point(56, 320);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(100, 18);
             this.labelDescription.TabIndex = 7;
@@ -114,7 +117,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.buttonAddCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAddCourse.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonAddCourse.ForeColor = System.Drawing.Color.White;
-            this.buttonAddCourse.Location = new System.Drawing.Point(110, 476);
+            this.buttonAddCourse.Location = new System.Drawing.Point(110, 504);
             this.buttonAddCourse.Name = "buttonAddCourse";
             this.buttonAddCourse.Size = new System.Drawing.Size(170, 32);
             this.buttonAddCourse.TabIndex = 8;
@@ -126,12 +129,44 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(56, 244);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 18);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Price";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(56, 265);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(286, 23);
+            this.txtPrice.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(318, 268);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(15, 15);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "$";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // frmCoursesAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(412, 597);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.buttonAddCourse);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxDescription);
@@ -161,5 +196,8 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Button buttonAddCourse;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label3;
     }
 }
