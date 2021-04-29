@@ -10,5 +10,6 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
     {
         Document GetLast();
         Documents Upload(IFormFile file, int courseId);
+        FileDownload Download(int id);
     }
 }

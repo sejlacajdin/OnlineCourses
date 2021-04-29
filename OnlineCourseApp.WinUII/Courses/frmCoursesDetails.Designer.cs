@@ -29,7 +29,7 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label5 = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
             this.SuspendLayout();
@@ -242,13 +243,13 @@ namespace OnlineCourseApp.WinUI.Courses
             // Delete
             // 
             this.Delete.DataPropertyName = "Delete";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.Delete.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle1;
             this.Delete.FillWeight = 59.89848F;
             this.Delete.HeaderText = "Action";
             this.Delete.Name = "Delete";
@@ -364,5 +365,6 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

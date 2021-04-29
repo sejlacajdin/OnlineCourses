@@ -30,6 +30,7 @@ namespace OnlineCourseApp.WebAPI.Services
 
             return _mapper.Map<List<Documents>>(list);
         }
+
         public Document GetLast()
         {
             int max = _context.Set<Document>().Max(x => x.DocumentId);
@@ -87,6 +88,17 @@ namespace OnlineCourseApp.WebAPI.Services
                 //}
                 return entity;
 
+        }
+
+        public FileDownload Download(int id)
+        {
+            var document = GetById(id);
+            Byte[] b = System.IO.File.ReadAllBytes(document.Path);
+            return new FileDownload
+            {
+                File = b,
+                Name = document.FileOldName
+            };
         }
     }
 }

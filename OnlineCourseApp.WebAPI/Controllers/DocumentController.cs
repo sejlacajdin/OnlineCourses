@@ -30,9 +30,9 @@ namespace OnlineCourseApp.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public Documents GetById(int id)
+        public FileDownload GetById(int id)
         {
-            return _service.GetById(id);
+            return _documentService.Download(id);
         }
 
         [HttpPost("upload/{id}")]

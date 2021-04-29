@@ -130,19 +130,20 @@ namespace OnlineCourseApp.WinUI.Courses
         private async void dgvDocuments_MouseClick(object sender, MouseEventArgs e)
         {
             var id = dgvDocuments.SelectedRows[0].Cells[0].Value;
-            var doc = await _serviceDocuments.GetById<Model.Documents>(int.Parse(id.ToString()));
-            //WebClient webClient = new WebClient();
-            //webClient.DownloadFile("~OnlineCourseApp\\OnlineCourseApp.WebAPI\\Resources/", doc.FileName);
+            var doc = await _serviceDocuments.GetById<FileDownload>(id);
 
-            //var memory = new MemoryStream();
-            //using (var stream = new FileStream(path, FileMode.Open))
-            //{
-            //    await stream.CopyToAsync(memory);
-            //    stream.Close();
-            //}
-            //memory.Position = 0;
-            //return File(memory, "application/octet-stream", doc.FileName);
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
+            saveFileDialog1.FileName = doc.Name;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    myStream.Write(doc.File, 0, doc.File.Length);
+                    myStream.Close();
+                }
+            }
         }
 
         private async void btnUpload_Click(object sender, EventArgs e)
