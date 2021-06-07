@@ -30,6 +30,19 @@ namespace OnlineCourseApp.WebAPI.Services
 
             return _mapper.Map<List<Documents>>(list);
         }
+        public override Documents Delete(int id)
+        {
+            var entity = _context.Set<Document>().Find(id);
+            var documentShare = _context.Set<DocumentShare>().AsQueryable().Where(d => d.DocumentId == id).FirstOrDefault();
+            if (entity == null)
+                throw new UserException("Document does not exist!");
+
+            _context.Set<DocumentShare>().Remove(documentShare);
+            _context.Set<Document>().Remove(entity);
+            _context.SaveChanges();
+
+            return _mapper.Map<Documents>(entity);
+        }
 
         public Document GetLast()
         {

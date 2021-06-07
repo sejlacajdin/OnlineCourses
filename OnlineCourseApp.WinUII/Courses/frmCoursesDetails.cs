@@ -127,7 +127,7 @@ namespace OnlineCourseApp.WinUI.Courses
                 request.IsActive = false;
         }
 
-        private async void dgvDocuments_MouseClick(object sender, MouseEventArgs e)
+        private async void dgvDocuments_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var id = dgvDocuments.SelectedRows[0].Cells[0].Value;
             var doc = await _serviceDocuments.GetById<FileDownload>(id);
@@ -195,6 +195,39 @@ namespace OnlineCourseApp.WinUI.Courses
 
 
             }
+        }
+
+        private async void dgvDocuments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvDocuments.Columns["Delete"].Index && e.RowIndex >= 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var id = dgvDocuments.SelectedRows[0].Cells[0].Value;
+                    await _serviceDocuments.Delete<Model.Documents>(id);
+
+                    var search = new DocumentsSearchRequest()
+                    {
+                        CourseId = _courseId
+                    };
+                    var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
+                    dgvDocuments.AutoGenerateColumns = false;
+
+                    if (document != null)
+                        dgvDocuments.DataSource = document;
+
+                    MessageBox.Show("Successfully deleted document.");
+
+                }
+                else return;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

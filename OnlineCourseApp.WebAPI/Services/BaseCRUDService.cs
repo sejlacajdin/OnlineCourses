@@ -33,7 +33,7 @@ namespace OnlineCourseApp.WebAPI.Services
             return _mapper.Map<TModel>(entity);
 
         }
-        public TModel Delete(int id)
+        public virtual TModel Delete(int id)
         {
             var entity = _context.Set<TDatabase>().Find(id);
             if (entity == null)

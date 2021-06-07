@@ -29,7 +29,7 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,6 +54,8 @@ namespace OnlineCourseApp.WinUI.Courses
             this.btnUpload = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnUploadVideo = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
             this.SuspendLayout();
@@ -219,9 +221,10 @@ namespace OnlineCourseApp.WinUI.Courses
             this.dgvDocuments.ReadOnly = true;
             this.dgvDocuments.RowTemplate.Height = 25;
             this.dgvDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocuments.Size = new System.Drawing.Size(591, 147);
+            this.dgvDocuments.Size = new System.Drawing.Size(591, 127);
             this.dgvDocuments.TabIndex = 14;
-            this.dgvDocuments.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDocuments_MouseClick);
+            this.dgvDocuments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocuments_CellClick);
+            this.dgvDocuments.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvDocuments_MouseDoubleClick);
             // 
             // DocumentId
             // 
@@ -243,13 +246,13 @@ namespace OnlineCourseApp.WinUI.Courses
             // Delete
             // 
             this.Delete.DataPropertyName = "Delete";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.Delete.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle2;
             this.Delete.FillWeight = 59.89848F;
             this.Delete.HeaderText = "Action";
             this.Delete.Name = "Delete";
@@ -304,13 +307,40 @@ namespace OnlineCourseApp.WinUI.Courses
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
+            // btnUploadVideo
+            // 
+            this.btnUploadVideo.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnUploadVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUploadVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadVideo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUploadVideo.ForeColor = System.Drawing.Color.White;
+            this.btnUploadVideo.Location = new System.Drawing.Point(547, 619);
+            this.btnUploadVideo.Name = "btnUploadVideo";
+            this.btnUploadVideo.Size = new System.Drawing.Size(75, 23);
+            this.btnUploadVideo.TabIndex = 20;
+            this.btnUploadVideo.Text = "UPLOAD";
+            this.btnUploadVideo.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(34, 620);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 17);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Videos";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // frmCoursesDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1089, 450);
+            this.ClientSize = new System.Drawing.Size(1106, 827);
+            this.Controls.Add(this.btnUploadVideo);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPrice);
@@ -366,5 +396,7 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnUploadVideo;
+        private System.Windows.Forms.Label label6;
     }
 }
