@@ -229,5 +229,56 @@ namespace OnlineCourseApp.WinUI.Courses
         {
 
         }
+
+        private async void btnUploadVideo_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog3.ShowDialog();
+            openFileDialog3.Filter = "Videos (*.mp3;*.avi;*.mp4;*.wmv)|*.mp3;*.avi;*.mp4;*.wmv";
+            //openFileDialog3.FilterIndex = 1;
+            openFileDialog3.Multiselect = false;
+
+            if (result == DialogResult.OK)
+            {
+                if (openFileDialog3.CheckFileExists)
+                {
+
+                    var fileName = openFileDialog3.FileName;
+                    var filee = Path.GetFileName(fileName);
+                    var url = $"{Properties.Settings.Default.APIUrl}/video/upload/{_courseId}";
+
+
+                    MemoryStream ms = new MemoryStream();
+                    using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                    {
+
+                        fileStream.CopyTo(ms);
+                        ms.Position = 0;
+
+                        var formContent = new MultipartContent();
+                        formContent.Headers.ContentType.MediaType = "application/octet-stream";
+                        formContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "\"file\"", FileName = $"{filee}" };
+
+                        await url.PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
+                    }
+
+                    //        var search = new DocumentsSearchRequest()
+                    //        {
+                    //            CourseId = _courseId
+                    //        };
+                    //        var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
+                    //        dgvDocuments.AutoGenerateColumns = false;
+
+                    //        if (document != null)
+                    //            dgvDocuments.DataSource = document;
+
+                }
+                else
+                {
+                    MessageBox.Show("Please upload video.");
+                }
+
+
+            }
+        }
     }
 }

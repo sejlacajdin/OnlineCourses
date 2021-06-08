@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OnlineCourseApp.WebAPI.Database;
 using OnlineCourseApp.WebAPI.Exceptions;
 using OnlineCourseApp.WebAPI.Services.IServices;

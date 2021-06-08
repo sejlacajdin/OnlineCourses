@@ -2,6 +2,7 @@
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Users;
+using OnlineCourseApp.Model.Requests.Videos;
 
 namespace OnlineCourseApp.WebAPI.Mappers
 {
@@ -18,6 +19,9 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.Document, Model.Documents>();
             CreateMap<Database.Document, DocumentsInsertRequest>().ReverseMap();
             CreateMap<Database.DocumentShare, DocumentsShareInsertRequest>().ReverseMap();
+            CreateMap<Database.Video, Model.Videos>().ReverseMap();
+            CreateMap<Database.Video, VideosInsertRequest>().ReverseMap();
+
 
         }
     }

@@ -56,6 +56,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnUploadVideo = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
             this.SuspendLayout();
@@ -320,6 +321,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.btnUploadVideo.TabIndex = 20;
             this.btnUploadVideo.Text = "UPLOAD";
             this.btnUploadVideo.UseVisualStyleBackColor = false;
+            this.btnUploadVideo.Click += new System.EventHandler(this.btnUploadVideo_Click);
             // 
             // label6
             // 
@@ -331,6 +333,10 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label6.TabIndex = 19;
             this.label6.Text = "Videos";
             this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // openFileDialog3
+            // 
+            this.openFileDialog3.FileName = "openFileDialog3";
             // 
             // frmCoursesDetails
             // 
@@ -398,5 +404,6 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnUploadVideo;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.OpenFileDialog openFileDialog3;
     }
 }

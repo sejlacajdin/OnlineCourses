@@ -20,6 +20,7 @@ using OnlineCourseApp.WebAPI.Filters;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
+using OnlineCourseApp.Model.Requests.Videos;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -56,6 +57,8 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IQuestionCategoryService, QuestionCategoryService>();
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<IBaseCRUDService<Model.Documents, DocumentsSearchRequest, DocumentsInsertRequest, DocumentsInsertRequest>, DocumentService>();
+            services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IBaseCRUDService<Model.Videos, VideosSearchRequest, VideosInsertRequest, VideosInsertRequest>, VideoService>();
 
         }
 
