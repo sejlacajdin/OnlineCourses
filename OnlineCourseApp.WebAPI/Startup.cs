@@ -21,6 +21,8 @@ using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Videos;
+using Microsoft.AspNetCore.Authentication;
+using OnlineCourseApp.WebAPI.Security;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -43,12 +45,30 @@ namespace OnlineCourseApp.WebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme() {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "basicAuth" }
+                        },
+                        new string[]{}
+                    }
+                });
                 //c.CustomSchemaIds(type => type.ToString());
 
             });
 
             var connection = @"Server=.; Database=160065; Trusted_Connection=True;";
             services.AddDbContext<_160065Context>(options => options.UseSqlServer(connection));
+
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddScoped<IBaseCRUDService<Model.Courses,CoursesSearchRequest,CoursesInsertRequest,CoursesInsertRequest>, CourseService>();
             services.AddScoped<IUsersService, UsersService>();
@@ -80,6 +100,7 @@ namespace OnlineCourseApp.WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

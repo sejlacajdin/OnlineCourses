@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.WebAPI.Services.IServices;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+    [Authorize]
     public class BaseCRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
     {
         IBaseCRUDService<T, TSearch, TInsert, TUpdate> _service = null;

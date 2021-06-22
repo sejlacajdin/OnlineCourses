@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
+using OnlineCourseApp.Model.Requests.Videos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,7 @@ namespace OnlineCourseApp.WinUI.Courses
         private readonly APIService _serviceCourses = new APIService("courses");
         private readonly APIService _serviceCourseSection = new APIService("course-section");
         private readonly APIService _serviceDocuments = new APIService("document");
+        private readonly APIService _serviceVideos = new APIService("video");
         public frmCoursesDetails(int courseId)
         {
             InitializeComponent();
@@ -52,11 +54,19 @@ namespace OnlineCourseApp.WinUI.Courses
             {
                 CourseId = course.CourseId
             };
+            var searchVideo = new VideosSearchRequest()
+            {
+                CourseId = course.CourseId
+            };
             var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
             dgvDocuments.AutoGenerateColumns = false;
+            var video = await _serviceVideos.Get<List<Model.Videos>>(searchVideo);
+            dgvVideos.AutoGenerateColumns = false;
 
-            if(document != null)
+            if (document != null)
             dgvDocuments.DataSource = document;
+            if (video != null)
+                dgvVideos.DataSource = video;
 
         }
 
@@ -224,12 +234,6 @@ namespace OnlineCourseApp.WinUI.Courses
                 else return;
             }
         }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void btnUploadVideo_Click(object sender, EventArgs e)
         {
             var result = openFileDialog3.ShowDialog();
@@ -278,6 +282,53 @@ namespace OnlineCourseApp.WinUI.Courses
                 }
 
 
+            }
+        }
+
+        private async void dgvVideos_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var id = dgvVideos.SelectedRows[0].Cells[0].Value;
+            var doc = await _serviceVideos.GetById<FileDownload>(id);
+
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.FileName = doc.Name;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    myStream.Write(doc.File, 0, doc.File.Length);
+                    myStream.Close();
+                }
+            }
+        }
+
+        private async void dgvVideos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvVideos.Columns["DeleteVideo"].Index && e.RowIndex >= 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var id = dgvVideos.SelectedRows[0].Cells[0].Value;
+                    await _serviceVideos.Delete<Model.Videos>(id);
+
+                    var search = new VideosSearchRequest()
+                    {
+                        CourseId = _courseId
+                    };
+                    var video = await _serviceVideos.Get<List<Model.Videos>>(search);
+                    dgvVideos.AutoGenerateColumns = false;
+
+                    if (video != null)
+                        dgvVideos.DataSource = video;
+
+                    MessageBox.Show("Successfully deleted video.");
+
+                }
+                else return;
             }
         }
     }

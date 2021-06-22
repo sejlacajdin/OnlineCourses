@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Courses;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/question-category")]
     [ApiController]
     public class QuestionCategoryController : ControllerBase

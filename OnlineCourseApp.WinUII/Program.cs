@@ -19,7 +19,7 @@ namespace OnlineCourseApp.WinUII
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmIndex());
+            Application.Run(new frmLogin());
         }
     }
 }

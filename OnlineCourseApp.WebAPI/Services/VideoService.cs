@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using OnlineCourseApp.Model;
+using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Videos;
 using OnlineCourseApp.WebAPI.Database;
 using OnlineCourseApp.WebAPI.Exceptions;
@@ -42,6 +43,16 @@ namespace OnlineCourseApp.WebAPI.Services
 
                 return entity;
 
+        }
+
+        public FileDownload Download(int id)
+        {
+            var video = GetById(id);
+            return new FileDownload
+            {
+                File = video.File,
+                Name = video.Name
+            };
         }
     }
 }

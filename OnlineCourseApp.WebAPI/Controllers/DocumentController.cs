@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Documents;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/document")]
     [ApiController]
     public class DocumentController : ControllerBase

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.WebAPI.Services.IServices;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BaseController<T, TSearch> : ControllerBase

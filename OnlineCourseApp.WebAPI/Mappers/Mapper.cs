@@ -10,7 +10,9 @@ namespace OnlineCourseApp.WebAPI.Mappers
     {
         public Mapper()
         {
-            CreateMap<Database.User, Model.Users>();
+            CreateMap<Database.User, Model.Users>().ReverseMap();
+            CreateMap<Database.UserRole, Model.UserRoles>();
+            CreateMap<Database.Role, Model.Roles>();
             CreateMap<Database.User, UsersInsertRequest>().ReverseMap();
             CreateMap<Database.Course, Model.Courses>();
             CreateMap<Database.Course, CoursesInsertRequest>().ReverseMap();
@@ -21,7 +23,6 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.DocumentShare, DocumentsShareInsertRequest>().ReverseMap();
             CreateMap<Database.Video, Model.Videos>().ReverseMap();
             CreateMap<Database.Video, VideosInsertRequest>().ReverseMap();
-
 
         }
     }

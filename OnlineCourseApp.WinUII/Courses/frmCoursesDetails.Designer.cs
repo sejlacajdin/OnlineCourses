@@ -29,6 +29,7 @@ namespace OnlineCourseApp.WinUI.Courses
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,8 +58,13 @@ namespace OnlineCourseApp.WinUI.Courses
             this.btnUploadVideo = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
+            this.dgvVideos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeleteVideo = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVideos)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -216,7 +222,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.FileOldName,
             this.Delete});
             this.dgvDocuments.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvDocuments.Location = new System.Drawing.Point(34, 461);
+            this.dgvDocuments.Location = new System.Drawing.Point(31, 449);
             this.dgvDocuments.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.dgvDocuments.Name = "dgvDocuments";
             this.dgvDocuments.ReadOnly = true;
@@ -247,13 +253,13 @@ namespace OnlineCourseApp.WinUI.Courses
             // Delete
             // 
             this.Delete.DataPropertyName = "Delete";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.Delete.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle1;
             this.Delete.FillWeight = 59.89848F;
             this.Delete.HeaderText = "Action";
             this.Delete.Name = "Delete";
@@ -332,11 +338,69 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label6.Size = new System.Drawing.Size(57, 17);
             this.label6.TabIndex = 19;
             this.label6.Text = "Videos";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // openFileDialog3
             // 
             this.openFileDialog3.FileName = "openFileDialog3";
+            // 
+            // dgvVideos
+            // 
+            this.dgvVideos.AllowUserToAddRows = false;
+            this.dgvVideos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVideos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvVideos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvVideos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVideos.ColumnHeadersVisible = false;
+            this.dgvVideos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.DeleteVideo});
+            this.dgvVideos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvVideos.Location = new System.Drawing.Point(34, 648);
+            this.dgvVideos.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.dgvVideos.Name = "dgvVideos";
+            this.dgvVideos.ReadOnly = true;
+            this.dgvVideos.RowTemplate.Height = 25;
+            this.dgvVideos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVideos.Size = new System.Drawing.Size(591, 127);
+            this.dgvVideos.TabIndex = 21;
+            this.dgvVideos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVideos_CellClick);
+            this.dgvVideos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvVideos_MouseDoubleClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "VideoId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.FillWeight = 140.1015F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // DeleteVideo
+            // 
+            this.DeleteVideo.DataPropertyName = "Delete";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.DeleteVideo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DeleteVideo.FillWeight = 59.89848F;
+            this.DeleteVideo.HeaderText = "Action";
+            this.DeleteVideo.Name = "DeleteVideo";
+            this.DeleteVideo.ReadOnly = true;
+            this.DeleteVideo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DeleteVideo.Text = "Delete";
+            this.DeleteVideo.UseColumnTextForButtonValue = true;
             // 
             // frmCoursesDetails
             // 
@@ -345,6 +409,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1106, 827);
+            this.Controls.Add(this.dgvVideos);
             this.Controls.Add(this.btnUploadVideo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnUpload);
@@ -371,6 +436,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.Load += new System.EventHandler(this.frmCoursesDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVideos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,5 +471,9 @@ namespace OnlineCourseApp.WinUI.Courses
         private System.Windows.Forms.Button btnUploadVideo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
+        private System.Windows.Forms.DataGridView dgvVideos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteVideo;
     }
 }

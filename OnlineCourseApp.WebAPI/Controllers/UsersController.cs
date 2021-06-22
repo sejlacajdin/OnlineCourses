@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+   
     [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -22,12 +24,14 @@ namespace OnlineCourseApp.WebAPI.Controllers
             _usersService = usersService;
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<List<Users>> Get([FromQuery] UsersSearchRequest request)
         {
             return _usersService.Get(request);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Users> GetById(int id)
         {
@@ -35,11 +39,12 @@ namespace OnlineCourseApp.WebAPI.Controllers
         }
 
         [HttpPost]
-        public Model.Users Insert(UsersInsertRequest request)
+        public ActionResult<Model.Users> Insert(UsersInsertRequest request)
         {
             return _usersService.Insert(request);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public Model.Users Update(int id, UsersInsertRequest request)
         {

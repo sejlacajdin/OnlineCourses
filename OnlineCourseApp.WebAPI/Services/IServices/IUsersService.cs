@@ -11,5 +11,6 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
         Users GetById(int id);
         Users Insert(UsersInsertRequest request);
         Users Update(int id, UsersInsertRequest request);
+        Users Autenticiraj(string username, string pass);
     }
 }

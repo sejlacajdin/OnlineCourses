@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model;
+using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Videos;
 using OnlineCourseApp.WebAPI.Services.IServices;
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/video")]
     [ApiController]
     public class VideoController : ControllerBase
@@ -23,17 +26,17 @@ namespace OnlineCourseApp.WebAPI.Controllers
             _service = service;
         }
 
-        //[HttpGet]
-        //public List<Documents> Get([FromQuery] DocumentsSearchRequest search)
-        //{
-        //    return _service.Get(search);
-        //}
+        [HttpGet]
+        public List<Videos> Get([FromQuery] VideosSearchRequest search)
+        {
+            return _service.Get(search);
+        }
 
-        //[HttpGet("{id}")]
-        //public FileDownload GetById(int id)
-        //{
-        //    return _documentService.Download(id);
-        //}
+        [HttpGet("{id}")]
+        public FileDownload GetById(int id)
+        {
+            return _videoService.Download(id);
+        }
 
         [HttpPost("upload/{id}")]
         public Videos Insert(IFormFile file, int id)
@@ -42,10 +45,10 @@ namespace OnlineCourseApp.WebAPI.Controllers
 
         }
 
-        //[HttpDelete("{id}")]
-        //public Documents Delete(int id)
-        //{
-        //    return _service.Delete(id);
-        //}
+        [HttpDelete("{id}")]
+        public Videos Delete(int id)
+        {
+            return _service.Delete(id);
+        }
     }
 }

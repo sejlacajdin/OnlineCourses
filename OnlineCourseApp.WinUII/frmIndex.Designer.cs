@@ -106,6 +106,7 @@ namespace OnlineCourseApp.WinUI
             this.btnTests.TabIndex = 2;
             this.btnTests.Text = "Tests";
             this.btnTests.UseVisualStyleBackColor = true;
+            this.btnTests.Click += new System.EventHandler(this.btnTests_Click);
             // 
             // btnAnnouncement
             // 

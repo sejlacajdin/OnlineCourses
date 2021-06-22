@@ -1,4 +1,5 @@
 ﻿using OnlineCourseApp.WinUI.Courses;
+using OnlineCourseApp.WinUI.Tests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,11 @@ namespace OnlineCourseApp.WinUI
         private void frmIndex_Load(object sender, EventArgs e)
         {
             openChildForm(new frmCourses());
+        }
+
+        private void btnTests_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmTests());
         }
     }
 }

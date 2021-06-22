@@ -71,6 +71,15 @@ namespace OnlineCourseApp.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please insert valid email address..
+        /// </summary>
+        public static string Validation_EmailFormat {
+            get {
+                return ResourceManager.GetString("Validation_EmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field is required..
         /// </summary>
         public static string Validation_RequiredField {
