@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineCourseApp.Model.Requests.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ namespace OnlineCourseApp.WinUI.Users
 {
     public partial class frmLogin : Form
     {
-        APIService _service = new APIService("courses");
+        APIService _service = new APIService("users/login");
         public frmLogin()
         {
             InitializeComponent();
@@ -52,7 +53,10 @@ namespace OnlineCourseApp.WinUI.Users
             {
                 APIService.Username = txtUsernameEmail.Text;
                 APIService.Password = txtPassword.Text;
-                await _service.Get<dynamic>(null);
+               
+                var user = await _service.Get<Model.Users>(new UserLoginRequest { Username = txtUsernameEmail.Text, Password = txtPassword.Text } );
+
+                APIService.UserId = user.UserId;
 
                 frmIndex frm = new frmIndex();
                 frm.Show();

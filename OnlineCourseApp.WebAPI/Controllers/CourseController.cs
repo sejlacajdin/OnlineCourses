@@ -11,8 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnlineCourseApp.WebAPI.Controllers
-{
-    [Authorize]
+{   [Authorize]
     [Route("api/courses")]
     [ApiController]
     public class CourseController : BaseCRUDController<Model.Courses, CoursesSearchRequest, CoursesInsertRequest, CoursesInsertRequest>

@@ -12,6 +12,7 @@ namespace OnlineCourseApp.WinUI
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
+        public static int UserId { get; set; }
         private string _route = null;
         public APIService(string route)
         {
@@ -27,8 +28,7 @@ namespace OnlineCourseApp.WinUI
                 url += "?";
                 url += await search.ToQueryString();
             }
-
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>(); 
         }
 
         public async Task<T> GetById<T>(object id)

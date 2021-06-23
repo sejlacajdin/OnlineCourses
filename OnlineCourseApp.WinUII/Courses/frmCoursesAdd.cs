@@ -31,7 +31,7 @@ namespace OnlineCourseApp.WinUI.Courses
                 Notes = textBoxDescription.Text,
                 IsActive = true,
                 CourseSectionId = (int) comboBoxCategory.SelectedValue,
-                ProfessorId = 1, /*need to be changed*/
+                ProfessorId = APIService.UserId,
                 Price = Double.Parse(txtPrice.Text),
                 Picture = null,
                 PictureThumb = null

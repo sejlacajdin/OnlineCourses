@@ -32,6 +32,13 @@ namespace OnlineCourseApp.WebAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("login")]
+        public ActionResult<Users> Get(string username, string password)
+        {
+            return _usersService.Autenticiraj(username, password);
+        }
+
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Users> GetById(int id)
         {

@@ -26,9 +26,9 @@ namespace OnlineCourseApp.WebAPI.Services
         }
         public Users Autenticiraj(string username, string pass)
         {
-            var user = _context.Users.Include("UserRole.Role").FirstOrDefault(x => x.Username == username || x.Email == username);
+            var user = _context.Users.Include("UserRoles.Role").FirstOrDefault(x => x.Username == username || x.Email == username);
 
-            if(user != null)
+            if (user != null)
             {
                 var newHash = GenerateHash(user.PasswordSalt,pass);
                 if(newHash == user.PasswordHash)
