@@ -60,6 +60,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.txtSearch.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSearch.Location = new System.Drawing.Point(22, 27);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PlaceholderText = "Course name";
             this.txtSearch.Size = new System.Drawing.Size(256, 23);
             this.txtSearch.TabIndex = 2;
             // 

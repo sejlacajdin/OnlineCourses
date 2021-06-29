@@ -138,7 +138,6 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label2.Size = new System.Drawing.Size(50, 18);
             this.label2.TabIndex = 10;
             this.label2.Text = "Price";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtPrice
             // 
@@ -156,7 +155,6 @@ namespace OnlineCourseApp.WinUI.Courses
             this.label3.Size = new System.Drawing.Size(15, 15);
             this.label3.TabIndex = 11;
             this.label3.Text = "$";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmCoursesAdd
             // 

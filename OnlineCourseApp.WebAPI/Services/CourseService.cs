@@ -21,6 +21,9 @@ namespace OnlineCourseApp.WebAPI.Services
         {
             var query = _context.Set<Course>().AsQueryable();
 
+            if (request?.ProfessorId != null)
+                query = query.Where(x => x.ProfessorId == request.ProfessorId);
+
             if (!string.IsNullOrWhiteSpace(request?.CourseName))
                 query = query.Where(x => x.CourseName.StartsWith(request.CourseName));
 

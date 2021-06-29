@@ -78,7 +78,6 @@ namespace OnlineCourseApp.WinUI.Courses
             request.Notes = textBoxDescription.Text;
             request.ProfessorId = Int32.Parse(textBoxProfessorId.Text);
             request.Price = Double.Parse(txtPrice.Text);
-            //request.IsActive = true;
             request.CourseSectionId = (int)comboBoxCategory.SelectedValue;
             request.Picture = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
             request.PictureThumb = request.PictureThumb != null? request.PictureThumb: imageToByteArray(pictureBox.Image);
@@ -184,7 +183,7 @@ namespace OnlineCourseApp.WinUI.Courses
                         formContent.Headers.ContentType.MediaType = "application/pdf";
                         formContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "\"file\"", FileName=$"{filee}" };
 
-                        await url.PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
+                        await url.WithBasicAuth(APIService.Username, APIService.Password).PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
                     }
 
                     var search = new DocumentsSearchRequest()
@@ -262,18 +261,19 @@ namespace OnlineCourseApp.WinUI.Courses
                         formContent.Headers.ContentType.MediaType = "application/octet-stream";
                         formContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "\"file\"", FileName = $"{filee}" };
 
-                        await url.PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
+                        await url.WithBasicAuth(APIService.Username, APIService.Password).PostMultipartAsync(mp => mp.AddFile($"{filee}", ms, fileName).Add(formContent));
                     }
 
-                    //        var search = new DocumentsSearchRequest()
-                    //        {
-                    //            CourseId = _courseId
-                    //        };
-                    //        var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
-                    //        dgvDocuments.AutoGenerateColumns = false;
+                    var search = new VideosSearchRequest()
+                    {
+                        CourseId = _courseId
+                    };
+                     
+                    var video = await _serviceVideos.Get<List<Model.Videos>>(search);
+                    dgvVideos.AutoGenerateColumns = false;
 
-                    //        if (document != null)
-                    //            dgvDocuments.DataSource = document;
+                    if (video != null)
+                        dgvVideos.DataSource = video;
 
                 }
                 else

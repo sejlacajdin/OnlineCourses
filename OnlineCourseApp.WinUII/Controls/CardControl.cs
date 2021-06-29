@@ -37,12 +37,6 @@ namespace OnlineCourseApp.WinUI.Controls
 
             ResumeLayout();
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-        }
-
         private void CardControl_Click(object sender, EventArgs e)
         {
             frmIndex frm =(frmIndex) Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();

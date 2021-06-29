@@ -77,17 +77,7 @@ namespace OnlineCourseApp.WinUI.Courses
                 e.Cancel = true;
             }
             else
-                errorProvider.SetError(textTitle, null);
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+                errorProvider.SetError(comboBoxCategory, null);
         }
     }
 }

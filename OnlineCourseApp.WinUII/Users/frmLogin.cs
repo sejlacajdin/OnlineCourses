@@ -58,9 +58,9 @@ namespace OnlineCourseApp.WinUI.Users
 
                 APIService.UserId = user.UserId;
 
+                this.Hide();
                 frmIndex frm = new frmIndex();
                 frm.Show();
-
             }
             catch (Exception ex)
             {

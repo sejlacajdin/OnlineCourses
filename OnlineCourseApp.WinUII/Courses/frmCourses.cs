@@ -31,7 +31,7 @@ namespace OnlineCourseApp.WinUI.Courses
 
         private async void frmCourses_Load(object sender, EventArgs e)
         {
-            var courses = await _serviceCourses.Get<List<Model.Courses>>(null);
+            var courses = await _serviceCourses.Get<List<Model.Courses>>(new CoursesSearchRequest { ProfessorId = APIService.UserId});
             cardsPanel1.ViewModel = await LoadSomeData(courses);
             cardsPanel1.DataBind();
         }
@@ -69,7 +69,8 @@ namespace OnlineCourseApp.WinUI.Courses
 
             var search = new CoursesSearchRequest()
             {
-                CourseName = _txtSearch
+                CourseName = _txtSearch,
+                ProfessorId = APIService.UserId
             };
 
             var result = await _serviceCourses.Get<List<Model.Courses>>(search);

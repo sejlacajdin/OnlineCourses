@@ -107,7 +107,7 @@ namespace OnlineCourseApp.WinUI
 
         private void btnTests_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmTests());
+            openChildForm(new frmExam());
         }
     }
 }

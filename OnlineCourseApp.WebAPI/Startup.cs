@@ -23,6 +23,7 @@ using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Videos;
 using Microsoft.AspNetCore.Authentication;
 using OnlineCourseApp.WebAPI.Security;
+using OnlineCourseApp.Model.Requests.Exams;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -79,6 +80,8 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IBaseCRUDService<Model.Documents, DocumentsSearchRequest, DocumentsInsertRequest, DocumentsInsertRequest>, DocumentService>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IBaseCRUDService<Model.Videos, VideosSearchRequest, VideosInsertRequest, VideosInsertRequest>, VideoService>();
+            services.AddScoped<IBaseCRUDService<Model.Exams, ExamsSearchRequest, ExamsInsertRequest, ExamsInsertRequest>, ExamService>();
+
 
         }
 

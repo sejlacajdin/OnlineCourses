@@ -19,6 +19,17 @@ namespace OnlineCourseApp.WebAPI.Services
         public VideoService(_160065Context context, IMapper mapper) : base(context, mapper)
         { }
 
+        public override List<Videos> Get(VideosSearchRequest request)
+        {
+            var query = _context.Set<Video>().AsQueryable();
+
+            if (request?.CourseId != null)
+                query = query.Where(x => x.CourseId == request.CourseId);
+
+            var list = query.ToList();
+
+            return _mapper.Map<List<Videos>>(list);
+        }
         public Videos Upload(IFormFile file, int id)
         {
             if (file == null)
