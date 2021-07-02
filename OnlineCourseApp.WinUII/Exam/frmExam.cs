@@ -52,7 +52,9 @@ namespace OnlineCourseApp.WinUI.Tests
                 dgvTests.DataSource = result;
         }
 
-        private async void dgvTests_CellClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private async void dgvTests_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvTests.Columns["Delete"].Index && e.RowIndex >= 0)
             {
@@ -61,6 +63,7 @@ namespace OnlineCourseApp.WinUI.Tests
                 if (dialogResult == DialogResult.Yes)
                 {
                     var id = dgvTests.SelectedRows[0].Cells[0].Value;
+                    //var id = dgvTests.SelectedRows;
                     await _serviceExams.Delete<Model.Exams>(id);
 
                     var search = new ExamsSearchRequest()

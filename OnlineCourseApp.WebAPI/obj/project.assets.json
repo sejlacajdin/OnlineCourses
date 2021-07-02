@@ -5875,24 +5875,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Šejla\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\sejla\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
       "projectName": "OnlineCourseApp.WebAPI",
-      "projectPath": "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
-      "packagesPath": "C:\\Users\\Šejla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
+      "packagesPath": "C:\\Users\\sejla\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Šejla\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\sejla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5905,8 +5906,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
-              "projectPath": "C:\\Users\\Šejla\\Desktop\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj"
+            "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
+              "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj"
             }
           }
         }
@@ -5980,7 +5981,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
