@@ -85,7 +85,7 @@ namespace OnlineCourseApp.WinUI.Tests
             {
                 var id = dgvTests.SelectedRows[0].Cells[0].Value;
                 frmIndex frm = (frmIndex)Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
-                frmExamAdd form = new frmExamAdd((int)id);
+                frmExamAdd form = new frmExamAdd(int.Parse(id.ToString()));
                 if (frm != null) frm.openChildForm(form);
                 else form.Show();
             }

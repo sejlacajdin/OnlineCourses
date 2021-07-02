@@ -17,14 +17,27 @@ namespace OnlineCourseApp.WinUI.Tests
     {
         private readonly APIService _serviceCourses = new APIService("courses");
         private readonly APIService _serviceExams = new APIService("exams");
+        private int? _id = null;
         public frmExamAdd(int? id = null)
         {
             InitializeComponent();
+            _id = id;
         }
 
         private async void frmTestAdd_Load(object sender, EventArgs e)
         {
             await LoadCourses();
+            lblTest.Text = _id ==null? "Add Test" : "Edit test";
+
+            if (_id.HasValue)
+            {
+                var exam = await _serviceExams.GetById<Model.Exams>(_id);
+                txtTitle.Text = exam.Title;
+                comboBoxCourses.SelectedValue = exam.CourseId;
+                textBoxInstructions.Text = exam.Instructions;
+                dateTimePicker1.Value = DateTime.Parse(exam.TimeLimit);
+                checkBoxActive.CheckState = exam.IsActive ? CheckState.Checked : CheckState.Unchecked;
+            }
         }
 
         private async Task LoadCourses()
@@ -47,11 +60,19 @@ namespace OnlineCourseApp.WinUI.Tests
             request.CourseId = (int)comboBoxCourses.SelectedValue;
             request.ExamOwnerId = APIService.UserId;
 
-            await _serviceExams.Insert<Model.Exams>(request);
-            this.Close();
-            MessageBox.Show("Successfully added new test.");
-            frmIndex frm = (frmIndex)Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
-            if (frm != null) frm.openChildForm(new frmExam());
+            if (_id.HasValue)
+            {
+                await _serviceExams.Update<Model.Exams>(_id,request);
+                 MessageBox.Show("Successfully updated test.");
+            }
+            else
+            {
+                await _serviceExams.Insert<Model.Exams>(request);
+                MessageBox.Show("Successfully added new test.");
+                this.Close();
+                frmIndex frm = (frmIndex)Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
+                if (frm != null) frm.openChildForm(new frmExam());
+            }
         }
 
         private void comboBoxCourses_Validating(object sender, CancelEventArgs e)
