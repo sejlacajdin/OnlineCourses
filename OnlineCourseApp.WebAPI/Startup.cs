@@ -24,6 +24,8 @@ using OnlineCourseApp.Model.Requests.Videos;
 using Microsoft.AspNetCore.Authentication;
 using OnlineCourseApp.WebAPI.Security;
 using OnlineCourseApp.Model.Requests.Exams;
+using OnlineCourseApp.Model.Requests.Questions;
+using OnlineCourseApp.Model.Requests.Choices;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -75,12 +77,15 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IBaseService<CourseTypes, object>, BaseService<CourseTypes,object, CourseType>>();
             services.AddScoped<IBaseService<CourseSections, object>, BaseService<CourseSections, object, CourseSection>>();
-            services.AddScoped<IQuestionCategoryService, QuestionCategoryService>();
+            services.AddScoped<IBaseService<QuestionCategories, object>, BaseService<QuestionCategories, object, QuestionCategory>>();
+            services.AddScoped<IBaseService<QuestionTypes, object>, BaseService<QuestionTypes, object, QuestionType>>();
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<IBaseCRUDService<Model.Documents, DocumentsSearchRequest, DocumentsInsertRequest, DocumentsInsertRequest>, DocumentService>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IBaseCRUDService<Model.Videos, VideosSearchRequest, VideosInsertRequest, VideosInsertRequest>, VideoService>();
             services.AddScoped<IBaseCRUDService<Model.Exams, ExamsSearchRequest, ExamsInsertRequest, ExamsInsertRequest>, ExamService>();
+            services.AddScoped<IBaseCRUDService<Model.Questions, QuestionsSearchRequest, QuestionsInsertRequest, QuestionsInsertRequest>, QuestionService>();
+            services.AddScoped<IBaseCRUDService<Model.Choices, ChoicesSearchRequest, ChoicesInsertRequest, ChoicesInsertRequest>, ChoiceService>();
 
 
         }

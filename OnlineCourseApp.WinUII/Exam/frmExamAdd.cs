@@ -1,6 +1,9 @@
 ﻿using Flurl.Http;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Exams;
+using OnlineCourseApp.Model.Requests.Questions;
+using OnlineCourseApp.WinUI.Choices;
+using OnlineCourseApp.WinUI.Questions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +20,7 @@ namespace OnlineCourseApp.WinUI.Tests
     {
         private readonly APIService _serviceCourses = new APIService("courses");
         private readonly APIService _serviceExams = new APIService("exams");
+        private readonly APIService _serviceQuestions = new APIService("questions");
         private int? _id = null;
         public frmExamAdd(int? id = null)
         {
@@ -27,6 +31,7 @@ namespace OnlineCourseApp.WinUI.Tests
         private async void frmTestAdd_Load(object sender, EventArgs e)
         {
             await LoadCourses();
+            await LoadQuestions();
             lblTest.Text = _id ==null? "Add Test" : "Edit test";
 
             if (_id.HasValue)
@@ -43,9 +48,23 @@ namespace OnlineCourseApp.WinUI.Tests
         private async Task LoadCourses()
         {
             var list = await _serviceCourses.Get<List<Model.Courses>>(new CoursesSearchRequest { ProfessorId = APIService.UserId });
-            comboBoxCourses.DataSource = list;
-            comboBoxCourses.DisplayMember = "CourseName";
-            comboBoxCourses.ValueMember = "CourseId";
+                if(list != null)
+            {
+                comboBoxCourses.DataSource = list;
+                comboBoxCourses.DisplayMember = "CourseName";
+                comboBoxCourses.ValueMember = "CourseId";
+            }
+        }
+        private async Task LoadQuestions()
+        {
+            if (_id == null)
+                return;
+
+            var questions = await _serviceQuestions.Get<List<Model.Questions>>(new QuestionsSearchRequest { ExamId = (int)_id});
+            dgvQuestions.AutoGenerateColumns = false;
+
+            if (questions != null)
+                dgvQuestions.DataSource = questions;
         }
 
         ExamsInsertRequest request = new ExamsInsertRequest();
@@ -108,12 +127,88 @@ namespace OnlineCourseApp.WinUI.Tests
                 errorProvider1.SetError(txtTitle, null);
         }
 
-        private void checkBoxActive_CheckedChanged(object sender, EventArgs e)
+        private async void checkBoxActive_CheckedChanged(object sender, EventArgs e)
         {
+                var question = await _serviceQuestions.Get<List<Model.Questions>>(_id);
+
             if (checkBoxActive.Checked)
-                request.IsActive = true;
+            {
+                if(question.Count <= 0)
+                {
+                    MessageBox.Show("You need to have at least one question.");
+                    checkBoxActive.CheckState = CheckState.Unchecked;
+                    request.IsActive = false;
+                }else
+                     request.IsActive = true;
+            }
             else
-                request.IsActive = false;
+                    request.IsActive = false;
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            if (_id == null)
+            {
+                MessageBox.Show("You have to add exam first");
+                return;
+            }
+            frmQuestionAdd frm = new frmQuestionAdd((int)_id, null);
+            frm.ShowDialog();
+        }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            var _txtSearch = txtSearch.Text;
+
+            var search = new QuestionsSearchRequest()
+            {
+                ExamId = (int)_id,
+                Question = _txtSearch
+            };
+
+            var result = await _serviceQuestions.Get<List<Model.Questions>>(search);
+
+            if (result != null)
+                dgvQuestions.DataSource = result;
+        }
+
+        private async void dgvQuestions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvQuestions.Columns["Delete"].Index && e.RowIndex >= 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var id = dgvQuestions.SelectedRows[0].Cells[0].Value;
+                    await _serviceQuestions.Delete<Model.Questions>(id);
+
+                    var search = new QuestionsSearchRequest()
+                    {
+                        ExamId = (int)_id
+                    };
+                    var questions = await _serviceQuestions.Get<List<Model.Questions>>(search);
+                    dgvQuestions.AutoGenerateColumns = false;
+
+                    if (questions != null)
+                        dgvQuestions.DataSource = questions;
+
+                    MessageBox.Show("Successfully deleted question.");
+
+                }
+                else return;
+            }
+            else if (e.ColumnIndex == dgvQuestions.Columns["Update"].Index && e.RowIndex >= 0)
+            {
+                var id = dgvQuestions.SelectedRows[0].Cells[0].Value;
+                frmQuestionAdd form = new frmQuestionAdd((int)_id,int.Parse(id.ToString()));
+                form.ShowDialog();
+            }
+            else if (e.ColumnIndex == dgvQuestions.Columns["Answer"].Index && e.RowIndex >= 0)
+            {
+                frmChoices frm = new frmChoices();
+                frm.ShowDialog();
+            }
         }
     }
 }

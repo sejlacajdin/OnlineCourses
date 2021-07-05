@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
+using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Videos;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace OnlineCourseApp.WinUI.Courses
     {
         private int _courseId;
         private readonly APIService _serviceCourses = new APIService("courses");
+        private readonly APIService _serviceExams = new APIService("exams");
         private readonly APIService _serviceCourseSection = new APIService("course-section");
         private readonly APIService _serviceDocuments = new APIService("document");
         private readonly APIService _serviceVideos = new APIService("video");
@@ -88,6 +90,25 @@ namespace OnlineCourseApp.WinUI.Courses
 
         private async void buttonDelete_Click(object sender, EventArgs e)
         {
+            var exams = await _serviceExams.Get<List<Model.Exams>>(new ExamsSearchRequest { CourseId = _courseId });
+            if(exams != null)
+            {
+                MessageBox.Show("You can't delete this course. There are exams.");
+                return;
+            }
+            var document = await _serviceDocuments.Get<List<Model.Documents>>(new DocumentsSearchRequest { CourseId = _courseId });
+            if (document != null)
+            {
+                MessageBox.Show("You can't delete this course. There are documents.");
+                return;
+            }
+            var video = await _serviceVideos.Get<List<Model.Videos>>(new VideosSearchRequest { CourseId = _courseId });
+            if (video != null)
+            {
+                MessageBox.Show("You can't delete this course. There are videos.");
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {

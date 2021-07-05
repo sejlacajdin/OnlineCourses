@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 namespace OnlineCourseApp.WebAPI.Controllers
 {
     [Authorize]
-    [Route("api/question-category")]
+    [Route("api/question-type")]
     [ApiController]
-    public class QuestionCategoryController : BaseController<QuestionCategories, object>
+    public class QuestionTypeController : BaseController<QuestionTypes, object>
     {
-        public QuestionCategoryController(IBaseService<QuestionCategories, object> service) : base(service)
+        public QuestionTypeController(IBaseService<QuestionTypes, object> service) : base(service)
         {
         }
     }

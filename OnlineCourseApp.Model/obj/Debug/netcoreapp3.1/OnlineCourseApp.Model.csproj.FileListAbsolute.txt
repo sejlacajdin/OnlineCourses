@@ -10,9 +10,9 @@ C:\Users\Šejla\Desktop\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcorea
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.deps.json
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.dll
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\bin\Debug\netcoreapp3.1\OnlineCourseApp.Model.pdb
-C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.AssemblyReference.cache
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.AssemblyInfoInputs.cache
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.AssemblyInfo.cs
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.CoreCompileInputs.cache
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.dll
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.pdb
+C:\Users\sejla\Desktop\rs2\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.AssemblyReference.cache

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Exams;
+using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.Model.Requests.Users;
 using OnlineCourseApp.Model.Requests.Videos;
 
@@ -26,7 +28,12 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.Video, VideosInsertRequest>().ReverseMap();
             CreateMap<Database.Exam, Model.Exams>();
             CreateMap<Database.Exam, ExamsInsertRequest>().ReverseMap();
-
+            CreateMap<Database.Question, Model.Questions>();
+            CreateMap<Database.Question, QuestionsInsertRequest>().ReverseMap();
+            CreateMap<Database.QuestionCategory, Model.QuestionCategories>();
+            CreateMap<Database.QuestionType, Model.QuestionTypes>();
+            CreateMap<Database.Choice, Model.Choices>();
+            CreateMap<Database.Choice, ChoicesInsertRequest>().ReverseMap();
 
 
         }

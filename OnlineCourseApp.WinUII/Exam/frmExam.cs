@@ -1,4 +1,5 @@
 ﻿using OnlineCourseApp.Model.Requests.Exams;
+using OnlineCourseApp.Model.Requests.Questions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace OnlineCourseApp.WinUI.Tests
     public partial class frmExam : Form
     {
         private readonly APIService _serviceExams = new APIService("exams");
+        private readonly APIService _serviceQuestions = new APIService("questions");
 
         public frmExam()
         {
@@ -63,7 +65,14 @@ namespace OnlineCourseApp.WinUI.Tests
                 if (dialogResult == DialogResult.Yes)
                 {
                     var id = dgvTests.SelectedRows[0].Cells[0].Value;
-                    //var id = dgvTests.SelectedRows;
+                    var questions = await _serviceQuestions.Get<List<Model.Questions>>(new QuestionsSearchRequest {ExamId = (int)id });
+
+                    if(questions.Count > 0)
+                    {
+                        MessageBox.Show("You can't delete this exam. There are questions.");
+                        return;
+                    }
+
                     await _serviceExams.Delete<Model.Exams>(id);
 
                     var search = new ExamsSearchRequest()

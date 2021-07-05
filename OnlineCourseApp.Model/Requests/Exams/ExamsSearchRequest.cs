@@ -8,6 +8,6 @@ namespace OnlineCourseApp.Model.Requests.Exams
     {
         public string Title { get; set; }
         public int ExamOwnerId { get; set; }
-
+        public int CourseId { get; set; }
     }
 }

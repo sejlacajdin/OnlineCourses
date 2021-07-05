@@ -71,7 +71,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Title or course";
-            this.txtSearch.Size = new System.Drawing.Size(292, 27);
+            this.txtSearch.Size = new System.Drawing.Size(348, 27);
             this.txtSearch.TabIndex = 2;
             // 
             // groupBox1
@@ -116,7 +116,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(232, 35);
+            this.btnSearch.Location = new System.Drawing.Point(287, 32);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(86, 31);
