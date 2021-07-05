@@ -29,14 +29,17 @@ namespace OnlineCourseApp.WinUI.Choices
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblChoice = new System.Windows.Forms.Label();
             this.checkBoxActive = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtPoints = new System.Windows.Forms.NumericUpDown();
+            this.txtPercentage = new System.Windows.Forms.NumericUpDown();
             this.lblAnswer = new System.Windows.Forms.Label();
-            this.textBoxQuestion = new System.Windows.Forms.RichTextBox();
+            this.textBoxChoice = new System.Windows.Forms.RichTextBox();
             this.btnSaveChoice = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPoints)).BeginInit();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // lblChoice
@@ -57,10 +60,11 @@ namespace OnlineCourseApp.WinUI.Choices
             this.checkBoxActive.Location = new System.Drawing.Point(38, 305);
             this.checkBoxActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxActive.Name = "checkBoxActive";
-            this.checkBoxActive.Size = new System.Drawing.Size(147, 24);
+            this.checkBoxActive.Size = new System.Drawing.Size(102, 24);
             this.checkBoxActive.TabIndex = 24;
-            this.checkBoxActive.Text = "Is choice active";
+            this.checkBoxActive.Text = "Is correct";
             this.checkBoxActive.UseVisualStyleBackColor = true;
+            this.checkBoxActive.CheckedChanged += new System.EventHandler(this.checkBoxActive_CheckedChanged);
             // 
             // label5
             // 
@@ -72,12 +76,12 @@ namespace OnlineCourseApp.WinUI.Choices
             this.label5.TabIndex = 26;
             this.label5.Text = "Percentage";
             // 
-            // txtPoints
+            // txtPercentage
             // 
-            this.txtPoints.Location = new System.Drawing.Point(38, 254);
-            this.txtPoints.Name = "txtPoints";
-            this.txtPoints.Size = new System.Drawing.Size(373, 27);
-            this.txtPoints.TabIndex = 25;
+            this.txtPercentage.Location = new System.Drawing.Point(38, 254);
+            this.txtPercentage.Name = "txtPercentage";
+            this.txtPercentage.Size = new System.Drawing.Size(427, 27);
+            this.txtPercentage.TabIndex = 25;
             // 
             // lblAnswer
             // 
@@ -89,14 +93,14 @@ namespace OnlineCourseApp.WinUI.Choices
             this.lblAnswer.TabIndex = 28;
             this.lblAnswer.Text = "Text";
             // 
-            // textBoxQuestion
+            // textBoxChoice
             // 
-            this.textBoxQuestion.Location = new System.Drawing.Point(38, 115);
-            this.textBoxQuestion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxQuestion.Name = "textBoxQuestion";
-            this.textBoxQuestion.Size = new System.Drawing.Size(463, 92);
-            this.textBoxQuestion.TabIndex = 27;
-            this.textBoxQuestion.Text = "";
+            this.textBoxChoice.Location = new System.Drawing.Point(38, 115);
+            this.textBoxChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxChoice.Name = "textBoxChoice";
+            this.textBoxChoice.Size = new System.Drawing.Size(427, 92);
+            this.textBoxChoice.TabIndex = 27;
+            this.textBoxChoice.Text = "";
             // 
             // btnSaveChoice
             // 
@@ -112,23 +116,30 @@ namespace OnlineCourseApp.WinUI.Choices
             this.btnSaveChoice.TabIndex = 29;
             this.btnSaveChoice.Text = "SAVE";
             this.btnSaveChoice.UseVisualStyleBackColor = false;
+            this.btnSaveChoice.Click += new System.EventHandler(this.btnSaveChoice_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmChoiceAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(532, 461);
+            this.ClientSize = new System.Drawing.Size(503, 461);
             this.Controls.Add(this.btnSaveChoice);
             this.Controls.Add(this.lblAnswer);
-            this.Controls.Add(this.textBoxQuestion);
+            this.Controls.Add(this.textBoxChoice);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtPoints);
+            this.Controls.Add(this.txtPercentage);
             this.Controls.Add(this.checkBoxActive);
             this.Controls.Add(this.lblChoice);
             this.Name = "frmChoiceAdd";
             this.Text = "frmChoiceAdd";
-            ((System.ComponentModel.ISupportInitialize)(this.txtPoints)).EndInit();
+            this.Load += new System.EventHandler(this.frmChoiceAdd_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,9 +150,10 @@ namespace OnlineCourseApp.WinUI.Choices
         private System.Windows.Forms.Label lblChoice;
         private System.Windows.Forms.CheckBox checkBoxActive;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown txtPoints;
+        private System.Windows.Forms.NumericUpDown txtPercentage;
         private System.Windows.Forms.Label lblAnswer;
-        private System.Windows.Forms.RichTextBox textBoxQuestion;
+        private System.Windows.Forms.RichTextBox textBoxChoice;
         private System.Windows.Forms.Button btnSaveChoice;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

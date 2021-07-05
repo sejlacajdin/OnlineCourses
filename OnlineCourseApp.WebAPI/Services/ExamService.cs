@@ -53,7 +53,7 @@ namespace OnlineCourseApp.WebAPI.Services
             if (!string.IsNullOrWhiteSpace(request?.Title))
                 query = query.Include(q => q.Course).Where(x => x.Title.StartsWith(request.Title) || x.Course.CourseName.StartsWith(request.Title));
 
-            if(request?.CourseId != null)
+            if(request?.CourseId != 0)
                 query = query.Where(x => x.CourseId == request.CourseId);
 
             var list = query.ToList();

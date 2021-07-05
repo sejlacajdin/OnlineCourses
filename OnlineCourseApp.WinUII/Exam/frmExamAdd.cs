@@ -204,9 +204,11 @@ namespace OnlineCourseApp.WinUI.Tests
                 frmQuestionAdd form = new frmQuestionAdd((int)_id,int.Parse(id.ToString()));
                 form.ShowDialog();
             }
-            else if (e.ColumnIndex == dgvQuestions.Columns["Answer"].Index && e.RowIndex >= 0)
+            else if (e.ColumnIndex == dgvQuestions.Columns["Answers"].Index && e.RowIndex >= 0)
             {
-                frmChoices frm = new frmChoices();
+                var id = dgvQuestions.SelectedRows[0].Cells[0].Value;
+
+                frmChoices frm = new frmChoices((int)id);
                 frm.ShowDialog();
             }
         }
