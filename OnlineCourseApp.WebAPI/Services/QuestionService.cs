@@ -22,7 +22,7 @@ namespace OnlineCourseApp.WebAPI.Services
         {
             var query = _context.Set<Question>().AsQueryable();
 
-            if (request?.ExamId != null)
+            if (request?.ExamId != 0)
                 query = query.Where(x => x.ExamId == request.ExamId);
 
             if (!string.IsNullOrWhiteSpace(request?.Question))

@@ -1,4 +1,5 @@
-﻿using OnlineCourseApp.Model.Requests.Questions;
+﻿using OnlineCourseApp.Model.Requests.Choices;
+using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.WinUI.Tests;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace OnlineCourseApp.WinUI.Questions
         private readonly APIService _serviceQuestion = new APIService("questions");
         private readonly APIService _serviceChoices = new APIService("choices");
         private int? _id = null;
+        private Model.Questions _questions = null;
         private int _examId;
 
         public frmQuestionAdd(int examId,int? id = null)
@@ -52,12 +54,19 @@ namespace OnlineCourseApp.WinUI.Questions
 
             if (_id.HasValue)
             {
-                var questions = await _serviceQuestion.GetById<Model.Questions>(_id);
-                cmbQuestionCategory.SelectedValue = questions.QuestionCategoryId;
-                cmbQuestionType.SelectedValue = questions.QuestionTypeId;
-                txtPoints.Value = (decimal)questions.Points;
-                textBoxQuestion.Text = questions.Text;
-                checkBoxActive.CheckState = questions.IsActive ? CheckState.Checked : CheckState.Unchecked;
+                _questions = await _serviceQuestion.GetById<Model.Questions>(_id);
+                cmbQuestionCategory.SelectedValue = _questions.QuestionCategoryId;
+
+                cmbQuestionType.SelectedIndexChanged -= this.cmbQuestionType_SelectionChangeCommitted;
+                cmbQuestionType.SelectedValue = _questions.QuestionTypeId;
+                cmbQuestionType.SelectedIndexChanged += this.cmbQuestionType_SelectionChangeCommitted;
+
+                txtPoints.Value = (decimal)_questions.Points;
+                textBoxQuestion.Text = _questions.Text;
+                checkBoxActive.CheckedChanged -= this.checkBoxActive_CheckedChanged;
+                checkBoxActive.CheckState = _questions.IsActive ? CheckState.Checked : CheckState.Unchecked;
+                checkBoxActive.CheckedChanged += this.checkBoxActive_CheckedChanged;
+
             }
         }
 
@@ -94,7 +103,7 @@ namespace OnlineCourseApp.WinUI.Questions
 
         private async void checkBoxActive_CheckedChanged(object sender, EventArgs e)
         {
-            var choices = await _serviceChoices.Get<List<Model.Choices>>(_id);
+            var choices = await _serviceChoices.Get<List<Model.Choices>>(new ChoicesSearchRequest { QuestionId = (int)_id });
 
             if (checkBoxActive.Checked)
             {
@@ -131,6 +140,21 @@ namespace OnlineCourseApp.WinUI.Questions
             }
             else
                 errorProvider.SetError(textBoxQuestion, null);
+        }
+
+        private async void cmbQuestionType_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_id.HasValue)
+            {
+                var choices = await _serviceChoices.Get<List<Model.Choices>>(new ChoicesSearchRequest { QuestionId = (int)_id });
+                if (choices.Count != 0 && (int)cmbQuestionType.SelectedValue != _questions.QuestionTypeId)
+                {
+                    cmbQuestionType.SelectedValue = _questions.QuestionTypeId;
+                    MessageBox.Show("You can't change type of question. There are choices.");
+                    return;
+                }
+
+            }
         }
     }
 }

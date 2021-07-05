@@ -1,4 +1,5 @@
 ﻿using OnlineCourseApp.Model.Requests.Choices;
+using OnlineCourseApp.Model.Requests.Questions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ namespace OnlineCourseApp.WinUI.Choices
     public partial class frmChoices : Form
     {
         private readonly APIService _serviceChoices = new APIService("choices");
+        private readonly APIService _serviceQuestions = new APIService("questions");
         private int? _questionId = null;
         public frmChoices(int? questionId = null)
         {
@@ -29,7 +31,6 @@ namespace OnlineCourseApp.WinUI.Choices
         {
             var choices = await _serviceChoices.Get<List<Model.Choices>>(new ChoicesSearchRequest { QuestionId = (int)_questionId });
             dgvChoices.AutoGenerateColumns = false;
-
             if (choices != null)
                 dgvChoices.DataSource = choices;
         }
@@ -52,8 +53,24 @@ namespace OnlineCourseApp.WinUI.Choices
                     var choices = await _serviceChoices.Get<List<Model.Choices>>(search);
                     dgvChoices.AutoGenerateColumns = false;
 
-                    if (choices != null)
-                        dgvChoices.DataSource = choices;
+                    dgvChoices.DataSource = choices;
+                    
+                    if (choices.Count == 0)
+                    {
+                        var question = await _serviceQuestions.GetById<Model.Questions>(_questionId);
+                        var request = new QuestionsInsertRequest
+                        {
+                            ExamId = question.ExamId,
+                            IsActive = false,
+                            Points = question.Points,
+                            QuestionCategoryId = question.QuestionCategoryId,
+                            QuestionNumber = question.QuestionNumber,
+                            QuestionTypeId = question.QuestionTypeId,
+                            Text = question.Text
+                        };
+
+                        await _serviceQuestions.Update<Model.Questions>(_questionId, request);
+                    }
 
                     MessageBox.Show("Successfully deleted choice.");
 

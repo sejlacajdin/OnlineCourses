@@ -13,6 +13,7 @@ namespace OnlineCourseApp.WinUI.Choices
     public partial class frmChoiceAdd : Form
     {
         private readonly APIService _serviceChoices = new APIService("choices");
+        private readonly APIService _serviceQuestions = new APIService("questions");
         private int? _questionId = null;
         private int? _id = null;
         public frmChoiceAdd(int? questionId = null, int? id = null)
@@ -56,10 +57,22 @@ namespace OnlineCourseApp.WinUI.Choices
                 frm.ShowDialog();
         }
 
-        private void checkBoxActive_CheckedChanged(object sender, EventArgs e)
+        private async void checkBoxActive_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxActive.Checked)                
+            
+            if (checkBoxActive.Checked)
+            {
+            var question =await _serviceQuestions.GetById<Model.Questions>(_questionId);
+            var choices = await _serviceChoices.Get<List<Model.Choices>>(new ChoicesSearchRequest { QuestionId = (int)_questionId });
+
+            if(question.QuestionTypeId == 2 && choices.Any(c => c.IsCorrect == true))
+            {
+                MessageBox.Show("Type of question is MCSA and there is already correct answer.");
+                return;
+            }
+
                     request.IsCorrect = true;
+            }            
             else
                 request.IsCorrect = false;
         }
@@ -73,8 +86,32 @@ namespace OnlineCourseApp.WinUI.Choices
                 var choice = await _serviceChoices.GetById<Model.Choices>(_id);
                 textBoxChoice.Text = choice.Text;
                 txtPercentage.Value = (decimal)choice.Percentage;
-                checkBoxActive.CheckState = (bool)choice.IsCorrect ? CheckState.Checked : CheckState.Unchecked;
+                checkBoxActive.CheckedChanged -= this.checkBoxActive_CheckedChanged;
+                checkBoxActive.CheckState = (bool)choice.IsCorrect ? CheckState.Checked : CheckState.Unchecked;      
+                checkBoxActive.CheckedChanged += this.checkBoxActive_CheckedChanged;
             }
+        }
+
+        private void textBoxChoice_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxChoice.Text))
+            {
+                errorProvider.SetError(textBoxChoice, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(textBoxChoice, null);
+        }
+
+        private void txtPercentage_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtPercentage.Value <=0)
+            {
+                errorProvider.SetError(txtPercentage, "Value need to be more than 0.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtPercentage, null);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
@@ -21,6 +22,7 @@ namespace OnlineCourseApp.WinUI.Tests
         private readonly APIService _serviceCourses = new APIService("courses");
         private readonly APIService _serviceExams = new APIService("exams");
         private readonly APIService _serviceQuestions = new APIService("questions");
+        private readonly APIService _serviceChoices = new APIService("choices");
         private int? _id = null;
         public frmExamAdd(int? id = null)
         {
@@ -41,7 +43,10 @@ namespace OnlineCourseApp.WinUI.Tests
                 comboBoxCourses.SelectedValue = exam.CourseId;
                 textBoxInstructions.Text = exam.Instructions;
                 dateTimePicker1.Value = DateTime.Parse(exam.TimeLimit);
+                checkBoxActive.CheckedChanged -= this.checkBoxActive_CheckedChanged;
                 checkBoxActive.CheckState = exam.IsActive ? CheckState.Checked : CheckState.Unchecked;
+                checkBoxActive.CheckedChanged += this.checkBoxActive_CheckedChanged;
+
             }
         }
 
@@ -129,7 +134,7 @@ namespace OnlineCourseApp.WinUI.Tests
 
         private async void checkBoxActive_CheckedChanged(object sender, EventArgs e)
         {
-                var question = await _serviceQuestions.Get<List<Model.Questions>>(_id);
+                var question = await _serviceQuestions.Get<List<Model.Questions>>(new QuestionsSearchRequest { ExamId = (int)_id });
 
             if (checkBoxActive.Checked)
             {
@@ -176,11 +181,21 @@ namespace OnlineCourseApp.WinUI.Tests
         {
             if (e.ColumnIndex == dgvQuestions.Columns["Delete"].Index && e.RowIndex >= 0)
             {
+   
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo);
 
                 if (dialogResult == DialogResult.Yes)
                 {
                     var id = dgvQuestions.SelectedRows[0].Cells[0].Value;
+
+                    var choices = await _serviceChoices.Get<List<Model.Choices>>(new ChoicesSearchRequest { QuestionId = (int)id });
+
+                    if (choices.Count != 0)
+                    {
+                        MessageBox.Show("You can't delete this question. There are choices.");
+                        return;
+                    };
+
                     await _serviceQuestions.Delete<Model.Questions>(id);
 
                     var search = new QuestionsSearchRequest()
@@ -190,10 +205,24 @@ namespace OnlineCourseApp.WinUI.Tests
                     var questions = await _serviceQuestions.Get<List<Model.Questions>>(search);
                     dgvQuestions.AutoGenerateColumns = false;
 
-                    if (questions != null)
                         dgvQuestions.DataSource = questions;
+                    if (questions.Count == 0)
+                    {
+                        var exam = await _serviceExams.GetById<Model.Exams>(_id);
+                        var request = new ExamsInsertRequest
+                        {
+                            ExamOwnerId = exam.ExamOwnerId,
+                            CourseId = exam.CourseId,
+                            Instructions = exam.Instructions,
+                            IsActive = false,
+                            TimeLimit = exam.TimeLimit,
+                            Title = exam.Title
+                        };
+                        await _serviceExams.Update<Model.Exams>(_id, request);
+                    }
 
                     MessageBox.Show("Successfully deleted question.");
+
 
                 }
                 else return;

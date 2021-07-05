@@ -82,6 +82,7 @@ namespace OnlineCourseApp.WinUI.Choices
             this.txtPercentage.Name = "txtPercentage";
             this.txtPercentage.Size = new System.Drawing.Size(427, 27);
             this.txtPercentage.TabIndex = 25;
+            this.txtPercentage.Validating += new System.ComponentModel.CancelEventHandler(this.txtPercentage_Validating);
             // 
             // lblAnswer
             // 
@@ -101,6 +102,7 @@ namespace OnlineCourseApp.WinUI.Choices
             this.textBoxChoice.Size = new System.Drawing.Size(427, 92);
             this.textBoxChoice.TabIndex = 27;
             this.textBoxChoice.Text = "";
+            this.textBoxChoice.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxChoice_Validating);
             // 
             // btnSaveChoice
             // 

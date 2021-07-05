@@ -46,14 +46,14 @@ namespace OnlineCourseApp.WinUI.Tests
             this.label6 = new System.Windows.Forms.Label();
             this.checkBoxActive = new System.Windows.Forms.CheckBox();
             this.dgvQuestions = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.QuestionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Answers = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).BeginInit();
             this.SuspendLayout();
@@ -74,7 +74,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.comboBoxCourses.Location = new System.Drawing.Point(41, 209);
             this.comboBoxCourses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxCourses.Name = "comboBoxCourses";
-            this.comboBoxCourses.Size = new System.Drawing.Size(387, 28);
+            this.comboBoxCourses.Size = new System.Drawing.Size(475, 28);
             this.comboBoxCourses.TabIndex = 10;
             this.comboBoxCourses.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxCourses_Validating);
             // 
@@ -102,7 +102,7 @@ namespace OnlineCourseApp.WinUI.Tests
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(41, 583);
+            this.label4.Location = new System.Drawing.Point(41, 615);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 13;
@@ -115,7 +115,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.buttonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonUpdate.ForeColor = System.Drawing.Color.White;
-            this.buttonUpdate.Location = new System.Drawing.Point(664, 917);
+            this.buttonUpdate.Location = new System.Drawing.Point(664, 649);
             this.buttonUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(151, 36);
@@ -129,7 +129,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.textBoxInstructions.Location = new System.Drawing.Point(41, 368);
             this.textBoxInstructions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxInstructions.Name = "textBoxInstructions";
-            this.textBoxInstructions.Size = new System.Drawing.Size(630, 99);
+            this.textBoxInstructions.Size = new System.Drawing.Size(774, 99);
             this.textBoxInstructions.TabIndex = 16;
             this.textBoxInstructions.Text = "";
             this.textBoxInstructions.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxInstructions_Validating);
@@ -151,7 +151,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.btnAddTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAddTest.ForeColor = System.Drawing.Color.White;
-            this.btnAddTest.Location = new System.Drawing.Point(553, 541);
+            this.btnAddTest.Location = new System.Drawing.Point(696, 542);
             this.btnAddTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddTest.Name = "btnAddTest";
             this.btnAddTest.Size = new System.Drawing.Size(119, 36);
@@ -174,7 +174,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.dateTimePicker1.MinDate = new System.DateTime(2021, 6, 26, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(387, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(475, 27);
             this.dateTimePicker1.TabIndex = 19;
             this.dateTimePicker1.Value = new System.DateTime(2021, 6, 26, 0, 0, 0, 0);
             // 
@@ -183,7 +183,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.txtTitle.Location = new System.Drawing.Point(41, 136);
             this.txtTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(387, 27);
+            this.txtTitle.Size = new System.Drawing.Size(475, 27);
             this.txtTitle.TabIndex = 20;
             this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtTitle_Validating);
             // 
@@ -225,7 +225,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.Delete,
             this.Answers});
             this.dgvQuestions.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvQuestions.Location = new System.Drawing.Point(41, 676);
+            this.dgvQuestions.Location = new System.Drawing.Point(41, 708);
             this.dgvQuestions.Margin = new System.Windows.Forms.Padding(3, 4, 23, 4);
             this.dgvQuestions.Name = "dgvQuestions";
             this.dgvQuestions.RowHeadersWidth = 51;
@@ -234,33 +234,6 @@ namespace OnlineCourseApp.WinUI.Tests
             this.dgvQuestions.Size = new System.Drawing.Size(774, 233);
             this.dgvQuestions.TabIndex = 23;
             this.dgvQuestions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQuestions_CellClick);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(417, 620);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(146, 31);
-            this.btnSearch.TabIndex = 25;
-            this.btnSearch.Text = "SEARCH";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSearch.Location = new System.Drawing.Point(41, 620);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceholderText = "Type or category";
-            this.txtSearch.Size = new System.Drawing.Size(522, 27);
-            this.txtSearch.TabIndex = 24;
             // 
             // QuestionId
             // 
@@ -330,6 +303,33 @@ namespace OnlineCourseApp.WinUI.Tests
             this.Answers.ToolTipText = "Add answer";
             this.Answers.UseColumnTextForButtonValue = true;
             this.Answers.Width = 110;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(392, 652);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(124, 31);
+            this.btnSearch.TabIndex = 25;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSearch.Location = new System.Drawing.Point(41, 652);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PlaceholderText = "Type or category";
+            this.txtSearch.Size = new System.Drawing.Size(475, 27);
+            this.txtSearch.TabIndex = 24;
             // 
             // frmExamAdd
             // 

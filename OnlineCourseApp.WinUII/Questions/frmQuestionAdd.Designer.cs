@@ -103,6 +103,7 @@ namespace OnlineCourseApp.WinUI.Questions
             this.cmbQuestionType.Name = "cmbQuestionType";
             this.cmbQuestionType.Size = new System.Drawing.Size(373, 28);
             this.cmbQuestionType.TabIndex = 17;
+            this.cmbQuestionType.SelectionChangeCommitted += new System.EventHandler(this.cmbQuestionType_SelectionChangeCommitted);
             // 
             // label4
             // 
