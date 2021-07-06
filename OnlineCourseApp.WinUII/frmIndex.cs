@@ -1,4 +1,5 @@
-﻿using OnlineCourseApp.WinUI.Courses;
+﻿using OnlineCourseApp.WinUI.Announcements;
+using OnlineCourseApp.WinUI.Courses;
 using OnlineCourseApp.WinUI.Tests;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,12 @@ namespace OnlineCourseApp.WinUI
         private void btnTests_Click(object sender, EventArgs e)
         {
             openChildForm(new frmExam());
+        }
+
+        private void btnAnnouncement_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmAnnouncements());
+
         }
     }
 }

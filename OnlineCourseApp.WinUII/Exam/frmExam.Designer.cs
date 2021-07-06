@@ -83,7 +83,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.groupBox1.Controls.Add(this.btnAddCourse);
             this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(42, 39);
+            this.groupBox1.Location = new System.Drawing.Point(25, 25);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -140,7 +140,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.Update,
             this.Delete});
             this.dgvTests.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvTests.Location = new System.Drawing.Point(42, 174);
+            this.dgvTests.Location = new System.Drawing.Point(25, 163);
             this.dgvTests.Margin = new System.Windows.Forms.Padding(3, 4, 23, 4);
             this.dgvTests.Name = "dgvTests";
             this.dgvTests.RowHeadersWidth = 51;
@@ -213,7 +213,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(914, 571);
+            this.ClientSize = new System.Drawing.Size(862, 571);
             this.Controls.Add(this.dgvTests);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

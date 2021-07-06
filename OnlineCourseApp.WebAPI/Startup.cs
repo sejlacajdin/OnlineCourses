@@ -26,6 +26,7 @@ using OnlineCourseApp.WebAPI.Security;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.Model.Requests.Choices;
+using OnlineCourseApp.Model.Requests.Announcements;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -86,7 +87,9 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IBaseCRUDService<Model.Exams, ExamsSearchRequest, ExamsInsertRequest, ExamsInsertRequest>, ExamService>();
             services.AddScoped<IBaseCRUDService<Model.Questions, QuestionsSearchRequest, QuestionsInsertRequest, QuestionsInsertRequest>, QuestionService>();
             services.AddScoped<IBaseCRUDService<Model.Choices, ChoicesSearchRequest, ChoicesInsertRequest, ChoicesInsertRequest>, ChoiceService>();
-
+            services.AddScoped<IBaseCRUDService<Model.Announcements, AnnouncementsSearchRequest, AnnouncementsInsertRequest, AnnouncementsInsertRequest>, AnnouncementService>();
+            services.AddScoped<IBaseService<Model.AnnouncementFilterTypes, object>, BaseService<Model.AnnouncementFilterTypes, object, AnnouncementFilterType>>();
+            services.AddScoped<IBaseCRUDService<Model.AnnouncementFilters, AnnouncementFiltersSearchRequest, AnnouncementFiltersInsertRequest, AnnouncementFiltersInsertRequest>, AnnouncementFiltersService>();
 
         }
 
