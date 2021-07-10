@@ -1,5 +1,6 @@
 ﻿using OnlineCourseApp.WinUI.Announcements;
 using OnlineCourseApp.WinUI.Courses;
+using OnlineCourseApp.WinUI.Reports;
 using OnlineCourseApp.WinUI.Tests;
 using System;
 using System.Collections.Generic;
@@ -115,6 +116,11 @@ namespace OnlineCourseApp.WinUI
         {
             openChildForm(new frmAnnouncements());
 
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmReports());
         }
     }
 }

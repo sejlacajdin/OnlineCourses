@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:OnlineCourseApp.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="OnlineCourseApp.Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="20,0,20,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Label Text="Username or email"/>
+            <Entry Text="{Binding Username}" Margin="0,0,0,10"></Entry>
+            <Label Text="Password"/>
+            <Entry Text="{Binding Password}" IsPassword="True"></Entry>
+            <Button Margin="25, 20, 25, 10" VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+
+            <Grid>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                     HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                    Text="You don't have account?"/>
+                <Button 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    WidthRequest="150"
+                    Text="Sign up" Clicked="Button_Clicked"
+                   BackgroundColor="RoyalBlue" Padding="6" TextColor="White" ></Button>
+            </Grid>
+
+            <Label IsVisible="{Binding IsBusy}" Text="Login..."></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

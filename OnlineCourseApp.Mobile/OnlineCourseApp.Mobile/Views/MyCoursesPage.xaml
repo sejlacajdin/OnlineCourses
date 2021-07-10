@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:local="clr-namespace:OnlineCourseApp.Mobile.Converters" xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard"
+             x:Class="OnlineCourseApp.Mobile.Views.MyCoursesPage">
+    <ContentPage.BindingContext>
+        <viewModel:MyCoursesViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+            x:Name="listView"
+            Margin="20, 10"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Courses}"
+            SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                                <cardView:CardView
+                                BackgroundColor="White"
+                                CardViewHasShadow="True"
+                                CardViewOutlineColor="LightGray"
+                                CardViewOutlineColorThickness="4"
+                                HeightRequest="380"
+                                    Margin="0,10,0,10">
+                                    <cardView:CardView.CardViewContent>
+                                        <StackLayout
+                                        Padding="10"
+                                       BackgroundColor="White"
+                                        HorizontalOptions="Center"
+                                        Spacing="10"
+                                        VerticalOptions="Center">
+                                            <Image
+                                                HeightRequest="200" Source="{Binding Picture, Converter={StaticResource imgConv}}" />
+                                            <BoxView
+                                            HeightRequest="1"
+                                            WidthRequest="200"
+                                            Color="LightGray" />
+                                            <Grid>
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="Gray"
+                                                Text="{Binding CourseName}" />
+                                            </Grid>
+                                            <Grid>
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="15,0,0,0"
+                                                FontSize="Micro"
+                                                TextColor="Gray"                                 
+                                                Text="{Binding Notes}" />
+                                            </Grid>
+                                            <Grid
+                                                Margin="0,15,0,10">
+                                                <Button
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Text="View details"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="End"
+                                                    Padding="25, 5"
+                                                    BackgroundColor="CornflowerBlue"
+                                                    Clicked="Button_Clicked"
+                                                    BindingContext="{Binding CourseId}"
+                                                    />
+                                            </Grid>
+                                        </StackLayout>
+                                    </cardView:CardView.CardViewContent>
+                                </cardView:CardView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

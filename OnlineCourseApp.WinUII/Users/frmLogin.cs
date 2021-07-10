@@ -11,7 +11,7 @@ namespace OnlineCourseApp.WinUI.Users
 {
     public partial class frmLogin : Form
     {
-        APIService _service = new APIService("users/login");
+        private readonly APIService _service = new APIService("users/login");
         public frmLogin()
         {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace OnlineCourseApp.WinUI.Users
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Autentikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong username or pasword. Try again.", "Autentikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -21,11 +21,18 @@ namespace OnlineCourseApp.WebAPI.Services
         {
             var query = _context.Set<Course>().AsQueryable();
 
-            if (request?.ProfessorId != null)
+            if (request?.ProfessorId != null && request?.ProfessorId != 0)
                 query = query.Where(x => x.ProfessorId == request.ProfessorId);
 
             if (!string.IsNullOrWhiteSpace(request?.CourseName))
                 query = query.Where(x => x.CourseName.StartsWith(request.CourseName));
+
+            if(request?.IsActive == true)
+                query = query.Where(x => x.IsActive);
+
+            if (request?.CourseSectionId != 0)
+                query = query.Where(x => x.CourseSectionId == request.CourseSectionId);
+
 
             var list = query.ToList();
 

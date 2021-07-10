@@ -186,13 +186,13 @@ namespace OnlineCourseApp.WebAPI.Database
             {
                 entity.ToTable("CourseParticipant");
 
-                entity.Property(e => e.CourseParticipantId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("CourseParticipantID");
+                entity.Property(e => e.CourseParticipantId).HasColumnName("CourseParticipantID");
 
                 entity.Property(e => e.Comment).HasMaxLength(150);
 
                 entity.Property(e => e.CourseId).HasColumnName("CourseID");
+
+                entity.Property(e => e.ParticipationDate).HasColumnType("datetime");
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
 

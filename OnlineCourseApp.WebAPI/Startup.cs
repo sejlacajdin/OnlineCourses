@@ -27,6 +27,7 @@ using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Announcements;
+using OnlineCourseApp.Model.Requests.CourseParticipants;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -90,7 +91,7 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IBaseCRUDService<Model.Announcements, AnnouncementsSearchRequest, AnnouncementsInsertRequest, AnnouncementsInsertRequest>, AnnouncementService>();
             services.AddScoped<IBaseService<Model.AnnouncementFilterTypes, object>, BaseService<Model.AnnouncementFilterTypes, object, AnnouncementFilterType>>();
             services.AddScoped<IBaseCRUDService<Model.AnnouncementFilters, AnnouncementFiltersSearchRequest, AnnouncementFiltersInsertRequest, AnnouncementFiltersInsertRequest>, AnnouncementFiltersService>();
-
+            services.AddScoped<IBaseCRUDService<Model.CourseParticipants, CourseParticipantsSearchRequest, CourseParticipantsInsertRequest, CourseParticipantsInsertRequest>, CourseParticipantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,7 +108,7 @@ namespace OnlineCourseApp.WebAPI
             });
 
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

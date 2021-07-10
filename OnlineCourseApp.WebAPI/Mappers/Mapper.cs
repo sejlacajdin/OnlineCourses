@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OnlineCourseApp.Model.Requests.Announcements;
 using OnlineCourseApp.Model.Requests.Choices;
+using OnlineCourseApp.Model.Requests.CourseParticipants;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Exams;
@@ -40,8 +41,8 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.AnnouncementFilterType, Model.AnnouncementFilterTypes>();
             CreateMap<Database.AnnouncementFilter, Model.AnnouncementFilters>();
             CreateMap<Database.AnnouncementFilter, AnnouncementFiltersInsertRequest>().ReverseMap();
-
-
+            CreateMap<Database.CourseParticipant, Model.CourseParticipants>();
+            CreateMap<Database.CourseParticipant, CourseParticipantsInsertRequest>().ReverseMap();
 
         }
     }

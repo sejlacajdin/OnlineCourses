@@ -128,6 +128,7 @@ namespace OnlineCourseApp.WinUI.Courses
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
+            if(imageIn !=null)
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
         }

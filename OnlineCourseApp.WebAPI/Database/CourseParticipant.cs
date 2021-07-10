@@ -12,6 +12,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public int CourseId { get; set; }
         public string Comment { get; set; }
         public int Review { get; set; }
+        public DateTime ParticipationDate { get; set; }
 
         public virtual Course Course { get; set; }
         public virtual User Student { get; set; }

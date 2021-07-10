@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineCourseApp.Mobile.Views.PaymentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20" VerticalOptions="Center">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="40">
+                <StackLayout Margin="0,0,0,25">
+                    <Label Text="Pay with card" FontSize="22" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout x:Name="creditcard" HorizontalOptions="FillAndExpand">
+                    <Label Text="Card information" Margin="0,0,0,5" TextColor="Gray"/>
+                    <Entry  x:Name="CreditCardNumber" 
+                            Placeholder="1234 1234 1234 1234"></Entry>
+                    <Grid HorizontalOptions="CenterAndExpand">
+                        <Entry  x:Name="CreditCardExpMonth"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Expired month" ></Entry>
+                        <Entry  x:Name="CreditCardExpYear" 
+                                 Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Expired year" WidthRequest="100"></Entry>
+                        <Entry  x:Name="CreditCardSecurityCode"
+                                 Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="CVV"></Entry>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Margin="0,20,0,0">
+                    <Button x:Name="btn" 
+                            CornerRadius="10"
+                            Padding="20, 10"
+                       BorderColor="RoyalBlue" BackgroundColor="RoyalBlue" TextColor="White" Text="Pay" Clicked="btn_Clicked"></Button>
+                </StackLayout>
+                <StackLayout>
+                    <Label x:Name="greska"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

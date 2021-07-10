@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:OnlineCourseApp.Mobile.ViewModels"
+             x:Class="OnlineCourseApp.Mobile.Views.RegistrationPage">
+    <ContentPage.BindingContext>
+        <viewModels:RegistrationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White" VerticalOptions="Center">
+            <StackLayout Padding="20,0,20,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Entry  x:Name="Firstname" Text="{ Binding Firstname}" Placeholder="Firstname" ></Entry>
+            <Label x:Name="FirstnameError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+            <Entry x:Name="Lastname" Text="{ Binding Lastname}" Placeholder="Lastname"></Entry>
+            <Label x:Name="LastnameError" Text=" " TextColor="Red" IsVisible="False"></Label>
+            
+            <Entry x:Name="Username" Text="{Binding Username} " Placeholder="Username"></Entry>
+            <Label x:Name="UsernameError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+
+            <Entry x:Name="Email" Text="{ Binding Email}" Placeholder="Email"></Entry>
+            <Label x:Name="EmailError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+            <Entry x:Name="Phone" Text="{ Binding Phone}" Placeholder="Phone number"></Entry>
+            <Label x:Name="PhoneError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+            <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" Placeholder="Password"></Entry>
+            <Label x:Name="PasswordError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+            <Entry x:Name="PasswordConfirmation" Text="{Binding PasswordConfirmation}" IsPassword="True" Placeholder="Password confirmation"></Entry>
+            <Label x:Name="PasswordConfirmationError" Text=" " TextColor="Red" IsVisible="False"></Label>
+
+            <Button 
+                Clicked="Button_Clicked"          
+                Margin="25, 20" VerticalOptions="Center" Text="Sign up"/>
+            <Label IsVisible="{Binding IsBusy}" Text="Signing up..."></Label>
+           
+
+                <Grid>
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                     HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                    Text="Already have an account?"/>
+                    <Button
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     HorizontalOptions="Start"
+                     WidthRequest="150"
+                     BackgroundColor="RoyalBlue"  Padding="5" Text="Login" Clicked="Button_Clicked_1" TextColor="White" BorderColor="LightGray" BorderWidth="1" ></Button>
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

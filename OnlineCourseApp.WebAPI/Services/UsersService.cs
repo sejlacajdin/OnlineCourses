@@ -24,7 +24,7 @@ namespace OnlineCourseApp.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public Users Autenticiraj(string username, string pass)
+        public Users Autenticiraj(string username, string pass, bool login = false)
         {
             var user = _context.Users.Include("UserRoles.Role").FirstOrDefault(x => x.Username == username || x.Email == username);
 
@@ -33,6 +33,11 @@ namespace OnlineCourseApp.WebAPI.Services
                 var newHash = GenerateHash(user.PasswordSalt,pass);
                 if(newHash == user.PasswordHash)
                 {
+                    if (login)
+                    {
+                        _context.UserLogs.Add(new UserLog { UserId = user.UserId, LoginTime = DateTime.Now });
+                        _context.SaveChanges();
+                    }
                     return _mapper.Map<Users>(user);
                 }
             }
@@ -68,6 +73,9 @@ namespace OnlineCourseApp.WebAPI.Services
 
             if (!string.IsNullOrWhiteSpace(request?.LastName))
                 query = query.Where(x => x.LastName.StartsWith(request.LastName));
+
+            if (!string.IsNullOrWhiteSpace(request?.UserName))
+                query = query.Where(x => x.Username.StartsWith(request.UserName));
 
             var list = query.ToList();
 
