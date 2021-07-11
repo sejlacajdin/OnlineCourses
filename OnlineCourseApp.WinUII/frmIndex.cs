@@ -2,6 +2,7 @@
 using OnlineCourseApp.WinUI.Courses;
 using OnlineCourseApp.WinUI.Reports;
 using OnlineCourseApp.WinUI.Tests;
+using OnlineCourseApp.WinUI.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,6 +122,16 @@ namespace OnlineCourseApp.WinUI
         private void btnReports_Click(object sender, EventArgs e)
         {
             openChildForm(new frmReports());
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Confirm", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                Application.Exit();
+            }
         }
     }
 }

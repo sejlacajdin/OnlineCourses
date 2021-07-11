@@ -43,6 +43,8 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.AnnouncementFilter, AnnouncementFiltersInsertRequest>().ReverseMap();
             CreateMap<Database.CourseParticipant, Model.CourseParticipants>();
             CreateMap<Database.CourseParticipant, CourseParticipantsInsertRequest>().ReverseMap();
+            CreateMap<Database.DocumentDownloaded, Model.DocumentsDownloaded>();
+            CreateMap<Database.DocumentDownloaded, DocumentsDownloadedInsertRequest>().ReverseMap();
 
         }
     }

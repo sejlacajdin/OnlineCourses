@@ -92,6 +92,7 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IBaseService<Model.AnnouncementFilterTypes, object>, BaseService<Model.AnnouncementFilterTypes, object, AnnouncementFilterType>>();
             services.AddScoped<IBaseCRUDService<Model.AnnouncementFilters, AnnouncementFiltersSearchRequest, AnnouncementFiltersInsertRequest, AnnouncementFiltersInsertRequest>, AnnouncementFiltersService>();
             services.AddScoped<IBaseCRUDService<Model.CourseParticipants, CourseParticipantsSearchRequest, CourseParticipantsInsertRequest, CourseParticipantsInsertRequest>, CourseParticipantService>();
+            services.AddScoped<IDocumentDownloadedService, DocumentDownloadedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -75,7 +75,10 @@ namespace OnlineCourseApp.WebAPI.Services
                 query = query.Where(x => x.LastName.StartsWith(request.LastName));
 
             if (!string.IsNullOrWhiteSpace(request?.UserName))
-                query = query.Where(x => x.Username.StartsWith(request.UserName));
+                query = query.Where(x => x.Username == request.UserName);
+
+            if (!string.IsNullOrWhiteSpace(request?.Email))
+                query = query.Where(x => x.Email == request.Email);
 
             var list = query.ToList();
 
@@ -110,6 +113,7 @@ namespace OnlineCourseApp.WebAPI.Services
                 RoleId = roleId,
                 UserId = entity.UserId
             });
+            _context.SaveChanges();
 
             //return _mapper.Map<Model.Users>(entity);
             return new Users

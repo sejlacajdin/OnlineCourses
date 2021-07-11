@@ -21,7 +21,7 @@
                     />
                 <Picker 
                 ItemsSource="{Binding CourseSections}" SelectedItem="{Binding SelectedCourseSection}" ItemDisplayBinding="{Binding Name}"></Picker>
-                
+
             </StackLayout>
             <ListView
             x:Name="listView"
@@ -38,7 +38,7 @@
                                 CardViewHasShadow="True"
                                 CardViewOutlineColor="LightGray"
                                 CardViewOutlineColorThickness="4"
-                                HeightRequest="380"
+                                HeightRequest="420"
                                     Margin="0,10,0,10">
                                     <cardView:CardView.CardViewContent>
                                         <StackLayout
@@ -70,6 +70,22 @@
                                                 FontSize="Micro"
                                                 TextColor="Gray"                                 
                                                 Text="{Binding Notes}" />
+                                            </Grid>
+                                            <Grid>
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="20,0,0,0"
+                                                FontSize="Micro"
+                                                TextColor="Gray">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span TextColor="Gray" Text="Rating: "/>
+                                                            <Span TextColor="CornflowerBlue" Text="{Binding FinalRating} "/>
+                                                            <Span TextColor="Gray" Text=" Stars"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
                                             </Grid>
                                             <Grid
                                                 Margin="0,15,0,10">
@@ -108,6 +124,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

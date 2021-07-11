@@ -24,14 +24,12 @@ namespace OnlineCourseApp.WebAPI.Controllers
             _usersService = usersService;
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult<List<Users>> Get([FromQuery] UsersSearchRequest request)
         {
             return _usersService.Get(request);
         }
 
-        [Authorize]
         [HttpGet("login")]
         public ActionResult<Users> Get(string username, string password)
         {

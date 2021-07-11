@@ -21,7 +21,6 @@ namespace OnlineCourseApp.Mobile.ViewModels
         public CoursesViewModel()
         {
             InitCommand = new Command(async () => await Init());
-            //PaymentCommand = new Command(async(CourseId) =>  await OnClickPay(CourseId));
         }
 
         public ObservableCollection<Courses> Courses { get; set; } = new ObservableCollection<Courses>();
@@ -39,7 +38,6 @@ namespace OnlineCourseApp.Mobile.ViewModels
         }
 
         public ICommand InitCommand { get; set; }
-        //public ICommand PaymentCommand { get; set; }
 
 
         public async Task Init()
@@ -69,6 +67,11 @@ namespace OnlineCourseApp.Mobile.ViewModels
                 if (course.Picture.Length == 0)
                     course.Picture = null;
                 course.Price = course.Price != null ? course.Price : 0.00;
+
+                if (course.Rating != null)
+                    course.FinalRating = (float)course.Rating / course.NumOfRatings;
+                else
+                    course.FinalRating = 0;
 
                 if (!coursePax.Exists(x => x.CourseId == course.CourseId))
                     Courses.Add(course);

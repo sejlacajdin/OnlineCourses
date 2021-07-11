@@ -95,5 +95,9 @@
       <Name>OnlineCourseApp.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\drawable\emptyStar.png" />
+    <Content Include="Resources\drawable\fillStar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -38,6 +38,7 @@ namespace OnlineCourseApp.WinUI
             this.btnAnnouncement = new System.Windows.Forms.Button();
             this.btnCourses = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +70,7 @@ namespace OnlineCourseApp.WinUI
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.White;
             this.panelSideMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSideMenu.Controls.Add(this.btnLogout);
             this.panelSideMenu.Controls.Add(this.btnReports);
             this.panelSideMenu.Controls.Add(this.btnTests);
             this.panelSideMenu.Controls.Add(this.btnAnnouncement);
@@ -152,6 +154,21 @@ namespace OnlineCourseApp.WinUI
             this.panelChildForm.Size = new System.Drawing.Size(883, 712);
             this.panelChildForm.TabIndex = 8;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogout.Location = new System.Drawing.Point(0, 256);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(269, 64);
+            this.btnLogout.TabIndex = 4;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // frmIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -179,6 +196,7 @@ namespace OnlineCourseApp.WinUI
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnTests;
         private System.Windows.Forms.Button btnAnnouncement;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
 

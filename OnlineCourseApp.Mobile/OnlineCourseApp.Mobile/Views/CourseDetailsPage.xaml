@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard"
+             x:Class="OnlineCourseApp.Mobile.Views.CourseDetailsPage">
+    <ContentPage.BindingContext>
+        <viewModel:CourseDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White" VerticalOptions="Center">
+            <StackLayout Padding="22, 20">
+            <Grid BindingContext="{Binding Course}" HeightRequest="50">
+                <Label 
+                      Grid.Row="0"
+                    Grid.Column="0"
+                     HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding CourseName}" FontSize="22" TextColor="Black"/>
+
+                <Button 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    WidthRequest="170"
+                    FontSize="16"
+                    CornerRadius="5"
+                    Text="Give review" Clicked="Button_Clicked_1"
+                   BackgroundColor="RoyalBlue" Padding="6" TextColor="White" ></Button>
+            </Grid>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Documents" FontSize="18"/>
+                <ListView
+            x:Name="listView"
+            Margin="0, 5"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Documents}"
+            ItemSelected="listView_ItemSelected"
+            SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                                    <cardView:CardView
+                                BackgroundColor="White"
+                                CardViewHasShadow="True"
+                                CardViewOutlineColor="LightGray"
+                                CardViewOutlineColorThickness="4"
+                                HeightRequest="50">
+                                        <cardView:CardView.CardViewContent>
+                                            <Grid Padding="10,0">
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                HorizontalTextAlignment="Start"
+                                                HorizontalOptions="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="White"
+                                                FontSize="14"
+                                                Text="{Binding FileOldName}"/>
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                    TextColor="CornflowerBlue"
+                                                    HorizontalTextAlignment="Center"
+                                                    HorizontalOptions="End"
+                                                VerticalTextAlignment="Center"
+                                                Text="Download"/>
+                                            </Grid>
+                                        </cardView:CardView.CardViewContent>
+                                    </cardView:CardView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout Margin="0,10,0,0">
+                <Label Text="Videos" FontSize="18"/>
+                <ListView
+            x:Name="listView1"
+            Margin="20, 10"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Videos}"
+             ItemSelected="listView1_ItemSelected"
+            SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                                    <cardView:CardView
+                                BackgroundColor="White"
+                                CardViewHasShadow="True"
+                                CardViewOutlineColor="LightGray"
+                                CardViewOutlineColorThickness="4"
+                                HeightRequest="50">
+                                        <cardView:CardView.CardViewContent>
+                                            <Grid Padding="10,0">
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="WhiteSmoke"
+                                                FontSize="14"
+                                                Text="{Binding Name}"/>
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                    TextColor="CornflowerBlue"
+                                                    HorizontalTextAlignment="Center"
+                                                VerticalTextAlignment="Center"
+                                                    
+                                                Text="Download"/>
+                                            </Grid>
+                                        </cardView:CardView.CardViewContent>
+                                    </cardView:CardView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout Margin="0,10,0,0">
+                <Label Text="Announcements" FontSize="18"/>
+                <ListView
+            x:Name="listView3"
+            Margin="20, 10"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Announcements}"
+            SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                                    <cardView:CardView
+                                BackgroundColor="White"
+                                CardViewHasShadow="True"
+                                CardViewOutlineColor="PapayaWhip"
+                                CardViewOutlineColorThickness="4"
+                                HeightRequest="80">
+                                        <cardView:CardView.CardViewContent>
+                                            <Grid Padding="10,0">
+                                                <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="Gray"
+                                                FontSize="14"
+                                                Text="{Binding Title}"/>
+                                                    <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                    HorizontalTextAlignment="End"
+                                                VerticalTextAlignment="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span TextColor="Gray" Text="Author: "/>
+                                                                <Span TextColor="CornflowerBlue" Text="{Binding PostOwner}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label
+                                                Grid.Row="1"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="Gray"
+                                                FontSize="14"
+                                                Text="{Binding Description}"/>
+                                            </Grid>
+
+                                        </cardView:CardView.CardViewContent>
+                                    </cardView:CardView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+                <StackLayout>
+                    <Grid>
+                  <Button 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    WidthRequest="200"
+                    FontSize="16"
+                    CornerRadius="5"
+                    Text="Take test" Clicked="Button_Clicked"
+                   BackgroundColor="RoyalBlue" Padding="6" TextColor="White" ></Button>
+                    </Grid>
+                </StackLayout>
+
+        </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

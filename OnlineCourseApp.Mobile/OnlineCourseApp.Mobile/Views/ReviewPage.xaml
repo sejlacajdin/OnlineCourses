@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:customcontrol="clr-namespace:OnlineCourseApp.Mobile.Views" xmlns:x1="clr-namespace:System.Drawing;assembly=System.Drawing"
+             x:Class="OnlineCourseApp.Mobile.Views.ReviewPage">
+    <ContentPage.BindingContext>
+        <viewModel:CourseReviewViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="22, 30">
+            <Label 
+                BindingContext="{Binding Course}"
+                      Grid.Row="0"
+                    Grid.Column="0"
+                     HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding CourseName}" FontSize="22" TextColor="Black"/>
+
+            <StackLayout Margin="0,10,0,0">
+                <customcontrol:RattingBar x:Name="customRattingBar" HorizontalOptions="Start"  ImageWidth="25" ImageHeight="25"     Command="{Binding rattingBarCommand}" SelectedStarValue="1"   FillStarImage="fillStar.png" EmptyStarImage="emptyStar.png"   />
+                <Label Text="{Binding Source={x:Reference customRattingBar}, Path=SelectedStarValue,StringFormat='Selected star is: {0}'}"  HorizontalTextAlignment="Start" />
+            </StackLayout>
+            <StackLayout Padding="5,10" Margin="0,15,0,0">
+                <Label Text="Comment" FontSize="16" Margin="0,0,0,10"/>
+                <Editor Text="{Binding Comment}" Keyboard="Plain" AutoSize="TextChanges" MaxLength="180" />
+            </StackLayout>
+            <StackLayout>
+                <Button HorizontalOptions="End" WidthRequest="120" Command="{Binding clickCommand}"  CommandParameter="{x:Reference Name=customRattingBar}" Text="Save" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

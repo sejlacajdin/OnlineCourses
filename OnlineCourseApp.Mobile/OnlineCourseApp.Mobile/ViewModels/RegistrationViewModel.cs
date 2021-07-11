@@ -71,7 +71,11 @@ namespace OnlineCourseApp.Mobile.ViewModels
         {
             IsBusy = true;
 
-          
+            var usersName = await _serviceUsers.Get<List<Model.Users>>(new UsersSearchRequest { UserName = Username });
+            var usersEmail = await _serviceUsers.Get<List<Model.Users>>(new UsersSearchRequest { Email = Email });
+
+            if (usersName.Count == 0 && usersEmail.Count == 0)
+            {
                 var request = new UsersInsertRequest()
                 {
                     FirstName = Firstname,
@@ -89,6 +93,17 @@ namespace OnlineCourseApp.Mobile.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Online courses", "Succesfully registered!", "OK");
 
                 Application.Current.MainPage = new LoginPage(); 
+            }
+            else
+            {
+                if(usersName.Count > 0)
+                await Application.Current.MainPage.DisplayAlert("Error", "Username already exist.", "OK");
+
+                if (usersEmail.Count > 0)
+                    await Application.Current.MainPage.DisplayAlert("Error", "Email already exist.", "OK");
+
+                Application.Current.MainPage = new RegistrationPage();
+            }
 
         }
     }

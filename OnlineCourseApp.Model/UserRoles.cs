@@ -10,8 +10,6 @@ namespace OnlineCourseApp.Model
         public int UserId { get; set; }
         public int RoleId { get; set; }
         public DateTime RecordUpdated { get; set; }
-
-        public Roles Role { get; set; }
-        public Users User { get; set; }
+        public  Roles Role { get; set; }
     }
 }

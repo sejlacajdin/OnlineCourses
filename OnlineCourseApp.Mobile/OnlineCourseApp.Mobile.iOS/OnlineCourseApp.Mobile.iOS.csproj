@@ -142,4 +142,8 @@
       <Name>OnlineCourseApp.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\emptyStar.png" />
+    <Content Include="Resources\fillStar.png" />
+  </ItemGroup>
 </Project>

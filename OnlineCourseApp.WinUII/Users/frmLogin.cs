@@ -56,11 +56,24 @@ namespace OnlineCourseApp.WinUI.Users
                
                 var user = await _service.Get<Model.Users>(new UserLoginRequest { Username = txtUsernameEmail.Text, Password = txtPassword.Text } );
 
-                APIService.UserId = user.UserId;
+                bool isProfessor = false;
+                foreach (var item in user.UserRoles)
+                {
+                    if (item.Role.Name == "Professor")
+                        isProfessor = true;
+                };
 
-                this.Hide();
-                frmIndex frm = new frmIndex();
-                frm.Show();
+                if (isProfessor)
+                {
+                    APIService.UserId = user.UserId;
+                    this.Hide();
+                    frmIndex frm = new frmIndex();
+                    frm.Show();
+                }
+                else
+                    MessageBox.Show("You need to have professor account.", "Permission", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
             }
             catch (Exception ex)
             {

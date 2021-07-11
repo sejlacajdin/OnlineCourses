@@ -107,6 +107,7 @@ namespace OnlineCourseApp.WebAPI.Services
         {
             var document = GetById(id);
             Byte[] b = System.IO.File.ReadAllBytes(document.Path);
+
             return new FileDownload
             {
                 File = b,

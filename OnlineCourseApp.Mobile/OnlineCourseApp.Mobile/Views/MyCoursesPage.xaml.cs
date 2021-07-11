@@ -26,9 +26,11 @@ namespace OnlineCourseApp.Mobile.Views
             await model.Init();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             object courseId = ((Button)sender).BindingContext as object;
+
+            await Navigation.PushAsync(new CourseDetailsPage(courseId));
         }
     }
 }

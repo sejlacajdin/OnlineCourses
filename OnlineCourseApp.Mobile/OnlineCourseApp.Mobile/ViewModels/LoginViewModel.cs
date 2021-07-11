@@ -39,15 +39,29 @@ namespace OnlineCourseApp.Mobile.ViewModels
                 APIService.Password = Password;
 
                 var user = await _service.Get<Model.Users>(new UserLoginRequest { Username = Username, Password = Password });
+                bool isStudent = false;
+                foreach (var item in user.UserRoles)
+                {
+                    if (item.Role.Name == "Student")
+                        isStudent = true;
+                };
 
-                APIService.UserId = user.UserId;
+                if (isStudent)
+                {
+                    APIService.UserId = user.UserId;
+                    Application.Current.MainPage = new AppShell();
+                }
+                else
+                {
+                    IsBusy = false;
+                    await Application.Current.MainPage.DisplayAlert("Permission", "You need to have student account.", "OK");
 
+                }
 
-                //await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
-                Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 await Application.Current.MainPage.DisplayAlert("Authentication", "Wrong username or password. Try again.", "OK");
             }
         }
