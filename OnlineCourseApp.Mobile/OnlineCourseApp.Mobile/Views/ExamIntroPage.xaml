@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels"
+             x:Class="OnlineCourseApp.Mobile.Views.ExamIntroPage"
+             >
+    <ContentPage.BindingContext>
+        <viewModel:ExamViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <StackLayout BindingContext="{Binding Exam}">
+                
+            <Label FontSize="35" TextColor="Black" Text="{Binding Title}"
+                HorizontalOptions="CenterAndExpand" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,5,0,0"
+                FontSize="Micro"
+                TextColor="Gray"
+                HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span TextColor="Gray" Text="Time: "/>
+                            <Span TextColor="CornflowerBlue" Text="{Binding TimeLimit} "/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+                <Label Margin="0,20,0,0" TextColor="Gray" Text="{Binding Instructions}"
+                HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <Button 
+                    HorizontalOptions="Center"
+                VerticalOptions="Center"
+                    WidthRequest="190"
+                    FontSize="16"
+                    CornerRadius="5"
+                    Margin="0,20,0,0"
+                    Text="Start" 
+                    Command="{Binding StartCommand}"
+                   BackgroundColor="RoyalBlue" Padding="6" TextColor="White" >
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

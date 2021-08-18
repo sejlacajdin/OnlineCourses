@@ -47,7 +47,7 @@ namespace OnlineCourseApp.WebAPI.Services
         {
             var query = _context.Set<Exam>().AsQueryable();
 
-            if (request?.ExamOwnerId != null)
+            if (request?.ExamOwnerId != 0)
                 query = query.Where(x => x.ExamOwnerId == request.ExamOwnerId);
 
             if (!string.IsNullOrWhiteSpace(request?.Title))
@@ -55,6 +55,9 @@ namespace OnlineCourseApp.WebAPI.Services
 
             if(request?.CourseId != 0)
                 query = query.Where(x => x.CourseId == request.CourseId);
+
+            if (request?.IsActive == true)
+                query = query.Where(x => x.IsActive);
 
             var list = query.ToList();
 

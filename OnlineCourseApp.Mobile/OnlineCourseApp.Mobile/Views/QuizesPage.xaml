@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:local="clr-namespace:OnlineCourseApp.Mobile.Converters" xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard"
+             x:Class="OnlineCourseApp.Mobile.Views.QuizesPage">
+    <ContentPage.BindingContext>
+        <viewModel:QuizViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InvertBooleanConverter x:Key="invertBooleanConverter"></local:InvertBooleanConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Question" Font="Bold"
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+
+                <Label Text="{Binding Question}"
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
+               HeightRequest="100"/>
+                
+                <StackLayout Margin="0,20,0,0" Orientation="Vertical" VerticalOptions="Fill">
+                    <ListView
+                        VerticalOptions="FillAndExpand"
+             SelectionMode="None"
+            x:Name="listView"
+            Margin="0, 5"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Choices}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                     
+                                           <Grid Padding="10,0">
+                                            <CheckBox 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                
+                                                />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="Start"
+                                                HorizontalOptions="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="Black"
+                                                FontSize="14"
+                                                Text="{Binding Text}"/>
+                                                </Grid>
+                                       
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+            </StackLayout>
+
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsLastQuestion, Converter={StaticResource invertBooleanConverter }}"
+                Text="Next" BackgroundColor="#3CB371" HeightRequest="70"
+                Command="{Binding NextCommand}"/>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsLastQuestion}"
+                Text="End" BackgroundColor="#FF6347" HeightRequest="70"
+                Command="{Binding EndCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

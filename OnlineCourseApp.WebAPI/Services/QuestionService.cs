@@ -28,9 +28,29 @@ namespace OnlineCourseApp.WebAPI.Services
             if (!string.IsNullOrWhiteSpace(request?.Question))
                 query = query.Include(q => q.QuestionCategory).Include(q => q.QuestionType).Where(x => x.QuestionCategory.CategoryName.StartsWith(request.Question) || x.QuestionType.TypeName.StartsWith(request.Question));
 
+            if (request?.IsActive == true)
+                query = query.Where(x => x.IsActive);
+
             var list = query.ToList();
 
             return _mapper.Map<List<Questions>>(list);
+        }
+
+        public override Questions Delete(int id)
+        {
+            var entity = _context.Set<Question>().Find(id);
+            if (entity == null)
+                throw new UserException("Question does not exist!");
+
+            _context.Set<Question>().Remove(entity);
+
+            var query = _context.Set<Question>().AsEnumerable().SkipWhile(x => x.QuestionNumber < entity.QuestionNumber);
+            foreach (var item in query)
+                item.QuestionNumber -= 1;
+
+            _context.SaveChanges();
+
+            return _mapper.Map<Questions>(entity);
         }
 
     }

@@ -14,6 +14,5 @@ namespace OnlineCourseApp.Model.Requests.Courses
         public int ProfessorId { get; set; }
         public bool IsActive { get; set; }
         public int CourseSectionId { get; set; }
-
     }
 }

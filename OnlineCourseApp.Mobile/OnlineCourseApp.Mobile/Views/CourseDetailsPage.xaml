@@ -183,6 +183,7 @@
                 <StackLayout>
                     <Grid>
                   <Button 
+                    IsVisible="{Binding IsButtonVisible}"
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="End"

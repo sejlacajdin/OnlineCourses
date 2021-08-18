@@ -39,6 +39,7 @@ namespace OnlineCourseApp.WinUI.Tests
             if (_id.HasValue)
             {
                 var exam = await _serviceExams.GetById<Model.Exams>(_id);
+
                 txtTitle.Text = exam.Title;
                 comboBoxCourses.SelectedValue = exam.CourseId;
                 textBoxInstructions.Text = exam.Instructions;
@@ -78,6 +79,8 @@ namespace OnlineCourseApp.WinUI.Tests
             if (!this.ValidateChildren())
                 return;
 
+            var exam = await _serviceExams.Get<List<Model.Exams>>(new ExamsSearchRequest { CourseId = (int)comboBoxCourses.SelectedValue });
+
             request.Title = txtTitle.Text;
             request.Instructions = textBoxInstructions.Text;
             request.TimeLimit = new TimeSpan(0, dateTimePicker1.Value.Minute, dateTimePicker1.Value.Second).ToString();
@@ -86,16 +89,38 @@ namespace OnlineCourseApp.WinUI.Tests
 
             if (_id.HasValue)
             {
+                bool examExist = false;
+
+                foreach (var item in exam)
+                    if (item.ExamId != _id && item.CourseId == (int)comboBoxCourses.SelectedValue)
+                        examExist = true;
+
+                if (examExist)
+                {
+                    MessageBox.Show("You can't add exam, because there is already exam for this course.");
+                    return;
+                }
+                else
+                {
                 await _serviceExams.Update<Model.Exams>(_id,request);
                  MessageBox.Show("Successfully updated test.");
+                }
             }
             else
             {
-                await _serviceExams.Insert<Model.Exams>(request);
-                MessageBox.Show("Successfully added new test.");
-                this.Close();
-                frmIndex frm = (frmIndex)Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
-                if (frm != null) frm.openChildForm(new frmExam());
+                if(exam.Count > 0)
+                {
+                    MessageBox.Show("You can't add exam, because there is already exam for this course.");
+                    return;
+                }
+                else
+                {
+                    await _serviceExams.Insert<Model.Exams>(request);
+                    MessageBox.Show("Successfully added new test.");
+                    this.Close();
+                    frmIndex frm = (frmIndex)Application.OpenForms.Cast<Form>().Where(x => x.Name == "frmIndex").FirstOrDefault();
+                    if (frm != null) frm.openChildForm(new frmExam());
+                }
             }
         }
 
@@ -134,13 +159,13 @@ namespace OnlineCourseApp.WinUI.Tests
 
         private async void checkBoxActive_CheckedChanged(object sender, EventArgs e)
         {
-                var question = await _serviceQuestions.Get<List<Model.Questions>>(new QuestionsSearchRequest { ExamId = (int)_id });
+                var question = await _serviceQuestions.Get<List<Model.Questions>>(new QuestionsSearchRequest { ExamId = (int)_id, IsActive = true });
 
             if (checkBoxActive.Checked)
             {
                 if(question.Count <= 0)
                 {
-                    MessageBox.Show("You need to have at least one question.");
+                    MessageBox.Show("You need to have at least one active question.");
                     checkBoxActive.CheckState = CheckState.Unchecked;
                     request.IsActive = false;
                 }else

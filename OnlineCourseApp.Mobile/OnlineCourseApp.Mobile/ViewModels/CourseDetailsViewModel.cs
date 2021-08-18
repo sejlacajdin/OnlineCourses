@@ -1,6 +1,8 @@
 ﻿using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Announcements;
 using OnlineCourseApp.Model.Requests.Documents;
+using OnlineCourseApp.Model.Requests.Exams;
+using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.Model.Requests.Videos;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
         private readonly APIService _serviceVideos = new APIService("video");
         private readonly APIService _serviceAnnouncementFilter = new APIService("announcement-filters");
         private readonly APIService _serviceAnnouncement = new APIService("announcements");
+        private readonly APIService _serviceExams = new APIService("exams");
         public CourseDetailsViewModel()
         {
             InitCommand = new Command(async (courseId) => await Init((int)courseId));
@@ -34,6 +37,16 @@ namespace OnlineCourseApp.Mobile.ViewModels
             }
         }
 
+        bool _isButtonVisible = true;
+        public bool IsButtonVisible
+        {
+            get { return _isButtonVisible; }
+            set
+            {
+                SetProperty(ref _isButtonVisible, value);
+            }
+        }
+
         public ICommand InitCommand { get; set; }
         public ObservableCollection<Documents> Documents { get; set; } = new ObservableCollection<Documents>();
         public ObservableCollection<Videos> Videos { get; set; } = new ObservableCollection<Videos>();
@@ -46,8 +59,14 @@ namespace OnlineCourseApp.Mobile.ViewModels
             var document = await _serviceDocuments.Get<List<Documents>>(new DocumentsSearchRequest{ CourseId = courseId});
             var video = await _serviceVideos.Get<List<Videos>>(new VideosSearchRequest { CourseId = courseId });
             var announcementFilters = await _serviceAnnouncementFilter.Get<List<AnnouncementFilters>>(new AnnouncementFiltersSearchRequest { CourseId = courseId });
+            var exams = await _serviceExams.Get<List<Exams>>(new ExamsSearchRequest { CourseId = courseId, IsActive = true });
 
-            if(announcementFilters.Count > 0)
+            if (exams.Count > 0)
+                    IsButtonVisible = true;
+            else
+                IsButtonVisible = false;
+
+            if (announcementFilters.Count > 0)
             {
                 foreach (var item in announcementFilters)
                 {
