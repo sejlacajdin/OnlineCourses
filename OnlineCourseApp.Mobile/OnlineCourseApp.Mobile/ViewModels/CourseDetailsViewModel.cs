@@ -22,6 +22,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
         private readonly APIService _serviceAnnouncementFilter = new APIService("announcement-filters");
         private readonly APIService _serviceAnnouncement = new APIService("announcements");
         private readonly APIService _serviceExams = new APIService("exams");
+        private readonly APIService _serviceExamAnswers = new APIService("exam-answers");
         public CourseDetailsViewModel()
         {
             InitCommand = new Command(async (courseId) => await Init((int)courseId));
@@ -47,6 +48,26 @@ namespace OnlineCourseApp.Mobile.ViewModels
             }
         }
 
+        bool _isScoreVisible = true;
+        public bool IsScoreVisible
+        {
+            get { return _isScoreVisible; }
+            set
+            {
+                SetProperty(ref _isScoreVisible, value);
+            }
+        }
+
+        string _score;
+        public string Score
+        {
+            get { return _score; }
+            set
+            {
+                SetProperty(ref _score, value);
+            }
+        }
+
         public ICommand InitCommand { get; set; }
         public ObservableCollection<Documents> Documents { get; set; } = new ObservableCollection<Documents>();
         public ObservableCollection<Videos> Videos { get; set; } = new ObservableCollection<Videos>();
@@ -62,9 +83,27 @@ namespace OnlineCourseApp.Mobile.ViewModels
             var exams = await _serviceExams.Get<List<Exams>>(new ExamsSearchRequest { CourseId = courseId, IsActive = true });
 
             if (exams.Count > 0)
+            {
+            var examResults = await _serviceExamAnswers.Get<double>(new ExamAnsweredQuestionsSearchRequest { StudentId = APIService.UserId, ExamId = exams[0].ExamId });
+                if(examResults == -1)
+                {
                     IsButtonVisible = true;
+                    IsScoreVisible = false;
+                }
+                else
+                {
+                    Score = examResults.ToString()+'%';
+                    IsButtonVisible = false;
+                    IsScoreVisible = true;
+                }
+            }
             else
+            {
                 IsButtonVisible = false;
+            IsScoreVisible = true;
+
+            }
+
 
             if (announcementFilters.Count > 0)
             {

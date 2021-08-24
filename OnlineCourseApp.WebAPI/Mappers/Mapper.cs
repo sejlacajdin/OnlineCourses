@@ -4,6 +4,7 @@ using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.CourseParticipants;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Documents;
+using OnlineCourseApp.Model.Requests.ExamAnsweredQuestions;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
 using OnlineCourseApp.Model.Requests.Users;
@@ -45,6 +46,9 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.CourseParticipant, CourseParticipantsInsertRequest>().ReverseMap();
             CreateMap<Database.DocumentDownloaded, Model.DocumentsDownloaded>();
             CreateMap<Database.DocumentDownloaded, DocumentsDownloadedInsertRequest>().ReverseMap();
+            CreateMap<Database.ExamAnsweredQuestion, Model.ExamAnsweredQuestions>();
+            CreateMap<Database.ExamAnsweredQuestion, ExamAnsweredQuestionsInsertRequest>().ReverseMap();
+
 
         }
     }

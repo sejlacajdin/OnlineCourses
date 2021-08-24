@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:OnlineCourseApp.Mobile.ViewModels" xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard" xmlns:local="clr-namespace:OnlineCourseApp.Mobile.Converters"
              x:Class="OnlineCourseApp.Mobile.Views.CourseDetailsPage">
     <ContentPage.BindingContext>
         <viewModel:CourseDetailsViewModel/>
@@ -16,7 +16,7 @@
                     VerticalTextAlignment="Center"
                     Text="{Binding CourseName}" FontSize="22" TextColor="Black"/>
 
-                <Button 
+                    <Button 
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="End"
@@ -25,9 +25,25 @@
                     CornerRadius="5"
                     Text="Give review" Clicked="Button_Clicked_1"
                    BackgroundColor="RoyalBlue" Padding="6" TextColor="White" ></Button>
-            </Grid>
+                </Grid>
+                        <StackLayout
+                              IsVisible="{Binding IsScoreVisible}"
+                            Margin="0,20,0,0">
 
-            <StackLayout Margin="0,20,0,0">
+                    <Label
+                      HorizontalTextAlignment="Start"
+                      VerticalTextAlignment="Center"
+                        FontSize="20">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span TextColor="Gray" Text="Exam score: "/>
+                                <Span TextColor="CornflowerBlue" Text="{Binding Score}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                        <StackLayout Margin="0,20,0,0">
                 <Label Text="Documents" FontSize="18"/>
                 <ListView
             x:Name="listView"

@@ -28,5 +28,10 @@ namespace OnlineCourseApp.Mobile.Views
             base.OnAppearing();
             model.InitCommand.Execute(_game);
         }
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            model.QuestionNumberCommand.Execute(null);
+        }
     }
 }

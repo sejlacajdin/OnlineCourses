@@ -19,34 +19,5 @@ namespace OnlineCourseApp.WebAPI.Controllers
         public CourseController(IBaseCRUDService<Model.Courses, CoursesSearchRequest, CoursesInsertRequest, CoursesInsertRequest> service) : base(service)
         {
         }
-        //[HttpGet]
-        //public ActionResult<List<Courses>> Get([FromQuery] CoursesSearchRequest request)
-        //{
-        //    return _courseService.Get(request);
-        //}
-
-        //[HttpGet("{id}")]
-        //public ActionResult<Courses> GetById(int id)
-        //{
-        //    return _courseService.GetById(id);
-        //}
-
-        //[HttpDelete("{id}")]
-        //public ActionResult<Courses> Delete(int id)
-        //{
-        //    return _courseService.Delete(id);
-        //}
-
-        //[HttpPost]
-        //public Model.Courses Insert(CoursesInsertRequest request)
-        //{
-        //    return _courseService.Insert(request);
-        //}
-
-        //[HttpPut("{id}")]
-        //public Model.Courses Update(int id, CoursesInsertRequest request)
-        //{
-        //    return _courseService.Update(id, request);
-        //}
     }
 }

@@ -5,11 +5,7 @@ using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
 using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -55,10 +51,11 @@ namespace OnlineCourseApp.Mobile.ViewModels
         public async void OnStartClick()
         {
             _game.Questions = await _serviceQuestions.Get<List<Models.Questions>>(new QuestionsSearchRequest { ExamId = Exam.ExamId, IsActive = true });
+            _game.StartTime = Exam.TimeLimit;
 
             foreach (var item in _game.Questions)
             {
-                item.Choices = await _serviceChoices.Get<List<Choices>>(new ChoicesSearchRequest { QuestionId = item.QuestionId });
+                item.Choices = await _serviceChoices.Get<List<Models.Choices>>(new ChoicesSearchRequest { QuestionId = item.QuestionId });
             }
             Application.Current.MainPage = new NavigationPage(new QuizesPage(_game));
         }
