@@ -84,9 +84,11 @@ namespace OnlineCourseApp.Mobile.ViewModels
 
             if (exams.Count > 0)
             {
+
             var examResults = await _serviceExamAnswers.Get<double>(new ExamAnsweredQuestionsSearchRequest { StudentId = APIService.UserId, ExamId = exams[0].ExamId });
                 if(examResults == -1)
                 {
+                    Score = "";
                     IsButtonVisible = true;
                     IsScoreVisible = false;
                 }
@@ -99,6 +101,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
             }
             else
             {
+                Score = "";
                 IsButtonVisible = false;
             IsScoreVisible = true;
 

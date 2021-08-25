@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +15,14 @@ namespace OnlineCourseApp.Mobile.Views
         public double Score { get; set; }
         public ExamFinishPage(double score)
         {
-            this.Score = score;
+            Score = score;
             InitializeComponent();
             scoreTxt.Text = score.ToString() + '%';
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-             Application.Current.MainPage = new MyCoursesPage();
-
+            Application.Current.MainPage = new AppShell();
         }
     }
 }

@@ -3,6 +3,8 @@ using OnlineCourseApp.Mobile.Views;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.ExamAnsweredQuestions;
 using Prism.Commands;
+using Prism.Navigation;
+using Prism.Navigation.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +19,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
     {
         private readonly APIService _serviceExamAnswers = new APIService("exam-answers");
         public GameManager _game;
+        private bool buttonClick = false;
 
         private string _question;
         public string Question
@@ -82,6 +85,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
 
         public QuizViewModel()
         {
+            buttonClick = false;
             QuestionNumberList = new ObservableCollection<string>();
          
             InitCommand = new Command((game) => Init((GameManager)game));
@@ -114,7 +118,8 @@ namespace OnlineCourseApp.Mobile.ViewModels
                     return true;
                 }else
                 {
-                     OnEndClick();
+                    if(!buttonClick) OnEndClick();
+
                     return false;
                 }
             });
@@ -134,6 +139,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
 
         public async void OnEndClick()
         {
+            buttonClick = true;   
             foreach (var item in _game.Questions)
             {
                 foreach (var choice in item.Choices)
@@ -154,7 +160,9 @@ namespace OnlineCourseApp.Mobile.ViewModels
 
             var score = await _serviceExamAnswers.Get<double>(new ExamAnsweredQuestionsSearchRequest { StudentId = APIService.UserId, ExamId = _game.Questions[0].ExamId });
 
-            Application.Current.MainPage = new ExamFinishPage(score);
+            Application.Current.MainPage = new NavigationPage(new ExamFinishPage(score));
+            //await Application.Current.MainPage.Navigation.PushAsync(new ExamFinishPage(score));
+
         }
 
         public void ShowQuestionByNumber()
