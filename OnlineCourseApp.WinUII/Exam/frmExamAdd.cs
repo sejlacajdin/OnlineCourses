@@ -1,8 +1,11 @@
 ﻿using Flurl.Http;
+using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Choices;
+using OnlineCourseApp.Model.Requests.CourseParticipants;
 using OnlineCourseApp.Model.Requests.Courses;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
+using OnlineCourseApp.Model.Requests.Users;
 using OnlineCourseApp.WinUI.Choices;
 using OnlineCourseApp.WinUI.Questions;
 using System;
@@ -23,6 +26,10 @@ namespace OnlineCourseApp.WinUI.Tests
         private readonly APIService _serviceExams = new APIService("exams");
         private readonly APIService _serviceQuestions = new APIService("questions");
         private readonly APIService _serviceChoices = new APIService("choices");
+        private readonly APIService _serviceCourseParticipant = new APIService("course-participants");
+        private readonly APIService _serviceExamAnswers = new APIService("exam-answers");
+        private readonly APIService _serviceUsers = new APIService("users");
+
         private int? _id = null;
         public frmExamAdd(int? id = null)
         {
@@ -34,6 +41,7 @@ namespace OnlineCourseApp.WinUI.Tests
         {
             await LoadCourses();
             await LoadQuestions();
+            await LoadPax();
             lblTest.Text = _id ==null? "Add Test" : "Edit test";
 
             if (_id.HasValue)
@@ -71,6 +79,34 @@ namespace OnlineCourseApp.WinUI.Tests
 
             if (questions != null)
                 dgvQuestions.DataSource = questions;
+        }
+
+        private async Task LoadPax()
+        {
+             List<UserExamResult> results = new List<UserExamResult>();
+
+            var exam = await _serviceExams.GetById<Model.Exams>(_id);
+            var courseParticipant = await _serviceCourseParticipant.Get<List<CourseParticipants>>(new CourseParticipantsSearchRequest { CourseId = exam.CourseId });
+
+            if(courseParticipant.Count > 0)
+            {
+                foreach (var item in courseParticipant)
+                {
+                    var user = await _serviceUsers.GetById<Model.Users>(item.StudentId);
+                 var examResults = await _serviceExamAnswers.Get<double>(new ExamAnsweredQuestionsSearchRequest { StudentId = item.StudentId, ExamId = (int)_id });
+
+                    results.Add(new UserExamResult
+                    {
+                        Name = user.FirstName + ' '+ user.LastName,
+                        Result = examResults
+
+                    });
+
+                }
+                dgvResults.DataSource = results;
+
+            }
+
         }
 
         ExamsInsertRequest request = new ExamsInsertRequest();
