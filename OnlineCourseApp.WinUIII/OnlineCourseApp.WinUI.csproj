@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>OnlineCourseApp.WinUI</AssemblyName>
+    <RootNamespace>OnlineCourseApp.WinUI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Reports\rptCourses.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\rptCourses.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl.Http" Version="3.0.1" />
+    <PackageReference Include="Grpc.Core" Version="2.37.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineCourseApp.Model\OnlineCourseApp.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AnalysisServices.AppLocal">
+      <HintPath>..\..\..\..\..\Program Files (x86)\microsoft sql server\150\dts\tasks\microsoft.analysisservices.applocal.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Reports\dsCourses.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsCourses.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Reports\dsCourses.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCourses.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -16,6 +16,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.900.148" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.0" />
