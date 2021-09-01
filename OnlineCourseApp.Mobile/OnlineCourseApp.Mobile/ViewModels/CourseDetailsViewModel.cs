@@ -1,5 +1,6 @@
 ﻿using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Announcements;
+using OnlineCourseApp.Model.Requests.CourseParticipants;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.Model.Requests.Exams;
 using OnlineCourseApp.Model.Requests.Questions;
@@ -23,6 +24,8 @@ namespace OnlineCourseApp.Mobile.ViewModels
         private readonly APIService _serviceAnnouncement = new APIService("announcements");
         private readonly APIService _serviceExams = new APIService("exams");
         private readonly APIService _serviceExamAnswers = new APIService("exam-answers");
+        private readonly APIService _serviceCourseRecommender = new APIService("course-recommender");
+        private readonly APIService _serviceCourseParticipant = new APIService("course-participants");
         public CourseDetailsViewModel()
         {
             InitCommand = new Command(async (courseId) => await Init((int)courseId));
@@ -72,6 +75,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
         public ObservableCollection<Documents> Documents { get; set; } = new ObservableCollection<Documents>();
         public ObservableCollection<Videos> Videos { get; set; } = new ObservableCollection<Videos>();
         public ObservableCollection<Announcements> Announcements { get; set; } = new ObservableCollection<Announcements>();
+        public ObservableCollection<Courses> RecommendedCourses { get; set; } = new ObservableCollection<Courses>();
 
         public async Task Init(int courseId)
         {
@@ -81,6 +85,8 @@ namespace OnlineCourseApp.Mobile.ViewModels
             var video = await _serviceVideos.Get<List<Videos>>(new VideosSearchRequest { CourseId = courseId });
             var announcementFilters = await _serviceAnnouncementFilter.Get<List<AnnouncementFilters>>(new AnnouncementFiltersSearchRequest { CourseId = courseId });
             var exams = await _serviceExams.Get<List<Exams>>(new ExamsSearchRequest { CourseId = courseId, IsActive = true });
+            var recommendedCourses = await _serviceCourseRecommender.GetById<List<Courses>>(courseId);
+            var courseParticipant = await _serviceCourseParticipant.Get<List<CourseParticipants>>(new CourseParticipantsSearchRequest { StudentId = APIService.UserId });
 
             if (exams.Count > 0)
             {
@@ -123,6 +129,12 @@ namespace OnlineCourseApp.Mobile.ViewModels
 
             foreach (var item in video)
                 Videos.Add(item);
+
+            foreach (var item in recommendedCourses)
+            {
+                if(courseParticipant.Exists(c => c.CourseId == item.CourseId) == false)
+                RecommendedCourses.Add(item);
+            }
 
         }
     }

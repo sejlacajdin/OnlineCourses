@@ -5,6 +5,11 @@
     <ContentPage.BindingContext>
         <viewModel:CourseDetailsViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView BackgroundColor="White" VerticalOptions="Center">
             <StackLayout Padding="22, 20">
@@ -210,6 +215,111 @@
                    BackgroundColor="RoyalBlue" Padding="6" TextColor="White" ></Button>
                     </Grid>
                 </StackLayout>
+
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="Recommended courses" FontSize="18"/>
+                        <ListView
+            x:Name="listView5"
+            Margin="20, 10"
+            HasUnevenRows="True"
+            ItemsSource="{Binding RecommendedCourses}"
+            SeparatorVisibility="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="8,8,8,8" Orientation="Vertical">
+                                        <cardView:CardView
+                                BackgroundColor="White"
+                                CardViewHasShadow="True"
+                                CardViewOutlineColor="LightGray"
+                                CardViewOutlineColorThickness="4"
+                                HeightRequest="320"
+                                    Margin="0,10,0,10">
+                                            <cardView:CardView.CardViewContent>
+                                                <StackLayout
+                                        Padding="10"
+                                       BackgroundColor="White"
+                                        HorizontalOptions="Center"
+                                        Spacing="10"
+                                        VerticalOptions="Center">
+                                                    <Image
+                                                HeightRequest="90" Source="{Binding Picture, Converter={StaticResource imgConv}}" />
+                                                    <BoxView
+                                            HeightRequest="1"
+                                            WidthRequest="200"
+                                            Color="LightGray" />
+                                                    <Grid>
+                                                        <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="Gray"
+                                                Text="{Binding CourseName}" />
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                FontSize="Micro"
+                                                TextColor="Gray"                                 
+                                                Text="{Binding Notes}" />
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="15,0,0,0"
+                                                FontSize="Micro"
+                                                TextColor="Gray">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span TextColor="Gray" Text="Rating: "/>
+                                                                    <Span TextColor="CornflowerBlue" Text="{Binding FinalRating} "/>
+                                                                    <Span TextColor="Gray" Text=" Stars"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </Grid>
+                                                    <Grid
+                                                Margin="0,15,0,10">
+                                                        <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                FontSize="Small"
+                                                HorizontalTextAlignment="Start"
+                                                >
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span TextColor="Gray" FontSize="18" Text="Price: "/>
+                                                                    <Span TextColor="Black" FontSize="18" Text="{Binding Price}"/>
+                                                                    <Span TextColor="Black" FontSize="18" Text="$"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <Button
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Text="Buy now"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="End"
+                                                    Padding="25, 5"
+                                                    BackgroundColor="CornflowerBlue"
+                                                    Clicked="Button_Clicked"
+                                                    BindingContext="{Binding CourseId}"
+                                                    />
+                                                    </Grid>
+                                                </StackLayout>
+                                            </cardView:CardView.CardViewContent>
+                                        </cardView:CardView>
+                                    </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
 
         </StackLayout>
             </ScrollView>
