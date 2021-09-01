@@ -96,6 +96,7 @@ namespace OnlineCourseApp.WebAPI.Services
         public Users Insert(UsersInsertRequest request)
         {
             var entity = _mapper.Map<Database.User>(request);
+            entity.Status = true;
             if (request.Password != request.PasswordConfirmation)
                 throw new UserException("Passwords are not equal!");
 

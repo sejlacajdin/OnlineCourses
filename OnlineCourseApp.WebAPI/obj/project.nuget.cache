@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yS7i3Me8GCOhx9MIT48YRs3ALEmJ06foEIlcsxX5vpdEgQ/58/ywhfsaUGPSOWuuwCGlGJ9mylPXMqfjjHZhcA==",
+  "dgSpecHash": "E5RA7WI73tuNIWhmd1+YVYnmPVKfa5QBJaqHPJFWfAJh12xu3rR5uAcRsQLSOGwulRBTxQJClj/NMI/0bINELQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sejla\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\sejla\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

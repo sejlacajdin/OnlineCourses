@@ -40,8 +40,7 @@ namespace OnlineCourseApp.WinUI.Users
                 Phone = txtPhone.Text,
                 Password = txtPassword.Text,
                 PasswordConfirmation = txtConfirmPassword.Text,
-                Role = "Professor",
-                Status = true
+                Role = "Professor"
             };
 
             await _serviceUsers.Register<Model.Users>(request);
@@ -126,12 +125,12 @@ namespace OnlineCourseApp.WinUI.Users
                 errorProvider.SetError(txtPassword, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (txtPassword.Text.Length< 8 )
+            else if (txtPassword.Text.Length < 8)
             {
                 errorProvider.SetError(txtPassword, "Minimum length is 8 characters");
                 e.Cancel = true;
             }
-            else if(!Regex.Match(txtPassword.Text, "^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$").Success)
+            else if (!Regex.Match(txtPassword.Text, "^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$").Success)
             {
                 errorProvider.SetError(txtPassword, "Passwords must contain at 3 of 4 of the following: upper case (A-Z), lower case (a-z), number (0-9) and special character (e.g. !@#$%^&*)");
                 e.Cancel = true;

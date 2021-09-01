@@ -70,7 +70,7 @@ namespace OnlineCourseApp.WebAPI
 
             });
 
-            var connection = @"Server=.; Database=160065; Trusted_Connection=True;";
+            var connection = Configuration.GetConnectionString("OnlineCourseApp");
             services.AddDbContext<_160065Context>(options => options.UseSqlServer(connection));
 
             services.AddAuthentication("BasicAuthentication")

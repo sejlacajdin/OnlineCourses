@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t/LjREmXaXcjZe9Cq54tzpjiBv/mW6W3Zh5MakdX0ISUiDVmB4BC6l6+JNzLHZZJblv1D3brcmWpzFAf9tbjUA==",
+  "dgSpecHash": "Tti0uPP6z+eBCk1vXWBXmF+50D7ZPiKn9kh7N8Jtj1Llsg5a4WNNwoQzWftkyIVLxmEsVaolcbwlELZMzxpO+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
+  "projectFilePath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sejla\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.2\\microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "C:\\Users\\sejla\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

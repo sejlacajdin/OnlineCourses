@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj": {}
+    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
+    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
+        "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
         "projectName": "OnlineCourseApp.Model",
-        "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
+        "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
         "packagesPath": "C:\\Users\\sejla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\obj\\",
+        "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -141,14 +141,14 @@
         }
       }
     },
-    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj": {
+    "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
         "projectName": "OnlineCourseApp.WebAPI",
-        "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
+        "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\OnlineCourseApp.WebAPI.csproj",
         "packagesPath": "C:\\Users\\sejla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -171,8 +171,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
-                "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj"
+              "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj": {
+                "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj"
               }
             }
           }

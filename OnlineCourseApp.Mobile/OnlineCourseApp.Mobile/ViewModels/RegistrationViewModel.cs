@@ -85,8 +85,7 @@ namespace OnlineCourseApp.Mobile.ViewModels
                     Phone = Phone,
                     Password = Password,
                     PasswordConfirmation = PasswordConfirmation,
-                    Role = "Student",
-                    Status = true
+                    Role = "Student"
                 };
 
                 await _serviceUsers.Register<Model.Users>(request);

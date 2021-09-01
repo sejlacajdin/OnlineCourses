@@ -1120,11 +1120,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
+      "projectUniqueName": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
       "projectName": "OnlineCourseApp.Model",
-      "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
+      "projectPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\OnlineCourseApp.Model.csproj",
       "packagesPath": "C:\\Users\\sejla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp.Model\\obj\\",
+      "outputPath": "C:\\Users\\sejla\\Desktop\\rs2\\OnlineCourseApp\\OnlineCourseApp.Model\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
