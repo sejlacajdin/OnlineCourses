@@ -1,4 +1,5 @@
-﻿using OnlineCourseApp.Model.Requests.Choices;
+﻿using OnlineCourseApp.Model;
+using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Questions;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace OnlineCourseApp.WinUI.Choices
     {
         private readonly APIService _serviceChoices = new APIService("choices");
         private readonly APIService _serviceQuestions = new APIService("questions");
+        private readonly APIService _serviceExamAnsweredQuestions = new APIService("exam-answers");
         private int? _questionId = null;
         public frmChoices(int? questionId = null)
         {
@@ -44,7 +46,15 @@ namespace OnlineCourseApp.WinUI.Choices
                 if (dialogResult == DialogResult.Yes)
                 {
                     var id = dgvChoices.SelectedRows[0].Cells[0].Value;
+                    var choiceExist = await _serviceExamAnsweredQuestions.Get<double>(new ExamAnsweredQuestionsSearchRequest { QuestionId = (int)_questionId, ChoiceId = (int)id });
+
+                    if(choiceExist == -1)
                     await _serviceChoices.Delete<Model.Choices>(id);
+                    else
+                    {
+                        MessageBox.Show("You can't delete this choice. There are results of exam.");
+                        return;
+                    }
 
                     var search = new ChoicesSearchRequest()
                     {

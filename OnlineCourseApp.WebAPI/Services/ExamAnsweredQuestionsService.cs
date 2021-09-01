@@ -26,6 +26,15 @@ namespace OnlineCourseApp.WebAPI.Services
             if (query.ToList().Count == 0)
                 return -1;
 
+            if(request?.QuestionId != 0 && request?.ChoiceId != 0)
+            {
+                query = query.Where(x => x.QuestionId == request.QuestionId && x.ChoiceId == request.ChoiceId);
+                if (query.ToList().Count > 0)
+                    return 1;
+                else return -1;
+            }
+
+
             if (request?.StudentId != 0 && request?.ExamId != 0)
             {
                 query = query.Include(x => x.Question).Where(x =>x.StudentId == request.StudentId && x.Question.ExamId == request.ExamId);
