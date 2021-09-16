@@ -18,16 +18,16 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=onlinecourseapp-sql,1433;Database=eProdajaVjezbe;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:OnlineCourseApp=Server=onlinecourseapp-sql,1433;Database=160065;User=sa;Password=QWElkj132!;ConnectRetryCount=0
     ports:
-      - 5010:5010
+      - 64315:5010
     networks:
-      - eprodajanet      
+      - onlinecoursenet    
     links:
-      - eprodaja-sql
+      - onlinecourseapp-sql
     depends_on:
-      - eprodaja-sql
+      - onlinecourseapp-sql
       
 networks:
-  eprodajanet:
+ onlinecoursenet:
     driver: bridge   
