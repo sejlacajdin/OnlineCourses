@@ -13,7 +13,7 @@ services:
     networks:
       - onlinecoursenet
 
-  eprodaja-api:
+  onlinecourseapp-api:
     restart: unless-stopped
     build:
       context: .
