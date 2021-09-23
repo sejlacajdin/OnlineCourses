@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>OnlineCourseApp.WinUI</AssemblyName>
     <RootNamespace>OnlineCourseApp.WinUI</RootNamespace>
@@ -20,7 +20,8 @@
     <PackageReference Include="Flurl.Http" Version="3.0.1" />
     <PackageReference Include="Grpc.Core" Version="2.37.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1440.0" />
+    <PackageReference Include="Stripe.net" Version="39.63.0" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
@@ -29,9 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.AnalysisServices.AppLocal">
-      <HintPath>..\..\..\..\..\Program Files (x86)\microsoft sql server\150\dts\tasks\microsoft.analysisservices.applocal.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.DirectoryServices" />
   </ItemGroup>

@@ -36,7 +36,7 @@ namespace OnlineCourseApp.Mobile.Views
             {
                 var tokenOptions = new TokenCreateOptions
                 {
-                    Card = new CreditCardOptions
+                    Card = new TokenCardOptions
                     {
                         Number = CreditCardNumber.Text,
                         ExpMonth = Convert.ToInt64(CreditCardExpMonth.Text),

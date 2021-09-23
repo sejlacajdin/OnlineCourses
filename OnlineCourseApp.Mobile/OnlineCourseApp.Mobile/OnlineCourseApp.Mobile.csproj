@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationIcon />
@@ -19,8 +19,7 @@
     <PackageReference Include="Flurl.Http" Version="3.0.1" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Prism.Forms" Version="8.1.97" />
-    <PackageReference Include="Stripe" Version="1.12.0" />
-    <PackageReference Include="Stripe.net" Version="37.34.0" />
+    <PackageReference Include="Stripe.net" Version="39.63.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
     <PackageReference Include="XamarinForms.CardView.NetStandard" Version="1.1.1.5" />
