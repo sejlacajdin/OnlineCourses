@@ -29,6 +29,7 @@ using OnlineCourseApp.Model.Requests.Choices;
 using OnlineCourseApp.Model.Requests.Announcements;
 using OnlineCourseApp.Model.Requests.CourseParticipants;
 using OnlineCourseApp.Model.Requests.ExamAnsweredQuestions;
+using OnlineCourseApp.Model.Requests.TransactionPayment;
 
 namespace OnlineCourseApp.WebAPI
 {
@@ -66,8 +67,6 @@ namespace OnlineCourseApp.WebAPI
                         new string[]{}
                     }
                 });
-                //c.CustomSchemaIds(type => type.ToString());
-
             });
 
             var connection = Configuration.GetConnectionString("OnlineCourseApp");
@@ -96,6 +95,8 @@ namespace OnlineCourseApp.WebAPI
             services.AddScoped<IDocumentDownloadedService, DocumentDownloadedService>();
             services.AddScoped<IExamAnsweredQuestionService, ExamAnsweredQuestionsService>();
             services.AddScoped<IRecommenderService, RecommenderService>();
+            services.AddScoped<IBaseCRUDService<Model.TransactionPayment, object, TransactionPaymentInsertRequest, TransactionPaymentInsertRequest>, TransactionPaymentService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

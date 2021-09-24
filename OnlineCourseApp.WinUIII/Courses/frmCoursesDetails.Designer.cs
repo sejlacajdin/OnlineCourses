@@ -229,7 +229,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.dgvDocuments.RowHeadersWidth = 51;
             this.dgvDocuments.RowTemplate.Height = 25;
             this.dgvDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocuments.Size = new System.Drawing.Size(675, 135);
+            this.dgvDocuments.Size = new System.Drawing.Size(810, 135);
             this.dgvDocuments.TabIndex = 14;
             this.dgvDocuments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocuments_CellClick);
             this.dgvDocuments.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvDocuments_MouseDoubleClick);
@@ -306,7 +306,7 @@ namespace OnlineCourseApp.WinUI.Courses
             this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnUpload.ForeColor = System.Drawing.Color.White;
-            this.btnUpload.Location = new System.Drawing.Point(625, 448);
+            this.btnUpload.Location = new System.Drawing.Point(759, 449);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(86, 25);
             this.btnUpload.TabIndex = 18;

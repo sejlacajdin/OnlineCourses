@@ -39,7 +39,6 @@ namespace OnlineCourseApp.WinUI.Announcements
             bs.DataSource = courses;
 
             cmbCourses.DataSource = bs;
-            //cmbCourses.DataSource = list;
             cmbCourses.DisplayMember = "CourseName";
             cmbCourses.ValueMember = "CourseId";
 

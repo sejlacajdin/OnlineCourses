@@ -15,6 +15,7 @@ namespace OnlineCourseApp.WebAPI.Database
             DocumentDownloadeds = new HashSet<DocumentDownloaded>();
             ExamAnsweredQuestions = new HashSet<ExamAnsweredQuestion>();
             Exams = new HashSet<Exam>();
+            TransactionPayments = new HashSet<TransactionPayment>();
             UserLogs = new HashSet<UserLog>();
             UserRoles = new HashSet<UserRole>();
         }
@@ -35,6 +36,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public virtual ICollection<DocumentDownloaded> DocumentDownloadeds { get; set; }
         public virtual ICollection<ExamAnsweredQuestion> ExamAnsweredQuestions { get; set; }
         public virtual ICollection<Exam> Exams { get; set; }
+        public virtual ICollection<TransactionPayment> TransactionPayments { get; set; }
         public virtual ICollection<UserLog> UserLogs { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }

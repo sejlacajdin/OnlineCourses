@@ -34,6 +34,7 @@ namespace OnlineCourseApp.WebAPI.Database
         public virtual DbSet<QuestionCategory> QuestionCategories { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<TransactionPayment> TransactionPayments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserLog> UserLogs { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
@@ -144,7 +145,7 @@ namespace OnlineCourseApp.WebAPI.Database
 
                 entity.Property(e => e.Text)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(100);
 
                 entity.HasOne(d => d.Question)
                     .WithMany(p => p.Choices)
@@ -161,11 +162,11 @@ namespace OnlineCourseApp.WebAPI.Database
 
                 entity.Property(e => e.CourseName)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(150);
 
                 entity.Property(e => e.CourseSectionId).HasColumnName("CourseSectionID");
 
-                entity.Property(e => e.Notes).HasMaxLength(100);
+                entity.Property(e => e.Notes).HasMaxLength(300);
 
                 entity.Property(e => e.ProfessorId).HasColumnName("ProfessorID");
 
@@ -335,11 +336,11 @@ namespace OnlineCourseApp.WebAPI.Database
 
                 entity.Property(e => e.Instructions)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(300);
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(150);
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.Exams)
@@ -362,7 +363,7 @@ namespace OnlineCourseApp.WebAPI.Database
 
                 entity.Property(e => e.Answer)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(150);
 
                 entity.Property(e => e.ChoiceId).HasColumnName("ChoiceID");
 
@@ -403,7 +404,7 @@ namespace OnlineCourseApp.WebAPI.Database
 
                 entity.Property(e => e.Text)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(200);
 
                 entity.HasOne(d => d.Exam)
                     .WithMany(p => p.Questions)
@@ -455,6 +456,33 @@ namespace OnlineCourseApp.WebAPI.Database
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<TransactionPayment>(entity =>
+            {
+                entity.ToTable("TransactionPayment");
+
+                entity.Property(e => e.TransactionPaymentId).HasColumnName("TransactionPaymentID");
+
+                entity.Property(e => e.CourseId).HasColumnName("CourseID");
+
+                entity.Property(e => e.StudentId).HasColumnName("StudentID");
+
+                entity.Property(e => e.Token)
+                    .IsRequired()
+                    .HasMaxLength(300);
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.TransactionPayments)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TransactionPayment_Course");
+
+                entity.HasOne(d => d.Student)
+                    .WithMany(p => p.TransactionPayments)
+                    .HasForeignKey(d => d.StudentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TransactionPayment_Student");
             });
 
             modelBuilder.Entity<User>(entity =>

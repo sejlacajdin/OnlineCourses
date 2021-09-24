@@ -377,6 +377,34 @@ namespace OnlineCourseApp.WebAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TransactionPayment",
+                columns: table => new
+                {
+                    TransactionPaymentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Price = table.Column<double>(type: "float", nullable: true),
+                    Token = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransactionPayment", x => x.TransactionPaymentID);
+                    table.ForeignKey(
+                        name: "FK_TransactionPayment_Course",
+                        column: x => x.CourseID,
+                        principalTable: "Course",
+                        principalColumn: "CourseID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TransactionPayment_Student",
+                        column: x => x.StudentID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Video",
                 columns: table => new
                 {
@@ -492,7 +520,7 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     StudentID = table.Column<int>(type: "int", nullable: false),
                     QuestionID = table.Column<int>(type: "int", nullable: false),
                     ChoiceID = table.Column<int>(type: "int", nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     MarkScored = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -644,6 +672,16 @@ namespace OnlineCourseApp.WebAPI.Migrations
                 column: "QuestionTypeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TransactionPayment_CourseID",
+                table: "TransactionPayment",
+                column: "CourseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionPayment_StudentID",
+                table: "TransactionPayment",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserLog_UserID",
                 table: "UserLog",
                 column: "UserID");
@@ -690,6 +728,9 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "ExamAnsweredQuestion");
+
+            migrationBuilder.DropTable(
+                name: "TransactionPayment");
 
             migrationBuilder.DropTable(
                 name: "UserLog");

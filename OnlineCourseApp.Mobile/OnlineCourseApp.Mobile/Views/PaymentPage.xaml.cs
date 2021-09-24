@@ -1,5 +1,6 @@
 ﻿using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.CourseParticipants;
+using OnlineCourseApp.Model.Requests.TransactionPayment;
 using Stripe;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace OnlineCourseApp.Mobile.Views
     {
         private readonly APIService _serviceCourseParticipant = new APIService("course-participants");
         private readonly APIService _serviceCourses = new APIService("courses");
+        private readonly APIService _serviceTransactionPayment = new APIService("transaction-payment");
 
         int _courseId = 0;
         public PaymentPage(object CourseId)
@@ -76,9 +78,18 @@ namespace OnlineCourseApp.Mobile.Views
                     Comment = "",
                     Review = 0,
                     ParticipationDate = DateTime.Now
-                    };
+                };
+
+                TransactionPaymentInsertRequest payment = new TransactionPaymentInsertRequest
+                {
+                    CourseId = _courseId,
+                    StudentId = APIService.UserId,
+                    Price= course.Price,
+                    Token = stripeToken.Id
+                };
 
                     await _serviceCourseParticipant.Insert<CourseParticipants>(req);
+                await _serviceTransactionPayment.Insert<TransactionPayment>(payment);
 
                     await DisplayAlert("Info", "You have successfuly buy course!", "OK");
 

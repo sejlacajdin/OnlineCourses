@@ -69,7 +69,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(825, 71);
+            this.groupBox1.Size = new System.Drawing.Size(887, 71);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -106,7 +106,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(592, 23);
+            this.button1.Location = new System.Drawing.Point(654, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(212, 32);
             this.button1.TabIndex = 5;
@@ -133,7 +133,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.dgvMyAnnouncements.RowHeadersWidth = 51;
             this.dgvMyAnnouncements.RowTemplate.Height = 25;
             this.dgvMyAnnouncements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMyAnnouncements.Size = new System.Drawing.Size(825, 180);
+            this.dgvMyAnnouncements.Size = new System.Drawing.Size(887, 180);
             this.dgvMyAnnouncements.TabIndex = 16;
             this.dgvMyAnnouncements.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnnouncements_CellClick);
             // 
@@ -222,7 +222,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.dgvAnnouncements.RowHeadersWidth = 51;
             this.dgvAnnouncements.RowTemplate.Height = 25;
             this.dgvAnnouncements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnnouncements.Size = new System.Drawing.Size(825, 180);
+            this.dgvAnnouncements.Size = new System.Drawing.Size(887, 180);
             this.dgvAnnouncements.TabIndex = 18;
             this.dgvAnnouncements.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnnouncements_CellClick_1);
             // 
@@ -278,7 +278,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label5.Location = new System.Drawing.Point(522, 106);
+            this.label5.Location = new System.Drawing.Point(544, 106);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 18);
             this.label5.TabIndex = 25;
@@ -287,9 +287,9 @@ namespace OnlineCourseApp.WinUI.Announcements
             // cmbCourses
             // 
             this.cmbCourses.FormattingEnabled = true;
-            this.cmbCourses.Location = new System.Drawing.Point(522, 134);
+            this.cmbCourses.Location = new System.Drawing.Point(547, 134);
             this.cmbCourses.Name = "cmbCourses";
-            this.cmbCourses.Size = new System.Drawing.Size(228, 24);
+            this.cmbCourses.Size = new System.Drawing.Size(254, 24);
             this.cmbCourses.TabIndex = 24;
             // 
             // label4
@@ -305,9 +305,9 @@ namespace OnlineCourseApp.WinUI.Announcements
             // cmbCourseSection
             // 
             this.cmbCourseSection.FormattingEnabled = true;
-            this.cmbCourseSection.Location = new System.Drawing.Point(273, 134);
+            this.cmbCourseSection.Location = new System.Drawing.Point(276, 134);
             this.cmbCourseSection.Name = "cmbCourseSection";
-            this.cmbCourseSection.Size = new System.Drawing.Size(228, 24);
+            this.cmbCourseSection.Size = new System.Drawing.Size(254, 24);
             this.cmbCourseSection.TabIndex = 22;
             // 
             // label3
@@ -325,7 +325,7 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.cmbCourseType.FormattingEnabled = true;
             this.cmbCourseType.Location = new System.Drawing.Point(25, 134);
             this.cmbCourseType.Name = "cmbCourseType";
-            this.cmbCourseType.Size = new System.Drawing.Size(228, 24);
+            this.cmbCourseType.Size = new System.Drawing.Size(234, 24);
             this.cmbCourseType.TabIndex = 20;
             // 
             // button2
@@ -334,10 +334,10 @@ namespace OnlineCourseApp.WinUI.Announcements
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(756, 133);
+            this.button2.Location = new System.Drawing.Point(818, 130);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 25);
+            this.button2.Size = new System.Drawing.Size(94, 31);
             this.button2.TabIndex = 26;
             this.button2.Text = "FILTER";
             this.button2.UseVisualStyleBackColor = false;

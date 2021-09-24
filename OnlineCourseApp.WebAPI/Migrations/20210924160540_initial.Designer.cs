@@ -10,7 +10,7 @@ using OnlineCourseApp.WebAPI.Database;
 namespace OnlineCourseApp.WebAPI.Migrations
 {
     [DbContext(typeof(_160065Context))]
-    [Migration("20210916152649_initial")]
+    [Migration("20210924160540_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,8 +140,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ChoiceId");
 
@@ -160,8 +160,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("CourseName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("CourseSectionId")
                         .HasColumnType("int")
@@ -171,8 +171,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int?>("NumOfRatings")
                         .HasColumnType("int");
@@ -401,8 +401,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("Instructions")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -412,8 +412,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("ExamId");
 
@@ -434,8 +434,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("Answer")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("ChoiceId")
                         .HasColumnType("int")
@@ -494,8 +494,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("QuestionId");
 
@@ -564,6 +564,39 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("OnlineCourseApp.WebAPI.Database.TransactionPayment", b =>
+                {
+                    b.Property<int>("TransactionPaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("TransactionPaymentID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int")
+                        .HasColumnName("CourseID");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int")
+                        .HasColumnName("StudentID");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("TransactionPaymentId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("TransactionPayment");
                 });
 
             modelBuilder.Entity("OnlineCourseApp.WebAPI.Database.User", b =>
@@ -931,6 +964,25 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     b.Navigation("QuestionType");
                 });
 
+            modelBuilder.Entity("OnlineCourseApp.WebAPI.Database.TransactionPayment", b =>
+                {
+                    b.HasOne("OnlineCourseApp.WebAPI.Database.Course", "Course")
+                        .WithMany("TransactionPayments")
+                        .HasForeignKey("CourseId")
+                        .HasConstraintName("FK_TransactionPayment_Course")
+                        .IsRequired();
+
+                    b.HasOne("OnlineCourseApp.WebAPI.Database.User", "Student")
+                        .WithMany("TransactionPayments")
+                        .HasForeignKey("StudentId")
+                        .HasConstraintName("FK_TransactionPayment_Student")
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("OnlineCourseApp.WebAPI.Database.UserLog", b =>
                 {
                     b.HasOne("OnlineCourseApp.WebAPI.Database.User", "User")
@@ -996,6 +1048,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     b.Navigation("DocumentShares");
 
                     b.Navigation("Exams");
+
+                    b.Navigation("TransactionPayments");
 
                     b.Navigation("Videos");
                 });
@@ -1066,6 +1120,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     b.Navigation("ExamAnsweredQuestions");
 
                     b.Navigation("Exams");
+
+                    b.Navigation("TransactionPayments");
 
                     b.Navigation("UserLogs");
 
