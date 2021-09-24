@@ -223,8 +223,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
                 {
                     CourseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CourseName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     ProfessorID = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CourseSectionID = table.Column<int>(type: "int", nullable: false),
@@ -352,8 +352,8 @@ namespace OnlineCourseApp.WebAPI.Migrations
                 {
                     ExamID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Instructions = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Instructions = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     TimeLimit = table.Column<TimeSpan>(type: "time", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CourseID = table.Column<int>(type: "int", nullable: false),
@@ -435,7 +435,7 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     ExamID = table.Column<int>(type: "int", nullable: false),
                     Points = table.Column<double>(type: "float", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     QuestionNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -468,7 +468,7 @@ namespace OnlineCourseApp.WebAPI.Migrations
                     ChoiceID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionID = table.Column<int>(type: "int", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Percentage = table.Column<double>(type: "float", nullable: false),
                     IsCorrect = table.Column<bool>(type: "bit", nullable: true)
                 },

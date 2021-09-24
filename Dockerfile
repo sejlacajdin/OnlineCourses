@@ -12,6 +12,8 @@ FROM build AS publish
 RUN dotnet publish "OnlineCourseApp.WebAPI" -c Release -o /app
 FROM base AS final
 WORKDIR /app
+ADD ./OnlineCourseApp.WebAPI/Images ./Images
+ADD ./OnlineCourseApp.WebAPI/Resources ./Resources
 COPY --from=publish /app .
 
 EXPOSE 5010
