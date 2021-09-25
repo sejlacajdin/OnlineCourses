@@ -26,6 +26,10 @@ namespace OnlineCourseApp.WebAPI.Services
             if (request?.QuestionId != null)
                 query = query.Where(x => x.QuestionId == request.QuestionId);
 
+            if (!string.IsNullOrWhiteSpace(request?.Text))
+                query = query.Where(x => x.Text.StartsWith(request.Text));
+
+
             var list = query.ToList();
 
             return _mapper.Map<List<Choices>>(list);

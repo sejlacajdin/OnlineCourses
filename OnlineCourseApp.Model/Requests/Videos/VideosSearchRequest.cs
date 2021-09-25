@@ -9,5 +9,6 @@ namespace OnlineCourseApp.Model.Requests.Videos
     {
         [Required]
         public int CourseId { get; set; }
+        public string Name { get; set; }
     }
 }

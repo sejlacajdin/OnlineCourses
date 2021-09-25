@@ -9,5 +9,6 @@ namespace OnlineCourseApp.Model.Requests.Documents
     {
         [Required]
         public int CourseId { get; set; }
+        public string FileOldName { get; set; }
     }
 }

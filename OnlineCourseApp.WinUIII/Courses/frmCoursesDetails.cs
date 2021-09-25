@@ -353,5 +353,40 @@ namespace OnlineCourseApp.WinUI.Courses
                 else return;
             }
         }
+
+        private async void btnDocs_Click(object sender, EventArgs e)
+        {
+            var _txtSearch = txtDocsSearch.Text;
+
+            var search = new DocumentsSearchRequest()
+            {
+                CourseId = _courseId,
+                FileOldName = _txtSearch
+            };
+            var document = await _serviceDocuments.Get<List<Model.Documents>>(search);
+            dgvDocuments.AutoGenerateColumns = false;
+
+            if (document != null)
+                dgvDocuments.DataSource = document;
+
+        }
+
+        private async void btnVideo_Click(object sender, EventArgs e)
+        {
+            var _txtSearch = txtVideoSearch.Text;
+
+            var search = new VideosSearchRequest()
+            {
+                CourseId = _courseId,
+                Name = _txtSearch
+            };
+
+            var video = await _serviceVideos.Get<List<Model.Videos>>(search);
+            dgvVideos.AutoGenerateColumns = false;
+
+            if (video != null)
+                dgvVideos.DataSource = video;
+
+        }
     }
 }

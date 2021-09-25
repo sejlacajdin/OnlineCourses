@@ -26,6 +26,10 @@ namespace OnlineCourseApp.WebAPI.Services
             if (request?.CourseId != null)
                 query = query.Where(x => x.CourseId == request.CourseId);
 
+            if (!string.IsNullOrWhiteSpace(request?.Name))
+                query = query.Where(x => x.Name.StartsWith(request.Name));
+
+
             var list = query.ToList();
 
             return _mapper.Map<List<Videos>>(list);

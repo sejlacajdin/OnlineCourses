@@ -38,6 +38,8 @@ namespace OnlineCourseApp.WinUI.Choices
             this.IsCorrect = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChoices)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,12 +48,11 @@ namespace OnlineCourseApp.WinUI.Choices
             this.btnAddChoice.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnAddChoice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnAddChoice.ForeColor = System.Drawing.Color.White;
-            this.btnAddChoice.Location = new System.Drawing.Point(661, 41);
-            this.btnAddChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddChoice.Location = new System.Drawing.Point(661, 33);
             this.btnAddChoice.Name = "btnAddChoice";
-            this.btnAddChoice.Size = new System.Drawing.Size(194, 43);
+            this.btnAddChoice.Size = new System.Drawing.Size(194, 34);
             this.btnAddChoice.TabIndex = 30;
             this.btnAddChoice.Text = "ADD CHOICE";
             this.btnAddChoice.UseVisualStyleBackColor = false;
@@ -71,13 +72,13 @@ namespace OnlineCourseApp.WinUI.Choices
             this.Update,
             this.Delete});
             this.dgvChoices.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvChoices.Location = new System.Drawing.Point(33, 107);
-            this.dgvChoices.Margin = new System.Windows.Forms.Padding(3, 4, 23, 4);
+            this.dgvChoices.Location = new System.Drawing.Point(33, 86);
+            this.dgvChoices.Margin = new System.Windows.Forms.Padding(3, 3, 23, 3);
             this.dgvChoices.Name = "dgvChoices";
             this.dgvChoices.RowHeadersWidth = 51;
             this.dgvChoices.RowTemplate.Height = 25;
             this.dgvChoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChoices.Size = new System.Drawing.Size(817, 306);
+            this.dgvChoices.Size = new System.Drawing.Size(817, 245);
             this.dgvChoices.TabIndex = 31;
             this.dgvChoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChoices_CellClick);
             // 
@@ -134,7 +135,7 @@ namespace OnlineCourseApp.WinUI.Choices
             this.Delete.DataPropertyName = "Delete";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -148,18 +149,46 @@ namespace OnlineCourseApp.WinUI.Choices
             this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.Width = 90;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(384, 40);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(124, 26);
+            this.btnSearch.TabIndex = 34;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSearch.Location = new System.Drawing.Point(33, 40);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(475, 22);
+            this.txtSearch.TabIndex = 33;
+            // 
             // frmChoices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(882, 450);
+            this.ClientSize = new System.Drawing.Size(882, 360);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvChoices);
             this.Controls.Add(this.btnAddChoice);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmChoices";
             this.Load += new System.EventHandler(this.frmChoices_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChoices)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -173,5 +202,7 @@ namespace OnlineCourseApp.WinUI.Choices
         private System.Windows.Forms.DataGridViewTextBoxColumn IsCorrect;
         private System.Windows.Forms.DataGridViewButtonColumn Update;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

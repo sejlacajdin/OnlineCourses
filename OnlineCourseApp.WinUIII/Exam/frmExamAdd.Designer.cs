@@ -382,7 +382,7 @@ namespace OnlineCourseApp.WinUI.Tests
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(914, 1067);
+            this.ClientSize = new System.Drawing.Size(914, 1055);
             this.Controls.Add(this.dgvResults);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSearch);

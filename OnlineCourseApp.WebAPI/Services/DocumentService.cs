@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using OnlineCourseApp.Model;
 using OnlineCourseApp.Model.Requests.Documents;
 using OnlineCourseApp.WebAPI.Database;
@@ -25,6 +26,10 @@ namespace OnlineCourseApp.WebAPI.Services
 
             if (request?.CourseId != null)
                 query = query.Where(x => x.CourseId == request.CourseId);
+
+            if (!string.IsNullOrWhiteSpace(request?.FileOldName))
+                query = query.Include(q => q.Document).Where(x => x.Document.FileOldName.StartsWith(request.FileOldName));
+
 
             var list = document.Where(x => query.Any(y => y.DocumentId == x.DocumentId)).ToList();
 

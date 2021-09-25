@@ -94,5 +94,21 @@ namespace OnlineCourseApp.WinUI.Choices
                 form.ShowDialog();
             }
         }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            var _txtSearch = txtSearch.Text;
+
+            var search = new ChoicesSearchRequest()
+            {
+                QuestionId = (int)_questionId,
+                Text = _txtSearch
+            };
+
+            var result = await _serviceChoices.Get<List<Model.Choices>>(search);
+
+            if (result != null)
+                dgvChoices.DataSource = result;
+        }
     }
 }
