@@ -31,7 +31,7 @@
                                 CardViewHasShadow="True"
                                 CardViewOutlineColor="LightGray"
                                 CardViewOutlineColorThickness="4"
-                                HeightRequest="380"
+                                HeightRequest="480"
                                     Margin="0,10,0,10">
                                     <cardView:CardView.CardViewContent>
                                         <StackLayout

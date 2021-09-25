@@ -51,7 +51,7 @@ namespace OnlineCourseApp.WebAPI.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public Model.Users Update(int id, UsersInsertRequest request)
+        public Model.Users Update(int id, UsersUpdateRequest request)
         {
             return _usersService.Update(id, request);
         }

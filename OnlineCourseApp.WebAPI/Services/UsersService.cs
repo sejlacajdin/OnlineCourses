@@ -129,18 +129,11 @@ namespace OnlineCourseApp.WebAPI.Services
             };
         }
 
-        public Users Update(int id, UsersInsertRequest request)
+        public Users Update(int id, UsersUpdateRequest request)
         {
             var entity = _context.Users.Find(id);
 
             _mapper.Map(request, entity);
-
-            if (!string.IsNullOrWhiteSpace(request.Password))
-            {
-                if (request.Password != request.PasswordConfirmation)
-                    throw new UserException("Passwords are not equal!");
-            }
-
             _context.SaveChanges();
 
             return _mapper.Map<Model.Users>(entity);

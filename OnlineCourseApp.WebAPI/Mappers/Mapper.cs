@@ -21,6 +21,7 @@ namespace OnlineCourseApp.WebAPI.Mappers
             CreateMap<Database.UserRole, Model.UserRoles>();
             CreateMap<Database.Role, Model.Roles>();
             CreateMap<Database.User, UsersInsertRequest>().ReverseMap();
+            CreateMap<Database.User, UsersUpdateRequest>().ReverseMap();
             CreateMap<Database.Course, Model.Courses>();
             CreateMap<Database.Course, CoursesInsertRequest>().ReverseMap();
             CreateMap<Database.CourseType, Model.CourseTypes>();

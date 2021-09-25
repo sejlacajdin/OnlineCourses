@@ -10,7 +10,7 @@ namespace OnlineCourseApp.WebAPI.Services.IServices
         List<Users> Get(UsersSearchRequest request);
         Users GetById(int id);
         Users Insert(UsersInsertRequest request);
-        Users Update(int id, UsersInsertRequest request);
+        Users Update(int id, UsersUpdateRequest request);
         Users Autenticiraj(string username, string pass, bool login = false);
     }
 }
