@@ -14,4 +14,3 @@ C:\Users\sejla\Desktop\rs2\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netco
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.CoreCompileInputs.cache
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.dll
 C:\Users\sejla\Desktop\rs2\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.pdb
-C:\Users\sejla\Desktop\rs2\OnlineCourseApp\OnlineCourseApp.Model\obj\Debug\netcoreapp3.1\OnlineCourseApp.Model.csproj.AssemblyReference.cache

@@ -1124,6 +1124,17 @@ namespace OnlineCourseApp.WebAPI
                   PostOwner = "Professor Desktop"
                 });
                 context.SaveChanges();
+
+                context.Announcements.Add(new Announcement()
+                {
+                    Title = "Announcement about course start",
+                    ShortDescription = "Announcement about new update for section 19",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus tortor, commodo vitae scelerisque eget, tempus et sapien. Morbi sed ligula a sem mattis imperdiet.",
+                    AnnouncementOwnerId = 4,
+                    FilterTypeId = 1,
+                    PostOwner = "Glen Hart"
+                });
+                context.SaveChanges();
             }
 
             if (!context.AnnouncementFilters.Any(x => x.AnnouncementFilterId == 1))
@@ -1135,6 +1146,16 @@ namespace OnlineCourseApp.WebAPI
                     CourseSectionId = 1,
                     CourseId = 1
                    
+                });
+                context.SaveChanges();
+
+                context.AnnouncementFilters.Add(new AnnouncementFilter()
+                {
+                    AnnouncementId = 2,
+                    CourseTypeId = 1,
+                    CourseSectionId = 4,
+                    CourseId = 4
+
                 });
                 context.SaveChanges();
             }
